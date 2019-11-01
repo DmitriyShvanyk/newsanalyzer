@@ -11,7 +11,7 @@ https://dmitriyshvanyk.github.io/newsanalyzer/
 
 Для запуска проекта локально, необходимо его скачать
 
-`git clone https://github.com/DmitriyShvanyk/agung.git`
+`git clone https://github.com/DmitriyShvanyk/newsanalyzer.git`
 
 
 ## Development
