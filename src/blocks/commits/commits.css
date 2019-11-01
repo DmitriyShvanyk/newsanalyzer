@@ -3,15 +3,6 @@
 @import url(../commits/__title/commits__title.css);
 @import url(../commits/__link-more/commits__link-more.css);
 @import url(../commits/__link-more/--mobile/commits__link-more--mobile.css);
-@import url(../commits/__slider/commits__slider.css);
-@import url(../commits/__item/commits__item.css);
-@import url(../commits/__head/commits__head.css);
-@import url(../commits/__date/commits__date.css);
-@import url(../commits/__content/commits__content.css);
-@import url(../commits/__author/commits__author.css);
-@import url(../commits/__photo/commits__photo.css);
-@import url(../commits/__image/commits__image.css);
-@import url(../commits/__email/commits__email.css);
 
 
 .commits {

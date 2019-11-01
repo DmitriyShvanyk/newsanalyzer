@@ -1,0 +1,34 @@
+@import url(../slider/__swiper-container/slider__swiper-container.css);
+@import url(../slider/__swiper-slide/slider__swiper-slide.css);
+@import url(../slider/__swiper-button-prev/slider__swiper-button-prev.css);
+@import url(../slider/__swiper-button-next/slider__swiper-button-next.css);
+@import url(../slider/__swiper-pagination/slider__swiper-pagination.css);
+@import url(../slider/__item/slider__item.css);
+@import url(../slider/__date/slider__date.css);
+@import url(../slider/__head/slider__head.css);
+@import url(../slider/__content/slider__content.css);
+@import url(../slider/__author/slider__author.css);
+@import url(../slider/__photo/slider__photo.css);
+@import url(../slider/__image/slider__image.css);
+@import url(../slider/__email/slider__email.css);
+
+
+.slider {
+  margin-bottom: 67px;
+}
+
+@media screen and (max-width:768px) {
+
+  .slider {
+    margin-bottom: 22px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .slider {
+    margin-bottom: 7px;
+  }
+
+}

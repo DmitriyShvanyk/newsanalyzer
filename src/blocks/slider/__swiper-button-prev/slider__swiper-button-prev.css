@@ -1,0 +1,44 @@
+.slider__swiper-button-prev {
+  top: calc(50% - 20px);
+  outline: none;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  background-color: rgba(26, 27, 34, 1);
+  border-radius: 50%;
+  transition: background-color .3s ease;
+}
+
+.slider__swiper-button-prev:after {
+  font-size: 0;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  transform: rotate(45deg);
+}
+
+.slider__swiper-button-prev:after {
+  margin-left: 2px;
+}
+
+.slider__swiper-button-prev:hover {
+  background-color: rgba(26, 27, 34, .7);
+}
+
+@media screen and (max-width:768px) {
+
+  .slider__swiper-button-prev {
+    top: calc(50% - 10px);
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .slider__swiper-button-prev {
+    display: none;
+  }
+
+}

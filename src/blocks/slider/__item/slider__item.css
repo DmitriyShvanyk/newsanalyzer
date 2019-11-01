@@ -1,8 +1,7 @@
-.commits__item {
+.slider__item {
   font-size: 16px;
   line-height: 1.375;
   padding: 24px;
-  /*max-width: 400px;*/
   max-width: 100%;
   margin: 0 auto;
   min-height: 288px;
@@ -12,14 +11,13 @@
   transition: box-shadow .3s ease;
 }
 
-.commits__item:hover {
+.slider__item:hover {
   box-shadow: 2px 7px 28px rgba(8, 29, 45, .1);
 }
 
 @media screen and (max-width:1024px) {
 
-  .commits__item {
-    /*max-width: 336px;*/
+  .slider__item {
     min-height: 242px;
   }
 
@@ -27,8 +25,7 @@
 
 @media screen and (max-width:576px) {
 
-  .commits__item {
-    /*max-width: 288px;*/
+  .slider__item {
     min-height: 264px;
     padding: 16px;
   }

@@ -1,4 +1,4 @@
-.commits__photo {
+.slider__photo {
   margin-right: 16px;
   width: 64px;
   height: 64px;
@@ -8,7 +8,7 @@
 
 @media screen and (max-width:1024px) {
 
-  .commits__photo {
+  .slider__photo {
     margin-right: 12px;
     width: 48px;
     height: 48px;

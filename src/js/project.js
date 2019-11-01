@@ -1,17 +1,17 @@
 import Swiper from 'swiper';
 
-const mySwiper = new Swiper('.swiper-container', {
+const mySwiper = new Swiper('.slider__swiper-container', {
   loop: true,
   slidesPerView: 3,
-  spaceBetween: 16,
-  clickable: true,
+  spaceBetween: 16,  
   pagination: {
-    el: '.swiper-pagination',
+    el: '.slider__swiper-pagination',
   },
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: '.slider__swiper-button-next',
+    prevEl: '.slider__swiper-button-prev',
   },
+  clickable: true,
   breakpoints: {
     320: {
       slidesPerView: 1,

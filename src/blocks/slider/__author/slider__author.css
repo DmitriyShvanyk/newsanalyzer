@@ -1,4 +1,4 @@
-.commits__author {
+.slider__author {
   display: block;
   font-weight: normal;
   font-size: 26px;
@@ -14,7 +14,7 @@
 
 @media screen and (max-width:1024px) {
 
-  .commits__author {
+  .slider__author {
     font-size: 20px;
     line-height: 1.5;
   }

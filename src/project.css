@@ -21,145 +21,18 @@
 @import url(./blocks/about/about.css);
 @import url(./blocks/commits/commits.css);
 @import url(./blocks/footer/footer.css);
+@import url(./blocks/slider/slider.css);
 
 
 
 
-.commits__slider {
-  margin-bottom: 37px;
-}
-
-.swiper-container {
-  padding-left: 88px;
-  padding-right: 88px;
-  position: relative;
-}
-
-.swiper-container::before,
-.swiper-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 88px;
-  height: 100%;
-  background: linear-gradient(to left, rgba(245, 246, 247, 0) 0%, #F5F6F7 100%);
-  z-index: 9;
-}
-
-.swiper-container::after {
-  left: auto;
-  right: 0;
-  background: linear-gradient(to right, rgba(245, 246, 247, 0) 0%, #F5F6F7 100%);
-}
-
-.swiper-slide {
-  padding-top: 28px;
-  padding-bottom: 28px;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  top: calc(50% - 20px);
-  outline: none;
-  width: 40px;
-  height: 40px;
-  color: #fff;
-  background-color: rgba(26, 27, 34, 1);
-  border-radius: 50%;
-  transition: background-color .3s ease;
-}
-
-.swiper-button-prev:after,
-.swiper-button-next:after {
-  font-size: 0;
-  width: 8px;
-  height: 8px;
-  border: 2px solid #fff;
-  border-top: none;
-  border-right: none;
-  transform: rotate(45deg);
-}
-
-.swiper-button-prev:after {
-  margin-left: 2px;
-}
-
-.swiper-button-next:after {
-  margin-right: 2px;
-  border: 2px solid #fff;
-  border-top: none;
-  border-left: none;
-  transform: rotate(-45deg);
-}
-
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background-color: rgba(26, 27, 34, .7);
-}
-
-.swiper-pagination {
-  position: relative;
-  margin-top: 20px;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: rgba(26, 27, 34, 1);
-}
-
-@media screen and (max-width:768px) {
-
-  .commits__slider {
-    margin-bottom: 0;
-    padding-bottom: 22px;
-  }
-
-  .swiper-container {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-
-  .swiper-button-prev,
-  .swiper-button-next {
-    top: calc(50% - 10px);
-  }
-
-  .swiper-pagination {
-    margin-top: 10px;
-  }
 
 
-}
 
-@media screen and (max-width:576px) {
 
-  .commits__slider {
-    margin-bottom: 7px;
-    padding-bottom: 0;
-  }
 
-  .swiper-container {
-    padding-left: 8px;
-    padding-right: 8px;
-  }
 
-  .swiper-container::before,
-  .swiper-container::after {
-    display: none;
-  }
 
-  .swiper-slide {
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
 
-  .swiper-button-prev,
-  .swiper-button-next {
-    display: none;
-  }
 
-  .swiper-pagination {
-    margin-top: 2px;
-  }
 
-}

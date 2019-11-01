@@ -1,4 +1,4 @@
-.commits__date {
+.slider__date {
   display: block;
   font-size: 14px;
   color: #B6BCBF;
@@ -9,7 +9,7 @@
 
 @media screen and (max-width:576px) {
 
-  .commits__date {
+  .slider__date {
     margin-bottom: 10px;
     margin-top: 5px;
   }
