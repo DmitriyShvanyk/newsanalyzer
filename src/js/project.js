@@ -1,6 +1,6 @@
 import Swiper from 'swiper';
 
-const mySwiper = new Swiper('.slider__swiper-container', {
+const slider = new Swiper('.slider__swiper-container', {
   loop: true,
   slidesPerView: 3,
   spaceBetween: 16,  
