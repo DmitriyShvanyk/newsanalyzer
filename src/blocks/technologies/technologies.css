@@ -1,0 +1,11 @@
+@import url(../technologies/__container/technologies__container.css);
+@import url(../technologies/__inner/technologies__inner.css);
+@import url(../technologies/__title/technologies__title.css);
+@import url(../technologies/__items/technologies__items.css);
+@import url(../technologies/__item/technologies__item.css);
+@import url(../technologies/__caption/technologies__caption.css);
+
+
+.technologies {
+  background-color: #F5F6F7;
+}

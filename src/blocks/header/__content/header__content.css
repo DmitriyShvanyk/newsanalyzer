@@ -1,0 +1,13 @@
+.header__content {
+  max-width: 608px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+@media screen and (max-width:768px) {
+
+  .header__content {
+    max-width: 452px;
+  }
+
+}

@@ -1,0 +1,21 @@
+.progress__count {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.333;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 9px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+@media screen and (max-width:576px) {
+
+  .progress__count {
+    left: 4px;
+  }
+
+}

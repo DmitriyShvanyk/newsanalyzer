@@ -1,0 +1,16 @@
+.title {
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 1.15;
+  font-family: 'Roboto Slab', serif;
+  margin-top: 0;
+}
+
+@media screen and (max-width:768px) {
+
+  .title {
+    font-size: 30px;
+    line-height: 1.133;
+  }
+
+}

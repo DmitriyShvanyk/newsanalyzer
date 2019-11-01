@@ -1,0 +1,14 @@
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  height: 100%;
+}
+
+@media screen and (max-width:576px) {
+
+  .navbar__menu {
+    font-size: 16px;
+  }
+
+}

@@ -1,0 +1,11 @@
+.output__item+.output__item {
+  margin-top: 3px;
+}
+
+@media screen and (max-width:768px) {
+
+  .output__item+.output__item {
+    margin-top: 5px;
+  }
+
+}

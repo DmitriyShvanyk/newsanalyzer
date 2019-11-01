@@ -1,0 +1,27 @@
+.customers__paragraph {
+  margin-bottom: 17px;
+}
+
+.customers__paragraph+.customers__paragraph {
+  margin-top: 27px;
+}
+
+@media screen and (max-width:768px) {
+
+  .customers__paragraph {
+    margin-bottom: 0;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .customers__paragraph {
+    line-height: 1.35;
+  }
+
+  .customers__paragraph+.customers__paragraph {
+    margin-top: 24px;
+  }
+
+}

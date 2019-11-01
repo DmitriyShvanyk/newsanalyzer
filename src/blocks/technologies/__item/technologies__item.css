@@ -1,0 +1,38 @@
+.technologies__item {
+  width: 120px;
+  text-align: center;
+  margin-left: 40px;
+}
+
+@media screen and (max-width:1200px) {
+
+  .technologies__item {
+    margin-left: 20px;
+  }
+
+}
+
+@media screen and (max-width:1024px) {
+
+  .technologies__item {
+    margin-left: 0;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .technologies__item {
+    width: 50%;
+    max-width: 50%;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .technologies__item {
+    margin-top: 16px;
+  }
+
+}

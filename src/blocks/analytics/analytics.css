@@ -1,0 +1,7 @@
+@import url(../analytics/__container/analytics__container.css);
+@import url(../analytics/__title/analytics__title.css);
+
+
+.analytics {
+  background-color: #F5F6F7;
+}

@@ -1,0 +1,25 @@
+@import url(../header/__container/header__container.css);
+@import url(../header/__content/header__content.css);
+@import url(../header/__title/header__title.css);
+@import url(../header/__subtitle/header__subtitle.css);
+
+.header {
+  flex-shrink: 0;
+  min-height: 576px;
+  background-color: #070707;
+  background-image: url(../../images/header.jpg);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+@media screen and (max-width:768px) {
+
+  .header {
+    min-height: 400px;
+    background-image: url(../../images/header-mobile.png);
+    background-attachment: scroll;
+  }
+
+}

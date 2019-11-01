@@ -1,0 +1,29 @@
+.graph__scale {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 1.333;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: #B6BCBF;
+  padding-left: 104px;
+  box-sizing: border-box;
+  margin-top: 15px;
+}
+
+@media screen and (max-width:768px) {
+
+  .graph__scale {
+    padding-left: 117px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .graph__scale {
+    display: none;
+  }
+
+}

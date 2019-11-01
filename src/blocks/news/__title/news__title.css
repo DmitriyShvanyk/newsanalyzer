@@ -1,0 +1,31 @@
+.news__title {
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 1.15;
+  margin-top: 0;
+  margin-bottom: 13px;
+  font-family: 'Roboto Slab', serif;
+  height: 87px;
+  overflow: hidden;
+}
+
+@media screen and (max-width:1024px) {
+
+  .news__title {
+    font-size: 22px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    height: 72px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .news__title {
+    line-height: 1.2;
+    margin-bottom: 10px;
+    height: auto;
+  }
+
+}

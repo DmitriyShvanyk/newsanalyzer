@@ -1,0 +1,22 @@
+.commits__author {
+  display: block;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 1.15;
+  font-family: 'Roboto Slab', serif;
+  margin-top: 0;
+  margin-bottom: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+@media screen and (max-width:1024px) {
+
+  .commits__author {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+}

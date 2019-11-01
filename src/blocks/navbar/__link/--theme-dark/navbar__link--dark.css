@@ -1,0 +1,18 @@
+.navbar__link--theme-dark::before {
+  background-color: rgba(26, 27, 34, 1);
+}
+
+.navbar__link--theme-dark:hover,
+.navbar__link--theme-dark:focus,
+.navbar__link--theme-dark:active {
+  text-decoration: none;
+  color: rgba(26, 27, 34, 1);
+}
+
+.navbar__link--theme-dark.navbar__link--active {
+  color: rgba(26, 27, 34, 1);
+}
+
+.navbar__link--theme-dark.navbar__link--active::before {
+  opacity: 1;
+}

@@ -1,0 +1,13 @@
+.news__foot {
+  padding: 0 24px 24px;
+  margin-top: auto;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width:1024px) {
+
+  .news__foot {
+    padding: 0 16px 16px;
+  }
+
+}

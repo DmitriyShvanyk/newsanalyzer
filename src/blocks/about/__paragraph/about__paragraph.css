@@ -1,0 +1,25 @@
+.about__paragraph+.about__paragraph {
+  margin-top: 25px;
+}
+
+@media screen and (max-width:768px) {
+
+  .about__paragraph,
+  .about__paragraph+.about__paragraph {
+    margin: 0;
+  }
+
+  .about__paragraph{
+    line-height: 1.35;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .about__paragraph,
+  .about__paragraph+.about__paragraph {
+    margin: 0;
+  }
+
+}

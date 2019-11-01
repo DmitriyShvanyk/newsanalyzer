@@ -1,0 +1,16 @@
+@media screen and (max-width:1024px) {
+
+  .commits__link-more {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .commits__link-more{
+    display: none;
+  }
+
+}

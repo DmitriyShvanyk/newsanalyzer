@@ -1,0 +1,12 @@
+.commits__slider {
+  padding-bottom: 30px;  
+  box-sizing: border-box;
+}
+
+@media screen and (max-width:576px) {
+
+  .commits__slider {
+    padding-bottom: 48px;
+  }
+
+}

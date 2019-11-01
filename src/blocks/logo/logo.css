@@ -1,0 +1,26 @@
+.logo {
+  display: inline-block;
+  vertical-align: top;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+  font-family: 'Roboto Slab', serif;
+  transition: color .3s ease;
+}
+
+.logo:hover,
+.logo:focus,
+.logo:active {
+  text-decoration: none;
+  color: rgba(255, 255, 255, .7);
+}
+
+@media screen and (max-width:576px) {
+
+  .logo {
+    font-size: 16px;
+  }
+
+}

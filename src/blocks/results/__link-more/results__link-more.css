@@ -1,0 +1,16 @@
+@media screen and (max-width:1024px) {
+
+  .results__link-more {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .results__link-more {
+    margin-top: 4px;
+  }
+
+}

@@ -1,0 +1,22 @@
+.customers__container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+@media screen and (max-width:768px) {
+
+  .customers__container {
+    padding-top: 30px;
+    padding-bottom: 55px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .customers__container {
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+
+}
