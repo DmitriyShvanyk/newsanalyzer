@@ -12,7 +12,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
-  entry: {    
+  entry: {
     index: [`./src/js/index.js`, `./src/pages/index.css`],
     project: [`./src/js/project.js`, `./src/pages/project.css`],
     analytics: [`./src/js/analytics.js`, `./src/pages/analytics.css`]
@@ -42,21 +42,46 @@ module.exports = {
           'css-loader',
           'postcss-loader'
         ]
-      },
+      },      
       {
         test: /\.(png|jpg|gif|ico|svg)$/,
-        use: {
-          loader: 'file-loader',
-          options: {           
-            name: '[path][name].[ext]',
-            outputPath: (file) => {
-              let path = file.split("src/")[1];   
-              return path
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+              outputPath: (file) => {
+                let path = file.split("src/")[1];
+                return path
+              }
+            }
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 95
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.90],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              // the webp option will enable WEBP
+              webp: {
+                quality: 75
+              }
             }
           }
-        }
-      },
-
+        ]
+      },     
       {
         test: /\.(ttf|eot|woff|woff2)$/,
         use: {
