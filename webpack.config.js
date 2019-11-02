@@ -13,9 +13,9 @@ const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
   entry: {
-    index: [`./src/js/index.js`, `./src/pages/index.css`],
-    project: [`./src/js/project.js`, `./src/pages/project.css`],
-    analytics: [`./src/js/analytics.js`, `./src/pages/analytics.css`]
+    index: [`./src/js/index.js`],
+    project: [`./src/js/project.js`],
+    analytics: [`./src/js/analytics.js`]
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

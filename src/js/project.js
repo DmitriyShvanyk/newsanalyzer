@@ -1,3 +1,6 @@
+import '../../node_modules/swiper/css/swiper.css';
+import '../pages/project.css'
+
 import Swiper from 'swiper';
 
 const slider = new Swiper('.slider__swiper-container', {
