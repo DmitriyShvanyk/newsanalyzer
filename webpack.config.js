@@ -75,9 +75,9 @@ module.exports = {
                 interlaced: false,
               },
               // the webp option will enable WEBP
-              webp: {
+              /*webp: {
                 quality: 75
-              }
+              }*/
             }
           }
         ]
