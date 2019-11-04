@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="shortcut icon" href="./favicon.ico">
   <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.chunks.index.css %>">
 </head>
 
@@ -46,8 +46,8 @@
 
           <!--form-search.begin-->
           <form action="#" class="form-search" method="GET">
-            <input type="search" class="form-search__control" minlength="1" placeholder="Введите тему новости" aria-label="News"
-              required>
+            <input type="search" class="form-search__control" minlength="1" placeholder="Введите тему новости"
+              aria-label="News" required>
             <button type="submit" class="form-search__submit">Искать</button>
           </form>
           <!--form-search.end-->
@@ -108,7 +108,8 @@
                   <div class="news__column">
                     <div class="news__item">
                       <div class="news__head">
-                        <img class="news__image" src="<%=require('./images/news/01.jpg')%>" alt="Национальное достояние – парки">
+                        <img class="news__image" src="<%=require('./images/news/01.jpg')%>"
+                          alt="Национальное достояние – парки">
                       </div>
                       <div class="news__body">
                         <time class="news__date" datetime="2019-08-02">2 августа, 2019</time>
@@ -173,7 +174,8 @@
                   <div class="news__column">
                     <div class="news__item">
                       <div class="news__head">
-                        <img class="news__image" src="<%=require('./images/news/04.jpg')%>" alt="Национальное достояние – парки">
+                        <img class="news__image" src="<%=require('./images/news/04.jpg')%>"
+                          alt="Национальное достояние – парки">
                       </div>
                       <div class="news__body">
                         <time class="news__date" datetime="2019-08-02">2 августа, 2019</time>
@@ -256,9 +258,12 @@
         <div class="container about__container">
           <div class="about__columns">
             <div class="about__column">
-              <div class="about__picture">
+              <picture class="about__picture">
+                <source srcset="<%=require('./images/about-mobile.webp')%>" type="image/webp" media="(max-width:1024px)">
+                <source srcset="<%=require('./images/about-mobile.jpg')%>" media="(max-width:1024px)">
+                <source srcset="<%=require('./images/about.webp')%>" type="image/webp">
                 <img class="about__image" src="<%=require('./images/about.jpg')%>" alt="Dmitriy Shvanyk">
-              </div>
+              </picture>
             </div>
             <div class="about__column">
               <div class="about__content">

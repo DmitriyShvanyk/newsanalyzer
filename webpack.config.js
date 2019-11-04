@@ -13,9 +13,9 @@ const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
   entry: {
-    index: [`./src/js/index.js`],
-    project: [`./src/js/project.js`],
-    analytics: [`./src/js/analytics.js`]
+    index: './src/js/index.js',
+    project: './src/js/project.js',
+    analytics: './src/js/analytics.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -44,7 +44,7 @@ module.exports = {
         ]
       },      
       {
-        test: /\.(png|jpg|gif|ico|svg)$/,
+        test: /\.(png|jpg|gif|ico|svg|webp)$/,
         use: [
           {
             loader: 'file-loader',

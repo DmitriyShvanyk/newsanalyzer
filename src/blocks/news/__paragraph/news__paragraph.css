@@ -1,22 +1,23 @@
 .news__paragraph {
   font-size: 16px;
   line-height: 1.375;
+  max-height: calc(1.375em * 5);
+  overflow: hidden;
 }
 
 @media screen and (max-width:1024px) {
 
   .news__paragraph {
+    max-height: calc(1.375em * 4);
     margin-top: 0;
     margin-bottom: 10px;
-    height: 88px;
-    overflow: hidden;
   }
 
 }
 
 @media screen and (max-width:576px) {
 
-  .news__paragraph {
+  .news__paragraph {    
     margin-bottom: 4px;
   }
 

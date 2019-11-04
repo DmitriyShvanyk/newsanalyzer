@@ -5,7 +5,7 @@
   margin-top: 0;
   margin-bottom: 13px;
   font-family: 'Roboto Slab', serif;
-  height: 87px;
+  max-height: calc(1.15 * 3);
   overflow: hidden;
 }
 
@@ -15,7 +15,6 @@
     font-size: 22px;
     line-height: 1.1;
     margin-bottom: 10px;
-    height: 72px;
   }
 
 }
@@ -24,8 +23,6 @@
 
   .news__title {
     line-height: 1.2;
-    margin-bottom: 10px;
-    height: auto;
   }
 
 }
