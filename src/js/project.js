@@ -1,46 +1,17 @@
+export const month = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
 import '../../node_modules/swiper/css/swiper.css';
-import '../pages/project.css'
+import '../pages/project.css';
 
-import Swiper from 'swiper';
+import ApiGithub from './modules/github/apiGithub.js';
+import CardListGithub from './modules/github/cardListGithub.js';
 
-const slider = new Swiper('.slider__swiper-container', {
-  loop: true,
-  slidesPerView: 3,
-  spaceBetween: 16,  
-  pagination: {
-    el: '.slider__swiper-pagination',
-  },
-  navigation: {
-    nextEl: '.slider__swiper-button-next',
-    prevEl: '.slider__swiper-button-prev',
-  },
-  clickable: true,
-  breakpoints: {
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 8,
-      clickable: true
-    },
-    576: {
-      slidesPerView: 2,
-      spaceBetween: 8,
-      clickable: true
-    },
-    768: {
-      slidesPerView: 2,
-      spaceBetween: 8,
-      clickable: true
-    },
-    1024: {
-      slidesPerView: 3,
-      spaceBetween: 16,
-      clickable: true
-    },
-    1441: {
-      slidesPerView: 4,
-      spaceBetween: 16,
-      clickable: true
-    }
-  }
+const cardsContainer = document.querySelector('.swiper-wrapper');
+const apiGithub = new ApiGithub(`https://api.github.com/repos/DmitriyShvanyk/newsanalyzer/commits`);
 
-});
+apiGithub.getInitialCardCommit()
+  .then(cards => {
+    new CardListGithub(cardsContainer, cards);
+  }).catch(function (err) {
+    return Promise.reject(`Ошибка: ${err.status}`);
+  });
