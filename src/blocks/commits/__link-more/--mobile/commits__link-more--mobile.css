@@ -1,0 +1,33 @@
+.commits__link-more--mobile{
+  display: none;
+}
+
+@media screen and (max-width:576px) {
+
+  .commits__link-more--mobile {
+    order: 3;
+    text-align: center;
+    display: block;
+    width: calc(100% - 32px);
+    margin: 0 auto 30px auto;
+    min-width: 240px;
+    padding: 15.5px 25px;
+    border-radius: 80px;
+    outline: none;
+    border: 1px solid #1A1B22;
+    box-sizing: border-box;
+  }
+
+  .commits__link-more--mobile::after {
+    display: none;
+  }
+
+  .commits__link-more--mobile:hover,
+  .commits__link-more--mobile:focus,
+  .commits__link-more--mobile:active {
+    color: #fff;
+    background-color: #1A1B22;
+    box-shadow: 0 0 0 .2rem rgba(26, 27, 34, .5);
+  }
+
+}

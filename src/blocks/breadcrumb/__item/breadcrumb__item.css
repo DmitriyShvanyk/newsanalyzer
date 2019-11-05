@@ -1,0 +1,10 @@
+.breadcrumb__item {
+  display: inline;
+  color: #8C8D90;
+}
+
+.breadcrumb__item+.breadcrumb__item:before {
+  content: "/";
+  padding: 0 4px;
+  color: #8C8D90;
+}

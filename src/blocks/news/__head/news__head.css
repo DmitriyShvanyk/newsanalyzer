@@ -1,0 +1,25 @@
+.news__head {
+  padding-bottom: 68%;
+  overflow: hidden;
+  height: 0;
+  position: relative;
+  border-radius: 16px 16px 0 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width:1024px) {
+
+  .news__head {
+    padding-bottom: 66.96%;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .news__head {
+    padding-bottom: 67.2%;
+    border-radius: 10px 10px 0 0;
+  }
+
+}

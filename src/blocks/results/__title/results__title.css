@@ -1,0 +1,8 @@
+@media screen and (max-width:576px) {
+
+  .results__title {
+    margin-top: 3px;
+    margin-bottom: 15px;
+  }
+
+}

@@ -1,0 +1,7 @@
+.navbar__link--active {
+  color: rgba(255, 255, 255, 1);
+}
+
+.navbar__link--active::before {
+  opacity: 1;
+}

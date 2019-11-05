@@ -1,0 +1,22 @@
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+@media screen and (max-width:768px) {
+
+  .navbar__container {
+    height: 64px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .navbar__container {
+    height: 56px;
+  }
+
+}

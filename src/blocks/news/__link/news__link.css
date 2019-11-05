@@ -1,0 +1,10 @@
+.news__link {
+  color: rgba(26, 27, 34, 1);
+  text-decoration: none;
+}
+
+.news__link:hover,
+.news__link:focus,
+.news__link:active {
+  color: rgba(26, 27, 34, .7);
+}

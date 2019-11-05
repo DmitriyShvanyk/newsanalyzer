@@ -1,0 +1,15 @@
+.graph__columns {
+  display: flex;
+}
+
+.graph__columns+.graph__columns {
+  margin-top: 56px;
+}
+
+@media screen and (max-width:576px) {
+
+  .graph__columns+.graph__columns {
+    margin-top: 24px;
+  }
+
+}

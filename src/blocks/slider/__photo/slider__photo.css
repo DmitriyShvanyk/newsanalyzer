@@ -1,0 +1,19 @@
+.slider__photo {
+  margin-right: 16px;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  max-width: 64px;
+}
+
+@media screen and (max-width:1024px) {
+
+  .slider__photo {
+    margin-right: 12px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    max-width: 48px;
+  }
+
+}

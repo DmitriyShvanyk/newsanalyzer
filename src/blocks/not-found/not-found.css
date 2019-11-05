@@ -1,0 +1,9 @@
+@import url(../not-found/__title/not-found__title.css);
+@import url(../not-found/__text/not-found__text.css);
+
+.not-found {
+  max-width: 335px;
+  margin: 0 auto;
+  text-align: center;
+  color: #B6BCBF;
+}

@@ -1,0 +1,9 @@
+@import url(../navbar/__container/navbar__container.css);
+@import url(../navbar/__menu/navbar__menu.css);
+@import url(../navbar/__link/navbar__link.css);
+@import url(../navbar/__link/--active/navbar__link--active.css);
+@import url(../navbar/__link/--theme-dark/navbar__link--dark.css);
+
+.navbar {
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, .2);
+}

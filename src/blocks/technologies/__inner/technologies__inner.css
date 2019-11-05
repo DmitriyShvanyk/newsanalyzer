@@ -1,0 +1,20 @@
+.technologies__inner {
+  display: flex;
+  align-items: flex-start;
+}
+
+@media screen and (max-width:1200px) {
+
+  .technologies__inner {
+    justify-content: space-between;
+  }
+
+}
+
+@media screen and (max-width:1024px) {
+
+  .technologies__inner {
+    display: block;
+  }
+
+}

@@ -1,0 +1,28 @@
+@import url(../graph/__head/graph__head.css);
+@import url(../graph/__columns/graph__columns.css);
+@import url(../graph/__columns/--center/graph__columns--center.css);
+@import url(../graph/__column/graph__column.css);
+@import url(../graph/__span/graph__span.css);
+@import url(../graph/__scale/graph__scale.css);
+@import url(../graph/__body/graph__body.css);
+
+
+.graph {
+  margin-bottom: 9px;
+}
+
+@media screen and (max-width:768px) {
+
+  .graph {
+    margin-bottom: 7px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .graph {
+    margin-bottom: 0;
+  }
+
+}

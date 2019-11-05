@@ -1,0 +1,23 @@
+.results__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width:1024px) {
+
+  .results__head {
+    margin-bottom: 8px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .results__head {
+    margin-bottom: 30px;
+  }
+
+}

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <title>NewsAnalyzer || Сервис для анализа происходящих в мире событий</title>
+  <meta charset="UTF-8">
+  <meta name="keywords" content='NewsAnalyzer || Сервис для анализа происходящих в мире событий'>
+  <meta name="description" content='NewsAnalyzer || Сервис для анализа происходящих в мире событий'>
+  <meta name="author" content='Dmitriy Shvanyk'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.chunks.index.css %>">
+</head>
+
+<body>
+
+  <div class="root">
+
+    <!--header.begin-->
+    <header class="header">
+
+      <!--navbar.begin-->
+      <nav class="navbar">
+        <div class="container navbar__container">
+          <a href="./index.html" class="logo">
+            NewsAnalyzer
+          </a>
+          <div class="navbar__menu">
+            <a href="./index.html" class="navbar__link navbar__link--active">Главная</a>
+            <a href="./project.html" class="navbar__link">О проекте</a>
+          </div>
+        </div>
+      </nav>
+      <!--navbar.end-->
+
+      <div class="container header__container">
+        <div class="header__content">
+          <h1 class="header__title">
+            Что в мире творится?
+          </h1>
+          <h2 class="header__subtitle">
+            Введите в поиске любую тему и узнайте, насколько популярной она была в носотях за прошедшую неделю.
+          </h2>
+
+          <!--form-search.begin-->
+          <form action="#" class="form-search" method="GET">
+            <input type="search" class="form-search__control" minlength="1" placeholder="Введите тему новости"
+              aria-label="News" required>
+            <button type="submit" class="form-search__submit">Искать</button>
+          </form>
+          <!--form-search.end-->
+
+        </div>
+      </div>
+    </header>
+    <!--header.end-->
+
+    <!--content.begin-->
+    <main class="content">
+
+      <!--results.begin-->
+      <!--<section class="results">
+        <div class="container results__container">
+
+          <div class="preloader">
+            <div class="preloader__icon"></div>
+            <div class="preloader__text">Идет поиск новостей...</div>
+          </div>
+
+        </div>
+      </section>-->
+      <!--results.end-->
+
+      <!--results.begin-->
+      <!--<section class="results">
+        <div class="container results__container">
+          
+          <div class="not-found">
+            <img class="not-found__icon" src="<%=require('./images/i-not-found.svg')%>" alt="Ничего не найдено">
+            <h2 class="not-found__title">Ничего не найдено</h2>
+            <p class="not-found__text">К сожалению по вашему запросу ничего не найдено.</p>
+          </div>
+
+        </div>
+      </section>-->
+      <!--results.end-->
+
+      <!--results.begin-->
+      <section class="results">
+        <div class="container results__container">
+
+          <div class="results__inner">
+            <div class="results__head">
+              <h2 class="title results__title">
+                Результаты поиска
+              </h2>
+              <a href="./analytics.html" class="link-more results__link-more">
+                Посмотреть аналитику
+              </a>
+            </div>
+            <div class="results__body">
+
+              <!--news.begin-->
+              <div class="news">
+                <div class="news__columns">
+                  <div class="news__column">
+                    <div class="news__item">
+                      <div class="news__head">
+                        <img class="news__image" src="<%=require('./images/news/01.jpg')%>"
+                          alt="Национальное достояние – парки">
+                      </div>
+                      <div class="news__body">
+                        <time class="news__date" datetime="2019-08-02">2 августа, 2019</time>
+                        <h3 class="news__title">
+                          <a href="#" class="news__link" target="_blank">
+                            Национальное достояние – парки
+                          </a>
+                        </h3>
+                        <p class="news__paragraph">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь
+                          начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый
+                          может приобщиться к природе.</p>
+                      </div>
+                      <div class="news__foot">
+                        <a href="#" class="news__source" target="_blank">Лента.ру</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="news__column">
+                    <div class="news__item">
+                      <div class="news__head">
+                        <img class="news__image" src="<%=require('./images/news/02.jpg')%>"
+                          alt="Лесные огоньки: история одной фотографии">
+                      </div>
+                      <div class="news__body">
+                        <time class="news__date" datetime="2019-08-02">2 августа, 2019</time>
+                        <h3 class="news__title">
+                          <a href="#" class="news__link" target="_blank">
+                            Лесные огоньки: история одной фотографии
+                          </a>
+                        </h3>
+                        <p class="news__paragraph">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь
+                          начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый
+                          может приобщиться к природе.</p>
+                      </div>
+                      <div class="news__foot">
+                        <a href="#" class="news__source" target="_blank">Медуза</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="news__column">
+                    <div class="news__item">
+                      <div class="news__head">
+                        <img class="news__image" src="<%=require('./images/news/03.jpg')%>"
+                          alt="«Первозданная тайга»: новый фотопроект Игоря Шпиленка">
+                      </div>
+                      <div class="news__body">
+                        <time class="news__date" datetime="2019-08-02">2 августа, 2019</time>
+                        <h3 class="news__title">
+                          <a href="#" class="news__link" target="_blank">
+                            «Первозданная тайга»: новый фотопроект Игоря Шпиленка
+                          </a>
+                        </h3>
+                        <p class="news__paragraph">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь
+                          начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый
+                          может приобщиться к природе.</p>
+                      </div>
+                      <div class="news__foot">
+                        <a href="#" class="news__source" target="_blank">Риа</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="news__column">
+                    <div class="news__item">
+                      <div class="news__head">
+                        <img class="news__image" src="<%=require('./images/news/04.jpg')%>"
+                          alt="Национальное достояние – парки">
+                      </div>
+                      <div class="news__body">
+                        <time class="news__date" datetime="2019-08-02">2 августа, 2019</time>
+                        <h3 class="news__title">
+                          <a href="#" class="news__link" target="_blank">
+                            Национальное достояние – парки
+                          </a>
+                        </h3>
+                        <p class="news__paragraph">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь
+                          начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый
+                          может приобщиться к природе.</p>
+                      </div>
+                      <div class="news__foot">
+                        <a href="#" class="news__source" target="_blank">Дзен</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="news__column">
+                    <div class="news__item">
+                      <div class="news__head">
+                        <img class="news__image" src="<%=require('./images/news/05.jpg')%>"
+                          alt="Лесные огоньки: история одной фотографии">
+                      </div>
+                      <div class="news__body">
+                        <time class="news__date" datetime="2019-08-02">2 августа, 2019</time>
+                        <h3 class="news__title">
+                          <a href="#" class="news__link" target="_blank">
+                            Лесные огоньки: история одной фотографии
+                          </a>
+                        </h3>
+                        <p class="news__paragraph">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь
+                          начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый
+                          может приобщиться к природе.</p>
+                      </div>
+                      <div class="news__foot">
+                        <a href="#" class="news__source" target="_blank">Афиша</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="news__column">
+                    <div class="news__item">
+                      <div class="news__head">
+                        <img class="news__image" src="<%=require('./images/news/06.jpg')%>"
+                          alt="«Первозданная тайга»: новый фотопроект Игоря Шпиленка">
+                      </div>
+                      <div class="news__body">
+                        <time class="news__date" datetime="2019-08-02">2 августа, 2019</time>
+                        <h3 class="news__title">
+                          <a href="#" class="news__link" target="_blank">
+                            «Первозданная тайга»: новый фотопроект Игоря Шпиленка
+                          </a>
+                        </h3>
+                        <p class="news__paragraph">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь
+                          начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый
+                          может приобщиться к природе.</p>
+                      </div>
+                      <div class="news__foot">
+                        <a href="#" class="news__source" target="_blank">Медиазона</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="news__bottom">
+                  <button class="button news__btn-more">
+                    Показать еще
+                  </button>
+                </div>
+              </div>
+              <!--news.end-->
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <!--results.end-->
+
+      <!--about.begin-->
+      <section class="about">
+        <div class="container about__container">
+          <div class="about__columns">
+            <div class="about__column">
+              <picture class="about__picture">
+                <source srcset="<%=require('./images/about-mobile.webp')%>" type="image/webp" media="(max-width:1024px)">
+                <source srcset="<%=require('./images/about-mobile.jpg')%>" media="(max-width:1024px)">
+                <source srcset="<%=require('./images/about.webp')%>" type="image/webp">
+                <img class="about__image" src="<%=require('./images/about.jpg')%>" alt="Dmitriy Shvanyk">
+              </picture>
+            </div>
+            <div class="about__column">
+              <div class="about__content">
+                <h2 class="title about__title">
+                  Об авторе
+                </h2>
+                <p class="about__paragraph">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут,
+                  чем вы занимаетесь, какими технологиями разработки владете.</p>
+                <p class="about__paragraph">Также можно рассказать о процессе обучения в Практикуме, чему вы тут
+                  научились, и чем можете помочь потенциальным заказчикам. Если хотите, оставьте свои контакты: email и
+                  телефон. Так заказчики смогут с вами связаться.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--about.end-->
+
+    </main>
+    <!--content.end-->
+
+    <!--footer.begin-->
+    <footer class="footer">
+      <div class="container footer__container">
+        <div class="footer__copy">
+          &copy; 2019 Supersite
+        </div>
+        <div class="footer__menu">
+          <a href="./index.html" class="footer__link footer__link--active">Главная</a>
+          <a href="./project.html" class="footer__link">О проекте</a>
+          <a href="https://praktikum.yandex.ru" class="footer__link" target="_blank">Яндекс.Практикум</a>
+        </div>
+        <div class="social footer__social">
+          <a href="https://github.com/DmitriyShvanyk" class="social__item" target="_blank">
+            <img class="social__icon" src="<%=require('./images/social/github.svg')%>" alt="Github">
+          </a>
+          <a href="https://ru.stackoverflow.com/users/13968/soledar10?tab=profile" class="social__item" target="_blank">
+            <img class="social__icon" src="<%=require('./images/social/stack-overflow.svg')%>" alt="Stackoverflow">
+          </a>
+          <!--<a href="#" class="social__item" target="_blank">
+            <img class="social__icon" src="<%=require('./images/social/fb.svg')%>" alt="Facebook">
+          </a>-->
+        </div>
+      </div>
+    </footer>
+    <!--footer.end-->
+
+  </div>
+
+  <script src="<%= htmlWebpackPlugin.files.chunks.index.entry %>"></script>
+
+</body>
+
+</html>

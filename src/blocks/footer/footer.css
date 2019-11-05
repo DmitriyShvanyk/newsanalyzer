@@ -1,0 +1,30 @@
+@import url(../footer/__container/footer__container.css);
+@import url(../footer/__copy/footer__copy.css);
+@import url(../footer/__menu/footer__menu.css);
+@import url(../footer/__link/footer__link.css);
+@import url(../footer/__social/footer__social.css);
+
+
+.footer {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

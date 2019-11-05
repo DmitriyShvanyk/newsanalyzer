@@ -1,0 +1,35 @@
+@import url(../commits/__container/commits__container.css);
+@import url(../commits/__inner/commits__inner.css);
+@import url(../commits/__title/commits__title.css);
+@import url(../commits/__link-more/commits__link-more.css);
+@import url(../commits/__link-more/--mobile/commits__link-more--mobile.css);
+
+
+.commits {
+  background-color: #F5F6F7;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width:1024px) {
+
+  .commits {
+    margin-top: 65px;
+  }
+
+}
+
+@media screen and (max-width:767px) {
+
+  .commits {
+    margin-top: 35px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .commits {
+    margin-top: 0;
+  }
+
+}

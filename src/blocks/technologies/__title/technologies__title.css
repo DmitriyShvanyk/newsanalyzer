@@ -1,0 +1,38 @@
+.technologies__title {  
+  margin-bottom: 25px;
+  max-width: 400px;
+  margin-right: 80px;
+}
+
+@media screen and (max-width:1200px) {
+
+  .technologies__title {
+    margin-right: 20px;
+  }
+
+}
+
+@media screen and (max-width:1024px) {
+
+  .technologies__title {
+    margin-right: 0;
+  }
+
+}
+
+@media screen and (max-width:768px) {
+
+  .technologies__title {
+    margin-bottom: 30px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .technologies__title {
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+}

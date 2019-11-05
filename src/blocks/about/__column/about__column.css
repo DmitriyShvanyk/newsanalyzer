@@ -1,0 +1,45 @@
+.about__column:nth-of-type(1) {
+  width: 464px;
+  min-width: 464px;
+  max-width: 464px;
+}
+
+@media screen and (max-width:1200px) {
+
+  .about__column:nth-of-type(1) {
+    width: 348px;
+    min-width: 348px;
+    max-width: 348px;
+  }
+
+}
+
+@media screen and (max-width:1024px) {
+
+  .about__column:nth-of-type(1) {
+    width: 232px;
+    min-width: 232px;
+    max-width: 232px;
+  }
+
+}
+
+@media screen and (max-width:640px) {
+
+  .about__column:nth-of-type(1) {
+    width: 30%;
+    min-width: 30%;
+    max-width: 30%;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .about__column:nth-of-type(1) {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+}

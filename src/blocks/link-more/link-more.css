@@ -1,0 +1,42 @@
+.link-more {
+  white-space: nowrap;
+  color: #1A1B22;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 28px;
+  position: relative;
+  box-sizing: border-box;
+  margin-top: 13px;
+  margin-bottom: 13px;
+  transition: color .3s ease;
+}
+
+.link-more::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #1A1B22;
+  border-left: none;
+  border-bottom: none;
+  margin-top: -5px;
+  transform: rotate(45deg);
+  box-sizing: border-box;
+  transition: border-color .3s ease, right .3s ease-in-out;
+}
+
+.link-more:hover,
+.link-more:focus,
+.link-more:active {
+  color: rgba(26, 27, 34, .7);
+}
+
+.link-more:hover::after,
+.link-more:focus::after,
+.link-more:active::after {
+  border-color: rgba(26, 27, 34, .7);
+  right: 5px;
+}

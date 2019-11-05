@@ -1,0 +1,35 @@
+.news__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  transition: box-shadow .3s ease;
+}
+
+.news__item:hover {
+  box-shadow: 2px 7px 28px rgba(8, 29, 45, .1);
+}
+
+.news__item:hover .news__image {
+  transform: scale(1.2);
+}
+
+@media screen and (max-width:1024px) {
+
+  .news__item {
+    margin-bottom: 8px;
+  }
+
+}
+
+@media screen and (max-width:576px) {
+
+  .news__item {
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+
+}

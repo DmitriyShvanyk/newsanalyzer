@@ -1,0 +1,11 @@
+.graph__body {
+  padding-top: 13px;
+}
+
+@media screen and (max-width:576px) {
+
+  .graph__body {
+    padding-top: 18px;
+  }
+
+}

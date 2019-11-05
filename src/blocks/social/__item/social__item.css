@@ -1,0 +1,18 @@
+.social__item {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-decoration: none;
+  text-align: center;
+  transition: opacity .3s ease;
+}
+
+.social__item+.social__item {
+  margin-left: 26px;
+}
+
+.social__item:hover,
+.social__item:focus,
+.social__item:active {
+  opacity: .7;
+}

@@ -1,0 +1,13 @@
+.slider__swiper-slide {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+@media screen and (max-width:576px) {
+
+  .slider__swiper-slide {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+}

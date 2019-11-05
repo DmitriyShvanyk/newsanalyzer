@@ -1,0 +1,10 @@
+.logo--theme-dark {
+  color: rgba(26, 27, 34, 1);
+}
+
+.logo--theme-dark:hover,
+.logo--theme-dark:focus,
+.logo--theme-dark:active {
+  text-decoration: none;
+  color: rgba(26, 27, 34, .7);
+}
