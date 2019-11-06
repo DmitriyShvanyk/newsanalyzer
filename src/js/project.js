@@ -1,5 +1,3 @@
-export const month = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-
 import '../../node_modules/swiper/css/swiper.css';
 import '../pages/project.css';
 

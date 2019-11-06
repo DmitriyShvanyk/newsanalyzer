@@ -1,6 +1,6 @@
 import Swiper from 'swiper';
 import CardGithub from './cardGithub.js';
-import { month } from '../../project.js';
+import { month } from '../../main.js';
 
 export default class CardListGithub {
   constructor(container, card) {
