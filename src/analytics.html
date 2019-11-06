@@ -18,6 +18,13 @@
 
   <div class="root">
 
+    <!--preloader page.begin-->
+    <div class="preloader preloader--page">
+      <div class="preloader__icon"></div>
+      <div class="preloader__text">Загрузка...</div>
+    </div>
+    <!--preloader page.end-->
+
     <!--header.begin-->
     <header class="header header--inner-page">
 
@@ -228,6 +235,7 @@
   </div>
 
   <script src="<%= htmlWebpackPlugin.files.chunks.analytics.entry %>"></script>
+  <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 
 </body>
 

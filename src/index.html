@@ -18,6 +18,13 @@
 
   <div class="root">
 
+    <!--preloader page.begin-->
+    <div class="preloader preloader--page">
+      <div class="preloader__icon"></div>
+      <div class="preloader__text">Загрузка...</div>
+    </div>
+    <!--preloader page.end-->
+
     <!--header.begin-->
     <header class="header">
 
@@ -64,7 +71,7 @@
       <!--<section class="results">
         <div class="container results__container">
 
-          <div class="preloader">
+          <div class="preloader preloader--news">
             <div class="preloader__icon"></div>
             <div class="preloader__text">Идет поиск новостей...</div>
           </div>
@@ -259,7 +266,8 @@
           <div class="about__columns">
             <div class="about__column">
               <picture class="about__picture">
-                <source srcset="<%=require('./images/about-mobile.webp')%>" type="image/webp" media="(max-width:1024px)">
+                <source srcset="<%=require('./images/about-mobile.webp')%>" type="image/webp"
+                  media="(max-width:1024px)">
                 <source srcset="<%=require('./images/about-mobile.jpg')%>" media="(max-width:1024px)">
                 <source srcset="<%=require('./images/about.webp')%>" type="image/webp">
                 <img class="about__image" src="<%=require('./images/about.jpg')%>" alt="Dmitriy Shvanyk">
@@ -313,7 +321,9 @@
 
   </div>
 
+  <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
   <script src="<%= htmlWebpackPlugin.files.chunks.index.entry %>"></script>
+
 
 </body>
 

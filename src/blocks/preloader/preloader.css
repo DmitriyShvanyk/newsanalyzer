@@ -1,6 +1,18 @@
 @import url(../preloader/__icon/preloader__icon.css);
+@import url(../preloader/__text/preloader__text.css);
 
 .preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
   text-align: center;
   color: #B6BCBF;
+  background-color: #F5F6F7;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
