@@ -1,12 +1,11 @@
-export default class ApiNews {
-  constructor(url, key) {
-    this.url = url;
-    this.key = key;
-  }
-  getInitialCardNews() {
+import Api from './../api.js';
 
-    //return fetch(`${this.url}q=${requestText}&apiKey=${this.key}&from=${dateFrom}&to=${dateTo}&language=ru&pageSize=100&sortBy=popularity`, {
-    return fetch(`${this.url}q=bitcoin&apiKey=${this.key}&language=ru&pageSize=100&sortBy=popularity`, {
+export default class ApiNews extends Api {
+  constructor(...args) {
+    super(...args);
+  }
+  getInitialNewsCards(requestText, dateFrom, dateTo) {    
+    return fetch(`${this.url}q=${requestText}&apiKey=${this.options.key}&from=${dateFrom}&to=${dateTo}&language=ru&pageSize=100&sortBy=popularity`, {
       headers: this.headers
     })
       .then((response) => {
@@ -15,6 +14,7 @@ export default class ApiNews {
         }
         return Promise.reject(`Ошибка: ${response.status}`);
       });
+
   }
 
 }

@@ -1,6 +1,6 @@
 export default class CardGithub {
-  constructor(nameCard, emailCard, dateCard, messageCard, avatarCard) {
-    this.cardElement = this.createCard(nameCard, emailCard, dateCard, messageCard, avatarCard);
+  constructor(...args) {
+    this.cardElement = this.createCard(...args);
   }
 
   createCard(name, email, date, message, avatar) {

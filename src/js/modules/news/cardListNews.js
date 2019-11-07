@@ -8,8 +8,8 @@ export default class CardListNews {
     this.renderCard();
   }
 
-  addCard(imageCard, dateCard, titleCard, textCard, sourceCard, urlCard) {
-    const { cardElement } = new CardNews(imageCard, dateCard, titleCard, textCard, sourceCard, urlCard);
+  addCard(...args) {
+    const { cardElement } = new CardNews(...args);
     this.container.appendChild(cardElement);
   }
 

@@ -1,6 +1,6 @@
 export default class CardNews {
-  constructor(imageCard, dateCard, titleCard, textCard, sourceCard, urlCard) {
-    this.cardElement = this.createCard(imageCard, dateCard, titleCard, textCard, sourceCard, urlCard);
+  constructor(...args) {
+    this.cardElement = this.createCard(...args);
   }
 
   createCard(image, date, title, text, source, url) {

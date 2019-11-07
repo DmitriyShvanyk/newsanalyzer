@@ -1,12 +1,14 @@
-export default class ApiGithub {
-  constructor(url) {
-    this.url = url;
+import Api from './../api.js';
+
+export default class ApiGithub extends Api {
+  constructor(...args) {
+    super(...args);
   }
-  getInitialCardCommit() {
+  getInitialCommitCards() {
     return fetch(`${this.url}`, {
       headers: this.headers
     })
-      .then(function (response) {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         }
@@ -15,5 +17,4 @@ export default class ApiGithub {
       });
 
   }
-
 }

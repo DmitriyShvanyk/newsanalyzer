@@ -7,7 +7,7 @@ import CardListGithub from './modules/github/cardListGithub.js';
 const cardsContainer = document.querySelector('.swiper-wrapper');
 const apiGithub = new ApiGithub(`https://api.github.com/repos/DmitriyShvanyk/newsanalyzer/commits`);
 
-apiGithub.getInitialCardCommit()
+apiGithub.getInitialCommitCards()
   .then(cards => {
     new CardListGithub(cardsContainer, cards);
   }).catch(function (err) {

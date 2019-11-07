@@ -10,8 +10,8 @@ export default class CardListGithub {
     this.initSlider();
   }
 
-  addCard(nameCard, emailCard, dateCard, messageCard, avatarCard) {
-    const { cardElement } = new CardGithub(nameCard, emailCard, dateCard, messageCard, avatarCard);
+  addCard(...args) {
+    const { cardElement } = new CardGithub(...args);
     this.container.appendChild(cardElement);
   }
 
