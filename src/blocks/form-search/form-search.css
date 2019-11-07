@@ -1,6 +1,7 @@
 @import url(../form-search/__control/form-search__control.css);
 @import url(../form-search/__submit/form-search__submit.css);
 @import url(../form-search/__error/form-search__error.css);
+@import url(../form-search/__error/--show/form-search__error--show.css);
 
 .form-search {  
   display: block;

@@ -92,9 +92,9 @@ export default class Validate {
     }
 
     Validate.removeError(target);
-  }  
+  }
 
- addEventListener(...args) {
+  addEventListener(...args) {
     this.formElement.addEventListener(...args);
   }
 
