@@ -47,7 +47,13 @@ formSearchValidate.addEventListener('submit', (event) => {
 
     const text = document.querySelector('.form-search__control').value;
 
-    apiNews.getInitialNewsCards(text)
+    const date = new Date();
+    const dateTime = date.getTime();
+    const date6Days = 60 * 60 * 1000 * 24 * 6;
+    const dateFrom = new Date(dateTime - date6Days).toISOString();
+    const dateTo = date.toISOString();
+
+    apiNews.getInitialNewsCards(text, dateFrom, dateTo)
       .then((cards) => {        
 
         new CardListNews(newsContainer, cards);
