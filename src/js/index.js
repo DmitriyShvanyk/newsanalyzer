@@ -45,8 +45,10 @@ formSearchValidate.addEventListener('submit', (event) => {
 
   if (!hasErrors) {
 
-    apiNews.getInitialNewsCards()
-      .then((cards) => {
+    const text = document.querySelector('.form-search__control').value;
+
+    apiNews.getInitialNewsCards(text)
+      .then((cards) => {        
 
         new CardListNews(newsContainer, cards);
 
