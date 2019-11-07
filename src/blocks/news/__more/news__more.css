@@ -1,4 +1,4 @@
-.news__bottom {
+.news__more {
   text-align: center;
   margin-top: 48px;
   display: none;
@@ -6,7 +6,7 @@
 
 @media screen and (max-width:1024px) {
 
-  .news__bottom {
+  .news__more {
     margin-top: 24px;
   }
 
@@ -14,7 +14,7 @@
 
 @media screen and (max-width:576px) {
 
-  .news__bottom {
+  .news__more {
     margin-top: 0;
     margin-bottom: 14px;
   }
