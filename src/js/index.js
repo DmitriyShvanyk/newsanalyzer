@@ -1,108 +1,22 @@
-import '../pages/index.css'
-
+import '../pages/index.css';
 import ApiNews from './modules/news/apiNews.js';
 import CardListNews from './modules/news/cardListNews.js';
 
-const newsContainer = document.querySelector('.news__columns');
-const apiNews = new ApiNews('https://newsapi.org/v2/everything?', {
+export const newsContainer = document.querySelector('.news__columns');
+
+const apiNews = new ApiNews({
+  baseURL: 'https://newsapi.org/v2/everything?',
   key: 'ce6db864a3ee4bdbb80e8fe9388fa7e6'
 });
 
 
 
-
-
+// Results
 const resultsContainer = document.querySelector('.results__container');
-//const resultsInner = document.querySelector('.results__inner');
-//resultsInner.style.display = 'none';
+const resultsInner = document.querySelector('.results__inner');
 
-class Results{
-  constructor(container){
-    this.container = container;
-  }
-  showNotFound(){
-    let containerFragment = document.createDocumentFragment();
-
-    let notFoundElement = document.createElement('div');
-    notFoundElement.classList.add('not-found');
-  
-    let notFoundElementIcon = document.createElement('img');
-    notFoundElementIcon.classList.add('not-found__icon');
-    notFoundElementIcon.src = './images/i-not-found.svg';
-    notFoundElementIcon.alt = 'Ничего не найдено';
-  
-    let notFoundElementTitle = document.createElement('h2');
-    notFoundElementTitle.classList.add('not-found__title');
-    notFoundElementTitle.textContent = 'Ничего не найдено';
-  
-    let notFoundElementText = document.createElement('p');
-    notFoundElementText.classList.add('not-found__text');
-    notFoundElementText.textContent = 'К сожалению по вашему запросу ничего не найдено.';
-  
-    notFoundElement.appendChild(notFoundElementIcon);
-    notFoundElement.appendChild(notFoundElementTitle);
-    notFoundElement.appendChild(notFoundElementText);
-
-    containerFragment.appendChild(notFoundElement);
-
-    this.container.appendChild(notFoundElement);
-  
-    return notFoundElement;
-  }
-
-  showPreloader(){
-    let containerFragment = document.createDocumentFragment();
-
-    let preloader = document.createElement('div');
-    preloader.classList.add('preloader', 'preloader--news');
-
-    let preloaderIcon = document.createElement('div');
-    preloaderIcon.classList.add('preloader__icon');
-
-    let preloaderText = document.createElement('div');
-    preloaderText.classList.add('preloader__text');
-    preloaderText.textContent = 'Идет поиск новостей...';
-
-    preloader.appendChild(preloaderIcon);
-    preloader.appendChild(preloaderText);
-
-    containerFragment.appendChild(preloader);
-
-    this.container.appendChild(preloader);
-
-    return preloader;
-  }
-
-  removeNotFound(){       
-    const notFount = this.container.querySelector('.not-found');
-    if(notFount){
-      this.container.removeChild(notFount); 
-    }    
-  }
-
-  removePreloader(){
-    const preloaderNews = this.container.querySelector('.preloader--news');
-    if(preloaderNews){
-      this.container.removeChild(preloaderNews); 
-    }  
-  }
-
-  clearCardsNews(){
-    while(newsContainer.firstChild){
-      newsContainer.removeChild(newsContainer.firstChild);
-    }
-  }
- 
-}
-
+import Results from './modules/results.js';
 const results = new Results(resultsContainer);
-
-
-
-
-
-
-
 
 
 // Validation
@@ -149,35 +63,57 @@ formSearchValidate.addEventListener('submit', (event) => {
     const dateFrom = new Date(dateTime - date6Days).toISOString();
     const dateTo = date.toISOString();
 
-    // при повторном запросе делаем очистку карточек с новостями
-    results.clearCardsNews()
+    // при повторном запросе делаем очистку
+    results.removeCards();
+    results.removeNotFound();
+    results.removePreloader();
 
     apiNews.getInitialNewsCards(text, dateFrom, dateTo)
-      .then((cards) => {       
+      .then((cards) => {
 
-        console.log(cards.articles.length);
+        //console.log(cards.articles.length);
 
-        if(cards.articles.length > 3){          
-          document.querySelector('.news__more').style.display = 'block';
-        }
+        resultsContainer.classList.add('results__container--active');       
 
-        if(cards.articles.length === 0){
-          results.showNotFound();
+        results.showPreloader();
 
-          document.querySelector('.news__more').style.display = 'none';
-        }        
-        
-        else{
-          results.removeNotFound();
-          new CardListNews(newsContainer, cards);    
-        }               
+        setTimeout(function(){
+
+          if (cards.articles.length > 3) {
+            document.querySelector('.news__more').style.display = 'block';
+          }
+          else {
+            document.querySelector('.news__more').style.display = 'none';
+          }
+  
+          if (cards.articles.length === 0) {
+            resultsInner.classList.remove('results__inner--active');
+            results.removePreloader();
+            results.showNotFound('Ничего не найдено', 'К сожалению по вашему запросу ничего не найдено.');
+            document.querySelector('.news__more').style.display = 'none';
+          }  
+          else {
+            results.removePreloader();
+            results.removeNotFound();
+  
+            resultsInner.classList.add('results__inner--active');
+  
+            new CardListNews(newsContainer, cards);
+          }
+
+        }, 5000);
 
 
-      }).catch(function (err) { 
+      }).catch(function (err) {
+
+        resultsInner.classList.remove('results__inner--active');
+
+        results.showNotFound('Во время запроса произошла ошибка', 'Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
+
         return Promise.reject(`Ошибка: ${err.status}`);
       });
 
-    console.log('OK');
+    //console.log('OK');
 
     target.reset();
 
@@ -185,7 +121,7 @@ formSearchValidate.addEventListener('submit', (event) => {
   else {
     event.preventDefault();
     hasErrors.focus();
-    console.error('ERROR')
+    //console.error('ERROR')
   }
 
 });

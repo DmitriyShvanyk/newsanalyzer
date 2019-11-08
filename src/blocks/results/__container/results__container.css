@@ -1,4 +1,10 @@
 .results__container {
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: paddding .3s linear;
+}
+
+.results__container--active {
   padding-top: 80px;
   padding-bottom: 80px;
 }

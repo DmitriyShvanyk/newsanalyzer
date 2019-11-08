@@ -1,6 +1,5 @@
 export default class Api {
-  constructor(url, options) {
-    this.url = url;
+  constructor(options) {    
     this.options = options;
   }
 }

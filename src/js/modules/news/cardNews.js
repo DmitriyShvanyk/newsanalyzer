@@ -33,7 +33,7 @@ export default class CardNews {
     cardImage.alt = title;
     
     function errorImage() {
-      cardImage.src = 'https://cdn.browshot.com/static/images/not-found.png';
+      cardImage.src = 'https://via.placeholder.com/370x250/1A1B22/fff/?text=Image%20not%20found';
     }
     cardImage.addEventListener('error', errorImage);
 

@@ -5,7 +5,9 @@ import ApiGithub from './modules/github/apiGithub.js';
 import CardListGithub from './modules/github/cardListGithub.js';
 
 const cardsContainer = document.querySelector('.swiper-wrapper');
-const apiGithub = new ApiGithub(`https://api.github.com/repos/DmitriyShvanyk/newsanalyzer/commits`);
+const apiGithub = new ApiGithub({
+  baseURL: 'https://api.github.com/repos/DmitriyShvanyk/newsanalyzer/commits'
+});
 
 apiGithub.getInitialCommitCards()
   .then(cards => {

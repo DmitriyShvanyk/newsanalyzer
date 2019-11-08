@@ -5,7 +5,7 @@ export default class ApiGithub extends Api {
     super(...args);
   }
   getInitialCommitCards() {
-    return fetch(`${this.url}`, {
+    return fetch(`${this.options.baseURL}`, {
       headers: this.headers
     })
       .then((response) => {

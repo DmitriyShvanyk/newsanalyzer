@@ -5,7 +5,7 @@ export default class ApiNews extends Api {
     super(...args);
   }
   getInitialNewsCards(requestText, dateFrom, dateTo) {    
-    return fetch(`${this.url}q=${requestText}&apiKey=${this.options.key}&from=${dateFrom}&to=${dateTo}&language=ru&pageSize=100&sortBy=popularity`, {
+    return fetch(`${this.options.baseURL}q=${requestText}&apiKey=${this.options.key}&from=${dateFrom}&to=${dateTo}&language=ru&pageSize=100&sortBy=popularity`, {
       headers: this.headers
     })
       .then((response) => {
