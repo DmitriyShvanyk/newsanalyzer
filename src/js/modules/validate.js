@@ -4,7 +4,7 @@ export default class Validate {
 
     this.addAttrNovalidate();
     this.checkField.bind(this);
-    this.addEventListener.bind(this);
+    this.addEventListener.bind(this);    
   }
 
   addAttrNovalidate() {
@@ -99,3 +99,6 @@ export default class Validate {
   }
 
 }
+
+
+

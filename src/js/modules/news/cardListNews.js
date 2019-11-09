@@ -1,11 +1,15 @@
 import CardNews from './cardNews.js';
 import { month } from '../../main.js';
+import { newsBtnMore } from '../../index.js';
 
 export default class CardListNews {
-  constructor(container, card = '') {
+  constructor(container, card) {
     this.container = container;
     this.card = card;
     this.renderCard();
+    this.renderFirstCards();
+
+    this.renderMoreCards.bind(this);
   }
 
   addCard(...args) {
@@ -33,6 +37,49 @@ export default class CardListNews {
     }
 
   }
+
+  renderFirstCards() {
+    const start = 3;
+    const cards = document.querySelectorAll('.news__column:not(.news__column--active)');
+    const elem = Array.from(cards).slice(0, start);
+
+    for (let i = 0; i < elem.length; i++) {
+      elem[i].classList.add('news__column--active');
+    }
+
+    newsBtnMore.addEventListener('click', this.renderMoreCards);
+
+  }
+
+  renderMoreCards() {
+    /*const cards = document.querySelectorAll('.news__column:not(.news__column--active)');
+    const hiddenElements = Array.from(cards);
+    if (hiddenElements.length === 0) {
+      newsBtnMore.classList.remove('news__btn-more--active');
+    } else {
+      newsBtnMore.classList.add('news__btn-more--active');
+    }*/
+
+    const cardsActive = document.querySelectorAll('.news__column--active');
+    let index = 0;
+    let step = 3;
+    let nextCard = cardsActive[cardsActive.length - 1].nextElementSibling;
+
+    while (index < step) {
+      if (nextCard) {
+        nextCard.classList.add('news__column--active');
+        nextCard = nextCard.nextElementSibling;
+        index++
+      }
+      else {
+        newsBtnMore.classList.remove('news__btn-more--active');
+        break;
+      }
+    }
+
+  }
+
+
 
   /*removeCard() {
     while (this.container.firstChild) {

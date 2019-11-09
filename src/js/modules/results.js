@@ -4,6 +4,7 @@ export default class Results {
   constructor(container) {
     this.container = container;
   }
+
   showNotFound(title = 'Ничего не найдено', text = 'К сожалению по вашему запросу ничего не найдено.') {
     let containerFragment = document.createDocumentFragment();
     let notFoundElement = document.createElement('div');
@@ -11,7 +12,7 @@ export default class Results {
     let notFoundElementTitle = document.createElement('h2');
     let notFoundElementText = document.createElement('p');
 
-    notFoundElement.classList.add('not-found');    
+    notFoundElement.classList.add('not-found');
     notFoundElementTitle.classList.add('not-found__title');
     notFoundElementText.classList.add('not-found__text');
 
@@ -28,7 +29,7 @@ export default class Results {
     this.container.appendChild(containerFragment);
 
     return notFoundElement;
-  }  
+  }
 
   showPreloader() {
     let containerFragment = document.createDocumentFragment();
@@ -36,8 +37,8 @@ export default class Results {
     let preloaderIcon = document.createElement('div');
     let preloaderText = document.createElement('div');
 
-    preloader.classList.add('preloader', 'preloader--news');    
-    preloaderIcon.classList.add('preloader__icon');    
+    preloader.classList.add('preloader', 'preloader--news');
+    preloaderIcon.classList.add('preloader__icon');
     preloaderText.classList.add('preloader__text');
     preloaderText.textContent = 'Идет поиск новостей...';
 
@@ -48,6 +49,22 @@ export default class Results {
 
     return preloader;
   }
+
+  /*showMoreNews() {
+    let containerFragment = document.createDocumentFragment();
+
+    let resultMore = document.createElement('div');
+    resultMore.classList.add('news__more');
+
+    let resultMoreBtn = document.createElement('button');
+    resultMoreBtn.classList.add('button', 'news__btn-more');
+    resultMoreBtn.textContent = 'Показать еще';
+
+    resultMore.appendChild(resultMoreBtn);
+    containerFragment.appendChild(resultMore);
+
+    return resultMore;
+  }*/
 
   removeNotFound() {
     const notFound = this.container.querySelector('.not-found');
@@ -69,6 +86,6 @@ export default class Results {
     }
   }
 
-  
+
 
 }
