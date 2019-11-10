@@ -1,5 +1,3 @@
-export const month = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-
 import Loader from './modules/loader.js';
 
 const loader = new Loader();

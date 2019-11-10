@@ -1,9 +1,9 @@
-import '../pages/index.css';
-import ApiNews from './modules/news/apiNews.js';
-import CardListNews from './modules/news/cardListNews.js';
+import '../pages/index.css'
+import ApiNews from './modules/news/apiNews.js'
+import CardListNews from './modules/news/cardListNews.js'
 
-export const newsContainer = document.querySelector('.news__columns');
-export const newsBtnMore = document.querySelector('.news__btn-more');
+export const newsContainer = document.querySelector('.news__columns')
+export const newsBtnMore = document.querySelector('.news__btn-more')
 
 const apiNews = new ApiNews({
   baseURL: 'https://newsapi.org/v2/everything?',

@@ -1,6 +1,7 @@
-import Swiper from 'swiper';
-import CardGithub from './cardGithub.js';
-import { month } from '../../main.js';
+import Swiper from 'swiper'
+import CardGithub from './cardGithub.js'
+import NormalizeDate from '../dateNormalize.js'
+
 
 export default class CardListGithub {
   constructor(container, card) {
@@ -9,30 +10,23 @@ export default class CardListGithub {
     this.renderCard();
     this.initSlider();
   }
-
   addCard(...args) {
     const { cardElement } = new CardGithub(...args);
     this.container.appendChild(cardElement);
   }
-
   renderCard() {
     for (let i = 0; i < this.card.length; i++) {
-      const date = new Date(this.card[i].commit.author.date);
-      const nowDate = date.getDate();
-      const nowYears = date.getFullYear();
-      const nowMonth = date.getMonth();
-      const dateGithubCommit = `${nowDate} ${month[nowMonth]}, ${nowYears}`;
-
       this.addCard(
         this.card[i].commit.committer.name,
         this.card[i].commit.committer.email,
-        dateGithubCommit,
+        new NormalizeDate(this.card[i].commit.author.date).render(),
         this.card[i].commit.message,
         this.card[i].author.avatar_url
       )
-    }
-  }
+      
+    }    
 
+  }
   initSlider() {
     new Swiper('.slider__swiper-container', {
       loop: true,

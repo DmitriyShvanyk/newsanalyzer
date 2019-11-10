@@ -1,6 +1,7 @@
-import CardNews from './cardNews.js';
-import { month } from '../../main.js';
-import { newsBtnMore } from '../../index.js';
+import CardNews from './cardNews.js'
+import { newsBtnMore } from '../../index.js'
+import NormalizeDate from '../dateNormalize.js'
+
 
 export default class CardListNews {
   constructor(container, card) {
@@ -11,23 +12,15 @@ export default class CardListNews {
 
     this.renderMoreCards.bind(this);
   }
-
   addCard(...args) {
     const { cardElement } = new CardNews(...args);
     this.container.appendChild(cardElement);
   }
-
   renderCard() {
     for (let i = 0; i < this.card.articles.length; i++) {
-      const date = new Date(this.card.articles[i].publishedAt);
-      const nowDate = date.getDate();
-      const nowMonth = date.getMonth();
-      const nowYears = date.getFullYear();
-      const dateNewsPublished = `${nowDate} ${month[nowMonth]}, ${nowYears}`;
-
       this.addCard(
         this.card.articles[i].urlToImage,
-        dateNewsPublished,
+        new NormalizeDate(this.card.articles[i].publishedAt).render(),
         this.card.articles[i].title,
         this.card.articles[i].description,
         this.card.articles[i].source.name,
@@ -37,7 +30,6 @@ export default class CardListNews {
     }
 
   }
-
   renderFirstCards() {
     const start = 3;
     const cards = document.querySelectorAll('.news__column:not(.news__column--active)');
@@ -50,7 +42,6 @@ export default class CardListNews {
     newsBtnMore.addEventListener('click', this.renderMoreCards);
 
   }
-
   renderMoreCards() {
     /*const cards = document.querySelectorAll('.news__column:not(.news__column--active)');
     const hiddenElements = Array.from(cards);
@@ -78,8 +69,6 @@ export default class CardListNews {
     }
 
   }
-
-
 
   /*removeCard() {
     while (this.container.firstChild) {

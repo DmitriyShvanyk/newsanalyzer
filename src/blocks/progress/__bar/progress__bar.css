@@ -1,4 +1,4 @@
-.progress__control {
+.progress__bar {
   background-color: #F5F6F7;
   width: 100%;  
   display: block;
@@ -10,15 +10,15 @@
   position: relative;  
 }
 
-.progress__control::-webkit-progress-bar {
+.progress__bar::-webkit-progress-bar {
   background-color: #F5F6F7;
   border-radius: 0;
 }
 
-.progress__control::-webkit-progress-value {
+.progress__bar::-webkit-progress-value {
   background-color: #2F71E5;
 }
 
-.progress__control::-moz-progress-bar {
+.progress__bar::-moz-progress-bar {
   background-color: #2F71E5;
 }

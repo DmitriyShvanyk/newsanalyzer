@@ -1,6 +1,7 @@
 .news__link {
   color: rgba(26, 27, 34, 1);
   text-decoration: none;
+  transition: color .3s ease;
 }
 
 .news__link:hover,
