@@ -12,4 +12,13 @@ loader.load(1000)
   });
 
 
-  export let date = new Date();
+export const date = new Date();
+export const dateTime = date.getTime();
+export const day = 60 * 60 * 24 * 1000;
+export const dateSixDaysAgo = day * 6;
+export const dateFrom = new Date(dateTime - dateSixDaysAgo);
+export const dateTo = date;
+export const weekList = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']; // sunday - index[0]
+export const monthList = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+
+

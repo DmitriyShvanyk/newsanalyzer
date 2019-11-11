@@ -42,15 +42,7 @@ export default class CardListNews {
     newsBtnMore.addEventListener('click', this.renderMoreCards);
 
   }
-  renderMoreCards() {
-    /*const cards = document.querySelectorAll('.news__column:not(.news__column--active)');
-    const hiddenElements = Array.from(cards);
-    if (hiddenElements.length === 0) {
-      newsBtnMore.classList.remove('news__btn-more--active');
-    } else {
-      newsBtnMore.classList.add('news__btn-more--active');
-    }*/
-
+  renderMoreCards() {    
     const cardsActive = document.querySelectorAll('.news__column--active');
     let index = 0;
     let step = 3;
@@ -70,7 +62,7 @@ export default class CardListNews {
 
   }
 
-  /*removeCard() {
+ /* remove() {
     while (this.container.firstChild) {
       this.container.removeChild(this.container.firstChild);
     }

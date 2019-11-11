@@ -1,26 +1,14 @@
-import { date } from '../main.js'
+import { date, dateFrom, day, monthList, weekList } from '../main.js'
 
 export default class Stat {
+
   constructor(text = 'Слово', cards) {
     this.text = text;
     this.cards = cards;
-    this.renderTextRequest();
-    this.countTextRequestTotal();
     this.countTextRequestInTitle();
+    this.getArticlesPerDay();
     this.renderMonth();
-    this.renderDateWeek();
-    this.renderProgressByDays();
-  }
-
-  // отображаем текс запроса
-  renderTextRequest() {
-    const outputRequest = document.querySelector('.output__request');
-    outputRequest.textContent = this.text;
-  }
-
-  countTextRequestTotal() {
-    const outputWeeklyNews = document.querySelector('.output__weekly-news');
-    outputWeeklyNews.textContent = this.cards.totalResults;
+    this.renderGraph();
   }
 
   countTextRequestInTitle() {
@@ -30,63 +18,69 @@ export default class Stat {
         count++;
       }
     }
+    this.view(count);
+  }
+
+  view(count) {
+    const outputRequest = document.querySelector('.output__request');
+    const outputWeeklyNews = document.querySelector('.output__weekly-news');
     const outputMentionsTitles = document.querySelector('.output__mentions-titles');
+
+    outputRequest.textContent = this.text;
+    outputWeeklyNews.textContent = this.cards.totalResults;
     outputMentionsTitles.textContent = count;
   }
 
-  renderMonth(){
-    const arrMonth = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+  renderMonth() {    
     const monthDOM = document.querySelector('.graph__span');
-    monthDOM.textContent = `${arrMonth[date.getMonth()]}`;
+    monthDOM.textContent = `${monthList[date.getMonth()]}`;
   }
 
-  renderDateWeek() {
-    const dayDOM = document.querySelectorAll('.graph__date');
-    const arrDayWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-    
-    for (let i = 0; i < dayDOM.length; i++) {
-      let diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : (i + 1));
-      let dateOfWeek = new Date(date.setDate(diff)).toISOString().slice(8, 10);
-      dayDOM[i].textContent = `${dateOfWeek}, ${arrDayWeek[i]}`
-    }
-    
-  }
-
-  renderProgressByDays() {
-
-    const results = {};
+  getArticlesPerDay() {
+    const articlesDay = {};
 
     for (let i = 0; i < this.cards.articles.length; i++) {
 
-      let dayPublished = new Date(this.cards.articles[i].publishedAt).getDay();
+      let datePublished = new Date(this.cards.articles[i].publishedAt.slice(0, 10)).getDate();
+      //console.log(datePublished);
 
-      if (results[dayPublished] !== undefined) {
-        results[dayPublished]++;
+      if (datePublished in articlesDay) {
+        articlesDay[datePublished]++;
       }
       else {
-        results[dayPublished] = 1;
+        articlesDay[datePublished] = 1;
       }
 
     }
 
-    for (let key in results) {
-      //console.log(`${key}: ${results[key]}`);
-    }
+    this.renderGraph(articlesDay);
 
+  }
+
+  renderGraph(articlesDay) {    
+    const graphDate = document.querySelectorAll('.graph__date');
     const progressCount = document.querySelectorAll('.progress__count');
-    const progressBar = document.querySelectorAll('.progress__bar');
+    const progressBar = document.querySelectorAll('.progress__bar');    
 
-    for (let i = 0; i < progressCount.length; i++) {
+    for (let i = 0; i < 7; i++) {
+      const dayMilliseconds = day * i;
+      const date = new Date(dateFrom.getTime() + dayMilliseconds);
+      const dateOfWeek = date.getDate();
+      const dayOfWeek = weekList[`${date.getDay()}`];
+      graphDate[i].classList.add(`graph__date--${i}`);
+      graphDate[i].textContent = `${dateOfWeek}, ${dayOfWeek}`;
 
-      if (results[i + 1]) {
-        progressCount[i].textContent = results[i + 1];
-        progressBar[i].value = results[i + 1];
-      }
-      else {
-        progressCount[i].classList.add('progress__count--null');
-        progressCount[i].textContent = 0;
-        progressBar[i].value = 0;
-      }
+      if(articlesDay !== undefined){
+        if (dateOfWeek in articlesDay) {
+          progressCount[i].textContent = `${articlesDay[dateOfWeek]}`;
+          progressBar[i].value = `${articlesDay[dateOfWeek]}`;
+        } else {
+          progressCount[i].textContent = '0';
+          progressCount[i].classList.add('progress__count--null');
+          progressBar[i].value = '0';
+        }
+
+      }      
 
     }
 

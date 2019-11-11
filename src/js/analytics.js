@@ -1,6 +1,6 @@
 import '../pages/analytics.css'
 import Stat from './modules/stat.js'
-import Graph from './modules/graph.js'
+//import Graph from './modules/graph.js'
 
 const cardsStorage = JSON.parse(localStorage.getItem('cards')); 
 const textStorage = JSON.parse(localStorage.getItem('text')); 

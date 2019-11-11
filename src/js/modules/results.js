@@ -48,23 +48,7 @@ export default class Results {
     this.container.appendChild(containerFragment);
 
     return preloader;
-  }
-
-  /*showMoreNews() {
-    let containerFragment = document.createDocumentFragment();
-
-    let resultMore = document.createElement('div');
-    resultMore.classList.add('news__more');
-
-    let resultMoreBtn = document.createElement('button');
-    resultMoreBtn.classList.add('button', 'news__btn-more');
-    resultMoreBtn.textContent = 'Показать еще';
-
-    resultMore.appendChild(resultMoreBtn);
-    containerFragment.appendChild(resultMore);
-
-    return resultMore;
-  }*/
+  }  
 
   removeNotFound() {
     const notFound = this.container.querySelector('.not-found');
@@ -85,7 +69,5 @@ export default class Results {
       newsContainer.removeChild(newsContainer.firstChild);
     }
   }
-
-
 
 }

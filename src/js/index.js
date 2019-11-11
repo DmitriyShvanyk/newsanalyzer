@@ -1,9 +1,10 @@
 import '../pages/index.css'
 import ApiNews from './modules/news/apiNews.js'
 import CardListNews from './modules/news/cardListNews.js'
+import { dateFrom, dateTo } from './main.js'
 
-export const newsContainer = document.querySelector('.news__columns')
-export const newsBtnMore = document.querySelector('.news__btn-more')
+export const newsContainer = document.querySelector('.news__columns');
+export const newsBtnMore = document.querySelector('.news__btn-more');
 
 const apiNews = new ApiNews({
   baseURL: 'https://newsapi.org/v2/everything?',
@@ -76,19 +77,14 @@ function displayResults() {
 
   // при повторном запросе делаем очистку
   results.removeCards();
+
   results.removeNotFound();
   results.removePreloader();
-  newsBtnMore.classList.remove('news__btn-more--active');
-
-  const date = new Date();
-  const dateTime = date.getTime();
-  const date6Days = 60 * 60 * 1000 * 24 * 6;
-  const dateFrom = new Date(dateTime - date6Days).toISOString();
-  const dateTo = date.toISOString();
+  newsBtnMore.classList.remove('news__btn-more--active');    
 
   const text = document.querySelector('.form-search__control').value;
 
-  apiNews.getInitialNewsCards(text, dateFrom, dateTo)
+  apiNews.getInitialNewsCards(text, dateFrom.toISOString(), dateTo.toISOString())
     .then((cards) => {
 
       resultsContainer.classList.add('results__container--active');
@@ -98,14 +94,9 @@ function displayResults() {
       localStorage.setItem('cards', JSON.stringify(cards));
       localStorage.setItem('text', JSON.stringify(text));
 
-
       // get storage
       const cardsStorage = JSON.parse(localStorage.getItem('cards'));
       //console.log(cardsStorage);
-
-      const textStorage = JSON.parse(localStorage.getItem('text'));
-      //console.log(textStorage);
-
 
       setTimeout(function () {
 
@@ -146,8 +137,6 @@ function displayResults() {
     });
 
 }
-
-
 
 function displayResultsAfterReload() {
 
