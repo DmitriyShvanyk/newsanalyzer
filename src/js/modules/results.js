@@ -6,18 +6,18 @@ export default class Results {
   }
 
   showNotFound(title = 'Ничего не найдено', text = 'К сожалению по вашему запросу ничего не найдено.') {
-    let containerFragment = document.createDocumentFragment();
-    let notFoundElement = document.createElement('div');
-    let notFoundElementIcon = document.createElement('img');
-    let notFoundElementTitle = document.createElement('h2');
-    let notFoundElementText = document.createElement('p');
+    const containerFragment = document.createDocumentFragment();
+    const notFoundElement = document.createElement('div');
+    const notFoundElementIcon = document.createElement('img');
+    const notFoundElementTitle = document.createElement('h2');
+    const notFoundElementText = document.createElement('p');
 
     notFoundElement.classList.add('not-found');
     notFoundElementTitle.classList.add('not-found__title');
     notFoundElementText.classList.add('not-found__text');
 
-    notFoundElementIcon.classList.add('not-found__icon');
-    notFoundElementIcon.src = './images/i-not-found.svg';
+    notFoundElementIcon.classList.add('not-found__icon');        
+    notFoundElementIcon.src = './images/icons/i-nosmile.svg';
     notFoundElementIcon.alt = title;
     notFoundElementTitle.textContent = title;
     notFoundElementText.textContent = text;

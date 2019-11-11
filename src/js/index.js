@@ -26,16 +26,12 @@ const results = new Results(resultsContainer);
 import Validate from "./modules/validate.js"
 
 const formSearch = document.querySelector('.form-search');
+const formSearchControl = document.querySelector('.form-search__control');
 const formSearchValidate = new Validate(formSearch);
 
 formSearchValidate.addEventListener('input', (event) => {
   formSearchValidate.checkField(event);
 });
-
-
-
-
-
 
 formSearchValidate.addEventListener('submit', (event) => {
 
@@ -77,12 +73,11 @@ function displayResults() {
 
   // при повторном запросе делаем очистку
   results.removeCards();
-
   results.removeNotFound();
   results.removePreloader();
-  newsBtnMore.classList.remove('news__btn-more--active');    
+  newsBtnMore.classList.remove('news__btn-more--active');
 
-  const text = document.querySelector('.form-search__control').value;
+  const text = formSearchControl.value;
 
   apiNews.getInitialNewsCards(text, dateFrom.toISOString(), dateTo.toISOString())
     .then((cards) => {
@@ -96,7 +91,6 @@ function displayResults() {
 
       // get storage
       const cardsStorage = JSON.parse(localStorage.getItem('cards'));
-      //console.log(cardsStorage);
 
       setTimeout(function () {
 
@@ -142,10 +136,10 @@ function displayResultsAfterReload() {
 
   const cardsStorage = JSON.parse(localStorage.getItem('cards'));
 
-  if(!cardsStorage){
-    return
+  if (!cardsStorage) {
+    return;
   }
-  
+
   resultsContainer.classList.add('results__container--active');
   resultsInner.classList.add('results__inner--active');
 
@@ -165,6 +159,6 @@ function displayResultsAfterReload() {
 
 }
 
-window.addEventListener('load', displayResultsAfterReload);
+window.addEventListener('DOMContentLoaded', displayResultsAfterReload);
 
 

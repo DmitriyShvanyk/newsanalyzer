@@ -1,0 +1,8 @@
+.technologies__image{
+  opacity: .15;
+  transition: opacity 1s ease-in-out;
+}
+
+.technologies__image:hover{
+  opacity: 1;
+}

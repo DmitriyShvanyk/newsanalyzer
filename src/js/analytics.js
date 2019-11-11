@@ -1,17 +1,19 @@
 import '../pages/analytics.css'
 import Stat from './modules/stat.js'
-//import Graph from './modules/graph.js'
+import MyDate from './modules/myDate.js';
 
-const cardsStorage = JSON.parse(localStorage.getItem('cards')); 
-const textStorage = JSON.parse(localStorage.getItem('text')); 
+export const timePeriod = 7;
+
+
+// get localStorage for text, cards
+const textStorage = JSON.parse(localStorage.getItem('text'));
+const cardsStorage = JSON.parse(localStorage.getItem('cards'));
 
 new Stat(textStorage, cardsStorage);
 
-window.addEventListener('storage', function(){    
-  new Stat(textStorage, cardsStorage);
-});
-
-/*const containerGraph = document.querySelector('.graph');
-const graph = new Graph(containerGraph)*/
+window.addEventListener('storage', () => new Stat(textStorage, cardsStorage));
 
 
+// show month 
+const graphMonth = document.querySelector('.graph__span');
+new MyDate(graphMonth).renderMonth();
