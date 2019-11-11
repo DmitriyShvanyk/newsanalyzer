@@ -23,13 +23,15 @@ export default class CardListGithub {
         this.card[i].commit.message,
         this.card[i].author.avatar_url
       )
-      
-    }    
+
+    }
 
   }
   initSlider() {
     new Swiper('.slider__swiper-container', {
       loop: true,
+      preloadImages: false,
+      lazy: true,
       slidesPerView: 3,
       spaceBetween: 16,
       pagination: {

@@ -1,3 +1,5 @@
+import { date } from '../main.js'
+
 export default class Stat {
   constructor(text = 'Слово', cards) {
     this.text = text;
@@ -5,6 +7,7 @@ export default class Stat {
     this.renderTextRequest();
     this.countTextRequestTotal();
     this.countTextRequestInTitle();
+    this.renderMonth();
     this.renderDateWeek();
     this.renderProgressByDays();
   }
@@ -31,20 +34,22 @@ export default class Stat {
     outputMentionsTitles.textContent = count;
   }
 
+  renderMonth(){
+    const arrMonth = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+    const monthDOM = document.querySelector('.graph__span');
+    monthDOM.textContent = `${arrMonth[date.getMonth()]}`;
+  }
+
   renderDateWeek() {
     const dayDOM = document.querySelectorAll('.graph__date');
     const arrDayWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-    let date = new Date();
-
+    
     for (let i = 0; i < dayDOM.length; i++) {
       let diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : (i + 1));
       let dateOfWeek = new Date(date.setDate(diff)).toISOString().slice(8, 10);
       dayDOM[i].textContent = `${dateOfWeek}, ${arrDayWeek[i]}`
     }
-
-    const arrMonth = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
-    const monthDOM = document.querySelector('.graph__span');
-    monthDOM.textContent = `${arrMonth[date.getMonth()]}`;
+    
   }
 
   renderProgressByDays() {

@@ -10,3 +10,6 @@ loader.load(1000)
   }).catch(() => {
     preloaderPage.classList.remove(preloaderPageHidden);
   });
+
+
+  export let date = new Date();

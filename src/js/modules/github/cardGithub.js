@@ -12,6 +12,7 @@ export default class CardGithub {
     const cardHead = document.createElement('div');
     const cardPhoto = document.createElement('div');
     const cardImage = document.createElement('img');
+    const cardImagePreloader = document.createElement('div');
     const cardContent = document.createElement('div');
     const cardAuthor = document.createElement('div');
     const cardEmail = document.createElement('div');
@@ -23,7 +24,8 @@ export default class CardGithub {
     cardDate.classList.add('slider__date');
     cardHead.classList.add('slider__head');
     cardPhoto.classList.add('slider__photo');
-    cardImage.classList.add('slider__image');
+    cardImage.classList.add('slider__image', 'swiper-lazy');
+    cardImagePreloader.classList.add('slider__image-preloader', 'swiper-lazy-preloader');
     cardContent.classList.add('slider__content');
     cardAuthor.classList.add('slider__author');
     cardEmail.classList.add('slider__email');
@@ -39,6 +41,7 @@ export default class CardGithub {
     cardParagraph.textContent = message;
 
     cardPhoto.appendChild(cardImage);
+    cardPhoto.appendChild(cardImagePreloader);
     cardContent.appendChild(cardAuthor);
     cardContent.appendChild(cardEmail);
     cardHead.appendChild(cardPhoto);
