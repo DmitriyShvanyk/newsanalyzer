@@ -4,11 +4,11 @@ import CardListNews from './modules/news/cardListNews.js'
 import LazyLoad from './modules/lazyLoad.js'
 import Results from './modules/results.js'
 import Validate from "./modules/validate.js"
-
 import { dateFrom, dateTo } from './main.js'
 
 export const newsContainer = document.querySelector('.news__columns');
 export const newsBtnMore = document.querySelector('.news__btn-more');
+export const newsBtnMoreActive = 'news__btn-more--active';
 
 
 // API News
@@ -31,17 +31,15 @@ const formSearchControl = document.querySelector('.form-search__control');
 const validateformSearch = new Validate(formSearch);
 
 
-
 // Request result cards
 class Request {
   constructor() {
-    //this.renderAfterReload();
-
-    /*window.addEventListener('DOMContentLoaded', () => {    
+    window.addEventListener('DOMContentLoaded', () => {
       this.renderAfterReload();
       new LazyLoad();
-    });*/
-
+    });
+    window.addEventListener('click', () => new LazyLoad());
+    window.addEventListener('scroll', () => new LazyLoad());
   }
 
   render() {
@@ -50,7 +48,7 @@ class Request {
     results.removeCards();
     results.removeRequestError();
     results.removePreloader();
-    newsBtnMore.classList.remove('news__btn-more--active');
+    newsBtnMore.classList.remove(newsBtnMoreActive);
 
     const keyText = formSearchControl.value.trim();
 
@@ -71,7 +69,7 @@ class Request {
 
           if (cardsStorage.articles.length === 0) {
             resultsInner.classList.remove('results__inner--active');
-            newsBtnMore.classList.remove('news__btn-more--active');
+            newsBtnMore.classList.remove(newsBtnMoreActive);
             results.removePreloader();
             results.showRequestError(
               'Ничего не найдено',
@@ -83,7 +81,7 @@ class Request {
             results.removePreloader();
             results.removeRequestError();
             resultsInner.classList.add('results__inner--active');
-            newsBtnMore.classList.add('news__btn-more--active');
+            newsBtnMore.classList.add(newsBtnMoreActive);
 
             new CardListNews(newsContainer, cardsStorage);
           }
@@ -127,15 +125,15 @@ class Request {
     new CardListNews(newsContainer, cardsStorage);
 
     if (cardsStorage.articles.length === 0) {
-      newsBtnMore.classList.remove('news__btn-more--active');
+      newsBtnMore.classList.remove(newsBtnMoreActive);
       resultsContainer.classList.remove('results__container--active');
       resultsInner.classList.remove('results__inner--active');
     }
     else if (cardsStorage.articles.length > 3) {
-      newsBtnMore.classList.add('news__btn-more--active');
+      newsBtnMore.classList.add(newsBtnMoreActive);
     }
     else {
-      newsBtnMore.classList.remove('news__btn-more--active');
+      newsBtnMore.classList.remove(newsBtnMoreActive);
     }
 
   }
@@ -181,10 +179,4 @@ validateformSearch.addEventListener('submit', (event) => {
     hasErrors.focus();
   }
 
-});
-
-
-window.addEventListener('DOMContentLoaded', () => {
-  request.renderAfterReload();
-  new LazyLoad();
 });

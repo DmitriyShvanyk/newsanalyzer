@@ -22,7 +22,7 @@ export default class Results {
     this.container.appendChild(containerFragment);
 
     return preloader;
-  }  
+  }
 
   showRequestError(title = 'Ничего не найдено', text = 'К сожалению по вашему запросу ничего не найдено.') {
     const containerFragment = document.createDocumentFragment();
@@ -36,10 +36,10 @@ export default class Results {
     notFoundElement.classList.add('not-found');
     notFoundElementTitle.classList.add('not-found__title');
     notFoundElementText.classList.add('not-found__text');
-    notFoundElementIcon.classList.add('not-found__icon');   
-    notFoundElementIconArc.classList.add('not-found__icon-arc');  
+    notFoundElementIcon.classList.add('not-found__icon');
+    notFoundElementIconArc.classList.add('not-found__icon-arc');
     notFoundElementIconLine.classList.add('not-found__icon-line');
-   
+
     notFoundElementTitle.textContent = title;
     notFoundElementText.textContent = text;
 
@@ -52,7 +52,7 @@ export default class Results {
     this.container.appendChild(containerFragment);
 
     return notFoundElement;
-  }    
+  }
 
   removePreloader() {
     const preloaderNews = this.container.querySelector('.preloader--news');
@@ -66,7 +66,7 @@ export default class Results {
     if (notFound) {
       this.container.removeChild(notFound);
     }
-  }  
+  }
 
   removeCards() {
     while (newsContainer.firstChild) {
@@ -75,3 +75,6 @@ export default class Results {
   }
 
 }
+
+
+
