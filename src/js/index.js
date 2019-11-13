@@ -114,6 +114,8 @@ class Request {
   renderAfterReload() {
 
     const cardsStorage = JSON.parse(localStorage.getItem('cards'));
+    const keyTextStorage = JSON.parse(localStorage.getItem('keyText'));
+    formSearchControl.value = keyTextStorage;
 
     if (!cardsStorage) {
       return;
