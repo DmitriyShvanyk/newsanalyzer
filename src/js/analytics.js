@@ -4,14 +4,13 @@ import MyDate from './modules/myDate.js';
 
 export const timePeriod = 7;
 
-
 // get localStorage for text, cards
-const textStorage = JSON.parse(localStorage.getItem('text'));
+const keyTextStorage = JSON.parse(localStorage.getItem('keyText'));
 const cardsStorage = JSON.parse(localStorage.getItem('cards'));
 
-new Stat(textStorage, cardsStorage);
+new Stat(keyTextStorage, cardsStorage);
 
-window.addEventListener('storage', () => new Stat(textStorage, cardsStorage));
+window.addEventListener('storage', () => new Stat(keyTextStorage, cardsStorage));
 
 
 // show month 

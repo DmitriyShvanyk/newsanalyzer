@@ -1,11 +1,17 @@
 import '../pages/index.css'
 import ApiNews from './modules/news/apiNews.js'
 import CardListNews from './modules/news/cardListNews.js'
+import LazyLoad from './modules/lazyLoad.js'
+import Results from './modules/results.js'
+import Validate from "./modules/validate.js"
+
 import { dateFrom, dateTo } from './main.js'
 
 export const newsContainer = document.querySelector('.news__columns');
 export const newsBtnMore = document.querySelector('.news__btn-more');
 
+
+// API News
 const apiNews = new ApiNews({
   baseURL: 'https://newsapi.org/v2/everything?',
   key: 'ce6db864a3ee4bdbb80e8fe9388fa7e6',
@@ -13,27 +19,135 @@ const apiNews = new ApiNews({
 });
 
 
-
 // Results
 const resultsContainer = document.querySelector('.results__container');
 const resultsInner = document.querySelector('.results__inner');
-
-import Results from './modules/results.js';
 const results = new Results(resultsContainer);
 
 
 // Validation
-import Validate from "./modules/validate.js"
-
 const formSearch = document.querySelector('.form-search');
 const formSearchControl = document.querySelector('.form-search__control');
-const formSearchValidate = new Validate(formSearch);
+const validateformSearch = new Validate(formSearch);
 
-formSearchValidate.addEventListener('input', (event) => {
-  formSearchValidate.checkField(event);
-});
 
-formSearchValidate.addEventListener('submit', (event) => {
+
+// Request result cards
+class Request {
+  constructor() {
+    //this.renderAfterReload();
+
+    /*window.addEventListener('DOMContentLoaded', () => {    
+      this.renderAfterReload();
+      new LazyLoad();
+    });*/
+
+  }
+
+  render() {
+
+    localStorage.clear();
+    results.removeCards();
+    results.removeRequestError();
+    results.removePreloader();
+    newsBtnMore.classList.remove('news__btn-more--active');
+
+    const keyText = formSearchControl.value.trim();
+
+    apiNews.getInitialNewsCards(keyText, dateFrom.toISOString(), dateTo.toISOString())
+      .then((cards) => {
+
+        resultsContainer.classList.add('results__container--active');
+        results.showPreloader();
+
+        // set storage
+        localStorage.setItem('cards', JSON.stringify(cards));
+        localStorage.setItem('keyText', JSON.stringify(keyText));
+
+        // get storage
+        const cardsStorage = JSON.parse(localStorage.getItem('cards'));
+
+        setTimeout(() => {
+
+          if (cardsStorage.articles.length === 0) {
+            resultsInner.classList.remove('results__inner--active');
+            newsBtnMore.classList.remove('news__btn-more--active');
+            results.removePreloader();
+            results.showRequestError(
+              'Ничего не найдено',
+              'К сожалению по вашему запросу ничего не найдено.'
+            );
+          }
+
+          else if (cardsStorage.articles.length > 3) {
+            results.removePreloader();
+            results.removeRequestError();
+            resultsInner.classList.add('results__inner--active');
+            newsBtnMore.classList.add('news__btn-more--active');
+
+            new CardListNews(newsContainer, cardsStorage);
+          }
+
+          else {
+            results.removePreloader();
+            results.removeRequestError();
+            resultsInner.classList.add('results__inner--active');
+
+            new CardListNews(newsContainer, cardsStorage);
+          }
+
+        }, 5000);
+
+
+      }).catch(err => {
+        resultsContainer.classList.add('results__container--active');
+        resultsInner.classList.remove('results__inner--active');
+
+        results.showRequestError(
+          'Во время запроса произошла ошибка',
+          'Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.'
+        );
+
+        return Promise.reject(`Ошибка: ${err.status}`);
+      });
+
+  }
+
+  renderAfterReload() {
+
+    const cardsStorage = JSON.parse(localStorage.getItem('cards'));
+
+    if (!cardsStorage) {
+      return;
+    }
+
+    resultsContainer.classList.add('results__container--active');
+    resultsInner.classList.add('results__inner--active');
+
+    new CardListNews(newsContainer, cardsStorage);
+
+    if (cardsStorage.articles.length === 0) {
+      newsBtnMore.classList.remove('news__btn-more--active');
+      resultsContainer.classList.remove('results__container--active');
+      resultsInner.classList.remove('results__inner--active');
+    }
+    else if (cardsStorage.articles.length > 3) {
+      newsBtnMore.classList.add('news__btn-more--active');
+    }
+    else {
+      newsBtnMore.classList.remove('news__btn-more--active');
+    }
+
+  }
+
+}
+
+const request = new Request();
+
+
+
+// Validation
+validateformSearch.addEventListener('submit', (event) => {
 
   event.preventDefault();
 
@@ -58,7 +172,8 @@ formSearchValidate.addEventListener('submit', (event) => {
 
   if (!hasErrors) {
 
-    displayResults();
+    // Render new cards
+    request.render();
 
   }
   else {
@@ -69,96 +184,7 @@ formSearchValidate.addEventListener('submit', (event) => {
 });
 
 
-function displayResults() {
-
-  // при повторном запросе делаем очистку
-  results.removeCards();
-  results.removeNotFound();
-  results.removePreloader();
-  newsBtnMore.classList.remove('news__btn-more--active');
-
-  const text = formSearchControl.value;
-
-  apiNews.getInitialNewsCards(text, dateFrom.toISOString(), dateTo.toISOString())
-    .then((cards) => {
-
-      resultsContainer.classList.add('results__container--active');
-      results.showPreloader();
-
-      // set storage
-      localStorage.setItem('cards', JSON.stringify(cards));
-      localStorage.setItem('text', JSON.stringify(text));
-
-      // get storage
-      const cardsStorage = JSON.parse(localStorage.getItem('cards'));
-
-      setTimeout(function () {
-
-        if (cardsStorage.articles.length === 0) {
-          resultsInner.classList.remove('results__inner--active');
-          newsBtnMore.classList.remove('news__btn-more--active');
-          results.removePreloader();
-          results.showNotFound('Ничего не найдено', 'К сожалению по вашему запросу ничего не найдено.');
-        }
-
-        else if (cardsStorage.articles.length > 3) {
-          results.removePreloader();
-          results.removeNotFound();
-          resultsInner.classList.add('results__inner--active');
-          newsBtnMore.classList.add('news__btn-more--active');
-
-          new CardListNews(newsContainer, cardsStorage);
-        }
-
-        else {
-          results.removePreloader();
-          results.removeNotFound();
-          resultsInner.classList.add('results__inner--active');
-
-          new CardListNews(newsContainer, cardsStorage);
-        }
-
-      }, 5000);
-
-
-    }).catch(function (err) {
-      resultsContainer.classList.add('results__container--active');
-      resultsInner.classList.remove('results__inner--active');
-
-      results.showNotFound('Во время запроса произошла ошибка', 'Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
-
-      return Promise.reject(`Ошибка: ${err.status}`);
-    });
-
-}
-
-function displayResultsAfterReload() {
-
-  const cardsStorage = JSON.parse(localStorage.getItem('cards'));
-
-  if (!cardsStorage) {
-    return;
-  }
-
-  resultsContainer.classList.add('results__container--active');
-  resultsInner.classList.add('results__inner--active');
-
-  new CardListNews(newsContainer, cardsStorage);
-
-  if (cardsStorage.articles.length === 0) {
-    newsBtnMore.classList.remove('news__btn-more--active');
-    resultsContainer.classList.remove('results__container--active');
-    resultsInner.classList.remove('results__inner--active');
-  }
-  else if (cardsStorage.articles.length > 3) {
-    newsBtnMore.classList.add('news__btn-more--active');
-  }
-  else {
-    newsBtnMore.classList.remove('news__btn-more--active');
-  }
-
-}
-
-window.addEventListener('DOMContentLoaded', displayResultsAfterReload);
-
-
+window.addEventListener('DOMContentLoaded', () => {
+  request.renderAfterReload();
+  new LazyLoad();
+});

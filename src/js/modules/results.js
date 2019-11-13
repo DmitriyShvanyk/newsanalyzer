@@ -5,37 +5,11 @@ export default class Results {
     this.container = container;
   }
 
-  showNotFound(title = 'Ничего не найдено', text = 'К сожалению по вашему запросу ничего не найдено.') {
-    const containerFragment = document.createDocumentFragment();
-    const notFoundElement = document.createElement('div');
-    const notFoundElementIcon = document.createElement('img');
-    const notFoundElementTitle = document.createElement('h2');
-    const notFoundElementText = document.createElement('p');
-
-    notFoundElement.classList.add('not-found');
-    notFoundElementTitle.classList.add('not-found__title');
-    notFoundElementText.classList.add('not-found__text');
-
-    notFoundElementIcon.classList.add('not-found__icon');        
-    notFoundElementIcon.src = './images/icons/i-nosmile.svg';
-    notFoundElementIcon.alt = title;
-    notFoundElementTitle.textContent = title;
-    notFoundElementText.textContent = text;
-
-    notFoundElement.appendChild(notFoundElementIcon);
-    notFoundElement.appendChild(notFoundElementTitle);
-    notFoundElement.appendChild(notFoundElementText);
-    containerFragment.appendChild(notFoundElement);
-    this.container.appendChild(containerFragment);
-
-    return notFoundElement;
-  }
-
   showPreloader() {
-    let containerFragment = document.createDocumentFragment();
-    let preloader = document.createElement('div');
-    let preloaderIcon = document.createElement('div');
-    let preloaderText = document.createElement('div');
+    const containerFragment = document.createDocumentFragment();
+    const preloader = document.createElement('div');
+    const preloaderIcon = document.createElement('div');
+    const preloaderText = document.createElement('div');
 
     preloader.classList.add('preloader', 'preloader--news');
     preloaderIcon.classList.add('preloader__icon');
@@ -50,12 +24,35 @@ export default class Results {
     return preloader;
   }  
 
-  removeNotFound() {
-    const notFound = this.container.querySelector('.not-found');
-    if (notFound) {
-      this.container.removeChild(notFound);
-    }
-  }
+  showRequestError(title = 'Ничего не найдено', text = 'К сожалению по вашему запросу ничего не найдено.') {
+    const containerFragment = document.createDocumentFragment();
+    const notFoundElement = document.createElement('div');
+    const notFoundElementIcon = document.createElement('span');
+    const notFoundElementIconArc = document.createElement('span');
+    const notFoundElementIconLine = document.createElement('span');
+    const notFoundElementTitle = document.createElement('h2');
+    const notFoundElementText = document.createElement('p');
+
+    notFoundElement.classList.add('not-found');
+    notFoundElementTitle.classList.add('not-found__title');
+    notFoundElementText.classList.add('not-found__text');
+    notFoundElementIcon.classList.add('not-found__icon');   
+    notFoundElementIconArc.classList.add('not-found__icon-arc');  
+    notFoundElementIconLine.classList.add('not-found__icon-line');
+   
+    notFoundElementTitle.textContent = title;
+    notFoundElementText.textContent = text;
+
+    notFoundElementIcon.appendChild(notFoundElementIconArc);
+    notFoundElementIcon.appendChild(notFoundElementIconLine);
+    notFoundElement.appendChild(notFoundElementIcon);
+    notFoundElement.appendChild(notFoundElementTitle);
+    notFoundElement.appendChild(notFoundElementText);
+    containerFragment.appendChild(notFoundElement);
+    this.container.appendChild(containerFragment);
+
+    return notFoundElement;
+  }    
 
   removePreloader() {
     const preloaderNews = this.container.querySelector('.preloader--news');
@@ -63,6 +60,13 @@ export default class Results {
       this.container.removeChild(preloaderNews);
     }
   }
+
+  removeRequestError() {
+    const notFound = this.container.querySelector('.not-found');
+    if (notFound) {
+      this.container.removeChild(notFound);
+    }
+  }  
 
   removeCards() {
     while (newsContainer.firstChild) {

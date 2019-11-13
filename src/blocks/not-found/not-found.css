@@ -1,5 +1,8 @@
 @import url(../not-found/__title/not-found__title.css);
 @import url(../not-found/__text/not-found__text.css);
+@import url(../not-found/__icon/not-found__icon.css);
+@import url(../not-found/__icon-arc/not-found__icon-arc.css);
+@import url(../not-found/__icon-line/not-found__icon-line.css);
 
 .not-found {
   max-width: 335px;

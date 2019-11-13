@@ -1,5 +1,6 @@
 import Loader from './modules/loader.js';
 import MyDate from './modules/myDate.js';
+import LazyLoad from './modules/lazyLoad.js';
 
 
 // loader page
@@ -13,6 +14,11 @@ loader.load(1000)
   }).catch(() => {
     preloaderPage.classList.remove(preloaderPageHidden);
   });
+
+
+// lazy load
+const lazyLoad = new LazyLoad();
+window.addEventListener('DOMContentLoaded', lazyLoad);
 
 
 // footer date copyright

@@ -5,6 +5,8 @@ export default class Validate {
     this.addAttrNovalidate();
     this.checkField.bind(this);
     this.addEventListener.bind(this);
+
+    this.formElement.addEventListener('input', event => this.checkField(event));
   }
 
   addAttrNovalidate() {

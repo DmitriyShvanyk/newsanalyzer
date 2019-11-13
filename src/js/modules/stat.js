@@ -2,8 +2,8 @@ import { dateFrom, day } from '../main.js'
 import { timePeriod } from '../analytics.js'
 
 export default class Stat {
-  constructor(text = 'Что-то, где-то', cards) {
-    this.text = text;
+  constructor(keyText = 'Что-то, где-то', cards) {
+    this.keyText = keyText;
     this.cards = cards;
     this.countTextRequestInTitle();
     this.getArticlesPerDay();
@@ -13,7 +13,7 @@ export default class Stat {
   countTextRequestInTitle() {
     let count = 0;
     for (let i = 0; i < this.cards.articles.length; i++) {
-      if (this.cards.articles[i].title.toLowerCase().includes(this.text.toLowerCase())) {
+      if (this.cards.articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {
         count++;
       }
     }
@@ -25,7 +25,7 @@ export default class Stat {
     const outputWeeklyNews = document.querySelector('.output__weekly-news');
     const outputMentionsTitles = document.querySelector('.output__mentions-titles');
 
-    outputRequest.textContent = this.text;
+    outputRequest.textContent = this.keyText;
     outputWeeklyNews.textContent = this.cards.totalResults;
     outputMentionsTitles.textContent = count;
   }
@@ -54,6 +54,7 @@ export default class Stat {
     const graphDate = document.querySelectorAll('.graph__date');
     const progressCount = document.querySelectorAll('.progress__count');
     const progressBar = document.querySelectorAll('.progress__bar');
+    const progressBarNull = 'progress__count--null';
 
     for (let i = 0; i < timePeriod; i++) {
       const dayMilliseconds = day * i;
@@ -70,8 +71,13 @@ export default class Stat {
         if (dateOfWeek in articlesDay) {
           progressCount[i].textContent = `${articlesDay[dateOfWeek]}`;
           progressBar[i].value = `${articlesDay[dateOfWeek]}`;
+
+          if(progressBar[i].value < 2){
+            progressCount[i].classList.add(progressBarNull);
+          }
+
         } else {
-          progressCount[i].classList.add('progress__count--null');
+          progressCount[i].classList.add(progressBarNull);
           progressCount[i].textContent = '0';          
           progressBar[i].value = '0';
         }

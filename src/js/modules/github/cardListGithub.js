@@ -10,22 +10,20 @@ export default class CardListGithub {
     this.renderCard();
     this.initSlider();
   }
-  addCard(...args) {
+  createCard(...args) {
     const { cardElement } = new CardGithub(...args);
     this.container.appendChild(cardElement);
   }
   renderCard() {
     for (let i = 0; i < this.card.length; i++) {
-      this.addCard(
+      this.createCard(
         this.card[i].commit.committer.name,
         this.card[i].commit.committer.email,
         new NormalizeDate(this.card[i].commit.author.date).render(),
         this.card[i].commit.message,
         this.card[i].author.avatar_url
       )
-
     }
-
   }
   initSlider() {
     new Swiper('.slider__swiper-container', {

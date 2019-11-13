@@ -20,7 +20,7 @@ export default class CardNews {
     card.classList.add('news__column');
     cardItem.classList.add('news__item');
     cardHead.classList.add('news__head');
-    cardImage.classList.add('news__image');
+    cardImage.classList.add('news__image', 'lazy');
     cardBody.classList.add('news__body');
     cardDate.classList.add('news__date');
     cardTitle.classList.add('news__title');
@@ -29,7 +29,8 @@ export default class CardNews {
     cardFoot.classList.add('news__foot');
     cardSource.classList.add('news__source');
 
-    cardImage.src = image;
+    cardImage.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+    cardImage.dataset.src = image;
     cardImage.alt = title;
     
     function errorImage() {
