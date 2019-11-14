@@ -42,7 +42,7 @@ class CardsNewsView {
     sessionStorage.setItem("isReloaded", true);
 
     if (sessionStorage.getItem("isReloaded")) {
-      //this.save();
+      this.save();
     }
 
   }
