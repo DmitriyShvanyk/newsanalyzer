@@ -2,7 +2,6 @@ import CardNews from './cardNews.js'
 import NormalizeDate from '../dateNormalize.js'
 import { newsBtnMore, newsBtnMoreActive } from '../../index.js'
 
-
 export default class CardListNews {
   constructor(container, card) {
     this.container = container;
@@ -36,6 +35,9 @@ export default class CardListNews {
 
     if (this.offset >= articles.length) {
       newsBtnMore.classList.remove(newsBtnMoreActive);
+    }
+    else{
+      newsBtnMore.classList.add(newsBtnMoreActive);
     }
 
   }

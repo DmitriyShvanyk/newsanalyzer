@@ -1,5 +1,3 @@
-import { newsContainer } from '../index.js';
-
 export default class Results {
   constructor(container) {
     this.container = container;
@@ -66,13 +64,7 @@ export default class Results {
     if (notFound) {
       this.container.removeChild(notFound);
     }
-  }
-
-  removeCards() {
-    while (newsContainer.firstChild) {
-      newsContainer.removeChild(newsContainer.firstChild);
-    }
-  }
+  }  
 
 }
 

@@ -1,9 +1,9 @@
 import '../pages/index.css'
 import ApiNews from './modules/news/apiNews.js'
 import CardListNews from './modules/news/cardListNews.js'
-import LazyLoad from './modules/lazyLoad.js'
 import Results from './modules/results.js'
 import Validate from "./modules/validate.js"
+import ScrollTo from "./modules/scrollTo.js"
 import { dateFrom, dateTo } from './main.js'
 
 export const newsContainer = document.querySelector('.news__columns');
@@ -21,31 +21,36 @@ const apiNews = new ApiNews({
 
 // Results
 const resultsContainer = document.querySelector('.results__container');
+const resultsContainerActive = 'results__container--active';
 const resultsInner = document.querySelector('.results__inner');
+const resultsInnerActive = 'results__inner--active';
 const results = new Results(resultsContainer);
 
 
 // Validation
 const formSearch = document.querySelector('.form-search');
 const formSearchControl = document.querySelector('.form-search__control');
+const formSearchSubmit = document.querySelector('.form-search__submit');
 const validateformSearch = new Validate(formSearch);
 
 
-// Request result cards
-class Request {
+// View news cards
+class CardsNewsView {
   constructor() {
-    window.addEventListener('DOMContentLoaded', () => {
-      this.renderAfterReload();
-      new LazyLoad();
-    });
-    window.addEventListener('click', () => new LazyLoad());
-    window.addEventListener('scroll', () => new LazyLoad());
+
+    // if reload page, work before closing the browser
+    sessionStorage.setItem("isReloaded", true);
+
+    if (sessionStorage.getItem("isReloaded")) {
+      //this.save();
+    }
+
   }
 
   render() {
-
     localStorage.clear();
-    results.removeCards();
+    this.removeNewsCards();
+
     results.removeRequestError();
     results.removePreloader();
     newsBtnMore.classList.remove(newsBtnMoreActive);
@@ -53,9 +58,11 @@ class Request {
     const keyText = formSearchControl.value.trim();
 
     apiNews.getInitialNewsCards(keyText, dateFrom.toISOString(), dateTo.toISOString())
-      .then((cards) => {
+      .then((cards) => {  
+        
+        localStorage.clear();
 
-        resultsContainer.classList.add('results__container--active');
+        resultsContainer.classList.add(resultsContainerActive);
         results.showPreloader();
 
         // set storage
@@ -63,13 +70,16 @@ class Request {
         localStorage.setItem('keyText', JSON.stringify(keyText));
 
         // get storage
-        const cardsStorage = JSON.parse(localStorage.getItem('cards'));
+        const cardsStorage = JSON.parse(localStorage.getItem('cards'));        
 
-        setTimeout(() => {
+        if (!cardsStorage) {
+          return;
+        }            
+
+       setTimeout(() => {
 
           if (cardsStorage.articles.length === 0) {
-            resultsInner.classList.remove('results__inner--active');
-            newsBtnMore.classList.remove(newsBtnMoreActive);
+            resultsInner.classList.remove(resultsInnerActive);
             results.removePreloader();
             results.showRequestError(
               'Ничего не найдено',
@@ -80,26 +90,23 @@ class Request {
           else if (cardsStorage.articles.length > 3) {
             results.removePreloader();
             results.removeRequestError();
-            resultsInner.classList.add('results__inner--active');
-            newsBtnMore.classList.add(newsBtnMoreActive);
-
+            resultsInner.classList.add(resultsInnerActive);
             new CardListNews(newsContainer, cardsStorage);
           }
 
           else {
             results.removePreloader();
             results.removeRequestError();
-            resultsInner.classList.add('results__inner--active');
-
+            resultsInner.classList.add(resultsInnerActive);
             new CardListNews(newsContainer, cardsStorage);
           }
 
-        }, 5000);
+        }, 1000);        
 
 
       }).catch(err => {
-        resultsContainer.classList.add('results__container--active');
-        resultsInner.classList.remove('results__inner--active');
+        resultsContainer.classList.add(resultsContainerActive);
+        resultsInner.classList.remove(resultsInnerActive);
 
         results.showRequestError(
           'Во время запроса произошла ошибка',
@@ -111,38 +118,37 @@ class Request {
 
   }
 
-  renderAfterReload() {
+  save() {
+
+    formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));
 
     const cardsStorage = JSON.parse(localStorage.getItem('cards'));
-    const keyTextStorage = JSON.parse(localStorage.getItem('keyText'));
-    formSearchControl.value = keyTextStorage;
 
     if (!cardsStorage) {
       return;
     }
 
-    resultsContainer.classList.add('results__container--active');
-    resultsInner.classList.add('results__inner--active');
+    resultsContainer.classList.add(resultsContainerActive);
+    resultsInner.classList.add(resultsInnerActive);
 
     new CardListNews(newsContainer, cardsStorage);
 
     if (cardsStorage.articles.length === 0) {
-      newsBtnMore.classList.remove(newsBtnMoreActive);
-      resultsContainer.classList.remove('results__container--active');
-      resultsInner.classList.remove('results__inner--active');
-    }
-    else if (cardsStorage.articles.length > 3) {
-      newsBtnMore.classList.add(newsBtnMoreActive);
-    }
-    else {
-      newsBtnMore.classList.remove(newsBtnMoreActive);
+      resultsContainer.classList.remove(resultsContainerActive);
+      resultsInner.classList.remove(resultsInnerActive);
     }
 
   }
 
+  removeNewsCards() {
+    while (newsContainer.firstChild) {
+      newsContainer.removeChild(newsContainer.firstChild);
+    }
+  }
+
 }
 
-const request = new Request();
+const cardsNewsView = new CardsNewsView();
 
 
 
@@ -172,8 +178,11 @@ validateformSearch.addEventListener('submit', (event) => {
 
   if (!hasErrors) {
 
-    // Render new cards
-    request.render();
+    // scroll to block 
+    new ScrollTo(formSearchSubmit, resultsContainer);
+
+    // Render new cards    
+    cardsNewsView.render();
 
   }
   else {
@@ -182,3 +191,7 @@ validateformSearch.addEventListener('submit', (event) => {
   }
 
 });
+
+
+
+

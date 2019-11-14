@@ -2,7 +2,6 @@ import Swiper from 'swiper'
 import CardGithub from './cardGithub.js'
 import NormalizeDate from '../dateNormalize.js'
 
-
 export default class CardListGithub {
   constructor(container, card) {
     this.container = container;

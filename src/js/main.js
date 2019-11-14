@@ -17,8 +17,9 @@ loader.load(1000)
 
 
 // lazy load
-const lazyLoad = new LazyLoad();
-window.addEventListener('DOMContentLoaded', lazyLoad);
+window.addEventListener('DOMContentLoaded', () => new LazyLoad());
+window.addEventListener('scroll', () => new LazyLoad());
+window.addEventListener('click', () => new LazyLoad());
 
 
 // footer date copyright
