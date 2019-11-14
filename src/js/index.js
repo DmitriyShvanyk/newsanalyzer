@@ -60,8 +60,6 @@ class CardsNewsView {
     apiNews.getInitialNewsCards(keyText, dateFrom.toISOString(), dateTo.toISOString())
       .then((cards) => {  
         
-        localStorage.clear();
-
         resultsContainer.classList.add(resultsContainerActive);
         results.showPreloader();
 
