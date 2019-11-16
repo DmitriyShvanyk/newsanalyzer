@@ -1,6 +1,6 @@
 import '../pages/index.css'
 import ApiNews from './modules/news/apiNews.js'
-import CardListNews from './modules/news/cardListNews.js'
+import CardNewsList from './modules/news/cardNewsList.js'
 import Results from './modules/results.js'
 import Validate from "./modules/validate.js"
 import ScrollTo from "./modules/scrollTo.js"
@@ -14,8 +14,7 @@ export const newsBtnMoreActive = 'news__btn-more--active';
 // API News
 const apiNews = new ApiNews({
   baseURL: 'https://newsapi.org/v2/everything?',
-  key: 'ce6db864a3ee4bdbb80e8fe9388fa7e6',
-  credentials: 'include'
+  key: 'ce6db864a3ee4bdbb80e8fe9388fa7e6'
 });
 
 
@@ -35,123 +34,120 @@ const validateformSearch = new Validate(formSearch);
 
 
 // View news cards
-class CardsNewsView {
-  constructor() {
+function cardsNewsView() {
 
-    // if reload page, work before closing the browser
-    sessionStorage.setItem("isReloaded", true);
+  localStorage.clear();
 
-    if (sessionStorage.getItem("isReloaded")) {
-      this.save();
-    }
-
+  while (newsContainer.firstChild) {
+    newsContainer.removeChild(newsContainer.firstChild);
   }
 
-  render() {
-    localStorage.clear();
-    this.removeNewsCards();
+  results.removeRequestError();
+  results.removePreloader();
+  newsBtnMore.classList.remove(newsBtnMoreActive);
 
-    results.removeRequestError();
-    results.removePreloader();
+  const keyText = formSearchControl.value.trim();
+
+  apiNews.initCardsNews(keyText, dateFrom.toISOString(), dateTo.toISOString())
+    .then((cards) => {
+
+      formSearchSubmit.setAttribute('disabled', true);
+
+      resultsContainer.classList.add(resultsContainerActive);
+      results.showPreloader();
+
+      // set storage
+      localStorage.setItem('cards', JSON.stringify(cards));
+      localStorage.setItem('keyText', JSON.stringify(keyText));
+
+      // get storage
+      const cardsStorage = JSON.parse(localStorage.getItem('cards'));
+
+      if (!cardsStorage) {
+        return;
+      }
+
+      setTimeout(() => {
+        if (cardsStorage.articles.length === 0) {
+          formSearchSubmit.removeAttribute('disabled');
+          resultsInner.classList.remove(resultsInnerActive);
+          results.removePreloader();
+          results.showRequestError(
+            'Ничего не найдено',
+            'К сожалению по вашему запросу ничего не найдено.'
+          );
+        }
+        else if (cardsStorage.articles.length > 3) {
+          formSearchSubmit.removeAttribute('disabled');
+          results.removePreloader();
+          results.removeRequestError();
+          resultsInner.classList.add(resultsInnerActive);
+          newsBtnMore.classList.add(newsBtnMoreActive);          
+          new CardNewsList(newsContainer, cardsStorage);
+        }
+        else {
+          formSearchSubmit.removeAttribute('disabled');
+          results.removePreloader();
+          results.removeRequestError();
+          resultsInner.classList.add(resultsInnerActive);
+          newsBtnMore.classList.remove(newsBtnMoreActive);          
+          new CardNewsList(newsContainer, cardsStorage);
+        }
+      }, 0);
+
+    }).catch(err => {
+      formSearchSubmit.removeAttribute('disabled');
+      resultsContainer.classList.add(resultsContainerActive);
+      resultsInner.classList.remove(resultsInnerActive);      
+      results.showRequestError(
+        'Во время запроса произошла ошибка',
+        'Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.'
+      );
+      return Promise.reject(`Ошибка: ${err.status}`);
+    });
+
+}
+
+// Save view news cards
+function cardsNewsViewSave() {
+
+  formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));
+
+  const cardsStorage = JSON.parse(localStorage.getItem('cards'));
+
+  if (!cardsStorage) {
+    return;
+  }
+
+  resultsContainer.classList.add(resultsContainerActive);
+  resultsInner.classList.add(resultsInnerActive);
+
+  new CardNewsList(newsContainer, cardsStorage);
+
+  if (cardsStorage.articles.length === 0) {
+    resultsContainer.classList.remove(resultsContainerActive);
+    resultsInner.classList.remove(resultsInnerActive);
     newsBtnMore.classList.remove(newsBtnMoreActive);
-
-    const keyText = formSearchControl.value.trim();
-
-    apiNews.getInitialNewsCards(keyText, dateFrom.toISOString(), dateTo.toISOString())
-      .then((cards) => {  
-        
-        resultsContainer.classList.add(resultsContainerActive);
-        results.showPreloader();
-
-        // set storage
-        localStorage.setItem('cards', JSON.stringify(cards));
-        localStorage.setItem('keyText', JSON.stringify(keyText));
-
-        // get storage
-        const cardsStorage = JSON.parse(localStorage.getItem('cards'));        
-
-        if (!cardsStorage) {
-          return;
-        }            
-
-       setTimeout(() => {
-
-          if (cardsStorage.articles.length === 0) {
-            resultsInner.classList.remove(resultsInnerActive);
-            results.removePreloader();
-            results.showRequestError(
-              'Ничего не найдено',
-              'К сожалению по вашему запросу ничего не найдено.'
-            );
-          }
-
-          else if (cardsStorage.articles.length > 3) {
-            results.removePreloader();
-            results.removeRequestError();
-            resultsInner.classList.add(resultsInnerActive);
-            new CardListNews(newsContainer, cardsStorage);
-          }
-
-          else {
-            results.removePreloader();
-            results.removeRequestError();
-            resultsInner.classList.add(resultsInnerActive);
-            new CardListNews(newsContainer, cardsStorage);
-          }
-
-        }, 1000);        
-
-
-      }).catch(err => {
-        resultsContainer.classList.add(resultsContainerActive);
-        resultsInner.classList.remove(resultsInnerActive);
-
-        results.showRequestError(
-          'Во время запроса произошла ошибка',
-          'Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.'
-        );
-
-        return Promise.reject(`Ошибка: ${err.status}`);
-      });
-
   }
-
-  save() {
-
-    formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));
-
-    const cardsStorage = JSON.parse(localStorage.getItem('cards'));
-
-    if (!cardsStorage) {
-      return;
-    }
-
-    resultsContainer.classList.add(resultsContainerActive);
-    resultsInner.classList.add(resultsInnerActive);
-
-    new CardListNews(newsContainer, cardsStorage);
-
-    if (cardsStorage.articles.length === 0) {
-      resultsContainer.classList.remove(resultsContainerActive);
-      resultsInner.classList.remove(resultsInnerActive);
-    }
-
+  if (cardsStorage.articles.length > 3) {
+    newsBtnMore.classList.add(newsBtnMoreActive);
   }
-
-  removeNewsCards() {
-    while (newsContainer.firstChild) {
-      newsContainer.removeChild(newsContainer.firstChild);
-    }
+  else {
+    newsBtnMore.classList.remove(newsBtnMoreActive);
   }
 
 }
 
-const cardsNewsView = new CardsNewsView();
+// if reload page, work before closing the browser
+sessionStorage.setItem("isReloaded", true);
 
+if (sessionStorage.getItem("isReloaded")) {
+  cardsNewsViewSave();
+}
 
 
 // Validation
-validateformSearch.addEventListener('submit', (event) => {
+const validateForm = event => {
 
   event.preventDefault();
 
@@ -179,8 +175,8 @@ validateformSearch.addEventListener('submit', (event) => {
     // scroll to block 
     new ScrollTo(formSearchSubmit, resultsContainer);
 
-    // Render new cards    
-    cardsNewsView.render();
+    // render news cards
+    cardsNewsView();
 
   }
   else {
@@ -188,8 +184,5 @@ validateformSearch.addEventListener('submit', (event) => {
     hasErrors.focus();
   }
 
-});
-
-
-
-
+}
+validateformSearch.addEventListener('submit', validateForm);

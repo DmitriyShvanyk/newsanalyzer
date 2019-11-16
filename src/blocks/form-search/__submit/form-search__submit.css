@@ -24,6 +24,11 @@
   background-color: #2A65CC;
 }
 
+.form-search__submit[disabled]{
+  background-color: #ccc;
+  pointer-events: none;
+}
+
 @media screen and (max-width:768px) {
 
   .form-search__submit {

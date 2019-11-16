@@ -2,27 +2,27 @@ import Swiper from 'swiper'
 import CardGithub from './cardGithub.js'
 import NormalizeDate from '../dateNormalize.js'
 
-export default class CardListGithub {
-  constructor(container, card) {
-    this.container = container;
-    this.card = card;
-    this.renderCard();
+export default class CardGithubList {
+  constructor(container, cards) {
+    this._container = container;
+    this._cards = cards;
+    this.renderCards();
     this.initSlider();
   }
-  createCard(...args) {
+  addCards(...args) {
     const { cardElement } = new CardGithub(...args);
-    this.container.appendChild(cardElement);
+    this._container.appendChild(cardElement);
   }
-  renderCard() {
-    for (let i = 0; i < this.card.length; i++) {
-      this.createCard(
-        this.card[i].commit.committer.name,
-        this.card[i].commit.committer.email,
-        new NormalizeDate(this.card[i].commit.author.date).render(),
-        this.card[i].commit.message,
-        this.card[i].author.avatar_url
-      )
-    }
+  renderCards() {
+    this._cards.forEach(card => {
+      this.addCards(
+        card.commit.committer.name,
+        card.commit.committer.email,
+        new NormalizeDate(card.commit.author.date).render(),
+        card.commit.message,
+        card.author.avatar_url
+      );
+    });
   }
   initSlider() {
     new Swiper('.slider__swiper-container', {

@@ -1,8 +1,9 @@
-export default class CardNews {
-  constructor(...args) {
-    this.cardElement = this.createCard(...args);
-  }
+import Card from '../card.js'
 
+export default class CardNews extends Card {
+  constructor(...args) {
+    super(...args);
+  }
   createCard(image, date, title, text, source, url) {
     const fragmentCard = document.createDocumentFragment();
     const card = document.createElement('div');
@@ -61,7 +62,6 @@ export default class CardNews {
     fragmentCard.appendChild(card);
 
     return card;
-  }
-  
+  }  
 
 }

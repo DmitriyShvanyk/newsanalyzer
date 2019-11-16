@@ -4,17 +4,14 @@ export default class ApiGithub extends Api {
   constructor(...args) {
     super(...args);
   }
-  getInitialCommitCards() {
-    return fetch(`${this.options.baseURL}`, {
+  async initCardsGithub() {
+    const response = await fetch(`${this.options.baseURL}`, {
       headers: this.headers
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-      });
+    });
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
 
   }
 }

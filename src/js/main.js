@@ -17,9 +17,9 @@ loader.load(1000)
 
 
 // lazy load
-window.addEventListener('DOMContentLoaded', () => new LazyLoad());
-window.addEventListener('scroll', () => new LazyLoad());
-window.addEventListener('click', () => new LazyLoad());
+window.addEventListener('DOMContentLoaded', () => new LazyLoad('.lazy'));
+window.addEventListener('scroll', () => new LazyLoad('.lazy'));
+window.addEventListener('click', () => new LazyLoad('.lazy'));
 
 
 // footer date copyright
@@ -27,7 +27,7 @@ const footerDateYears = document.querySelector('.footer__date');
 new MyDate(footerDateYears).renderYears();
 
 
-// variable
+// variable date
 export const date = new Date();
 export const dateTime = date.getTime();
 export const day = 60 * 60 * 24 * 1000;

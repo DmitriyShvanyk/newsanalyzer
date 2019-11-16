@@ -1,10 +1,10 @@
-export default class CardGithub {
+import Card from '../card.js'
+
+export default class CardGithub extends Card {
   constructor(...args) {
-    this.cardElement = this.createCard(...args);
+    super(...args);
   }
-
   createCard(name, email, date, message, avatar) {
-
     const cardFragment = document.createDocumentFragment();
     const card = document.createElement('div');
     const cardItem = document.createElement('div');

@@ -1,16 +1,10 @@
 export default class LazyLoad {
-  constructor() {
+  constructor(classElement) {
+    this.classElement = classElement;
+    this.imgElement = document.querySelectorAll(classElement);
     this.interObserver();
   }
   interObserver() {
-
-    const lazyImages = [...document.querySelectorAll('.lazy')];
-
-    const interactSettings = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    }
 
     function onIntersection(imageEntites) {
       imageEntites.forEach(image => {
@@ -23,21 +17,21 @@ export default class LazyLoad {
           function errorImage() {
             imageTarget.src = 'https://via.placeholder.com/370x250/1A1B22/fff/?text=Image%20not%20found';
           }
-          imageTarget.addEventListener('error', errorImage);           
+          imageTarget.addEventListener('error', errorImage);
 
         }
       })
     }
 
+    const interactSettings = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    }
     const imageObserver = new IntersectionObserver(onIntersection, interactSettings);
 
-    lazyImages.forEach(image => imageObserver.observe(image));
+    this.imgElement.forEach(image => imageObserver.observe(image));
 
   }
 
 }
-
-
-
-
-
