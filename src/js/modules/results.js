@@ -1,6 +1,6 @@
 export default class Results {
   constructor(container) {
-    this.container = container;
+    this._container = container;
   }
 
   showPreloader() {
@@ -17,10 +17,23 @@ export default class Results {
     preloader.appendChild(preloaderIcon);
     preloader.appendChild(preloaderText);
     containerFragment.appendChild(preloader);
-    this.container.appendChild(containerFragment);
+    this._container.appendChild(containerFragment);
 
     return preloader;
   }
+
+  /*showPreloader() {
+    const containerFragment = document.createDocumentFragment();
+    const preloader = document.querySelector('.preloader');
+    const preloaderNews = document.importNode(preloader, true);
+    preloaderNews.classList.add('preloader--news');
+    preloaderNews.textContent = 'Идет поиск новостей...';
+   
+    containerFragment.appendChild(preloaderNews);
+    this._container.appendChild(containerFragment);
+
+    return preloaderNews;
+  }*/
 
   showRequestError(title = 'Ничего не найдено', text = 'К сожалению по вашему запросу ничего не найдено.') {
     const containerFragment = document.createDocumentFragment();
@@ -47,22 +60,22 @@ export default class Results {
     notFoundElement.appendChild(notFoundElementTitle);
     notFoundElement.appendChild(notFoundElementText);
     containerFragment.appendChild(notFoundElement);
-    this.container.appendChild(containerFragment);
+    this._container.appendChild(containerFragment);
 
     return notFoundElement;
   }
 
   removePreloader() {
-    const preloaderNews = this.container.querySelector('.preloader--news');
+    const preloaderNews = this._container.querySelector('.preloader--news');
     if (preloaderNews) {
-      this.container.removeChild(preloaderNews);
+      this._container.removeChild(preloaderNews);
     }
   }
 
   removeRequestError() {
-    const notFound = this.container.querySelector('.not-found');
+    const notFound = this._container.querySelector('.not-found');
     if (notFound) {
-      this.container.removeChild(notFound);
+      this._container.removeChild(notFound);
     }
   }  
 

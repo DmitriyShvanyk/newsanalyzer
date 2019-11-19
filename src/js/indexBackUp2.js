@@ -33,8 +33,50 @@ const formSearchSubmit = document.querySelector('.form-search__submit');
 const validateformSearch = new Validate(formSearch);
 
 
+
+function showRes() {
+  resultsContainer.classList.add(resultsContainerActive);
+  resultsInner.classList.add(resultsInnerActive);
+  const keyText = formSearchControl.value.trim();  
+
+  apiNews.initCardsNews(keyText, dateFrom.toISOString(), dateTo.toISOString())
+    .then((cards) => {
+
+      //console.log(cards.articles.length)
+      
+      while (newsContainer.firstChild) {
+        newsContainer.removeChild(newsContainer.firstChild);
+      }
+
+      new CardNewsList(newsContainer, cards);
+
+      newsBtnMore.classList.add(newsBtnMoreActive);    
+
+      /*const cardNews = new CardNewsList(newsContainer, cards);
+      cardNews.removeCards();
+      cardNews.renderCards(cards.articles);
+
+      
+
+      if(cards.articles.lenght === 0){
+        newsBtnMore.classList.remove(newsBtnMoreActive);
+      }
+      else if(cards.articles.lenght > 3){        
+        cardNews.renderCardsMore();
+        newsBtnMore.classList.add(newsBtnMoreActive);
+      }*/
+      
+      
+
+    }).catch(err => {
+      return Promise.reject(`Ошибка: ${err.status}`);
+    });
+}
+
+
+
 // View news cards
-function cardsNewsView() {  
+/*function cardsNewsView() {
 
   localStorage.clear();
 
@@ -49,7 +91,7 @@ function cardsNewsView() {
   const keyText = formSearchControl.value.trim();
 
   apiNews.initCardsNews(keyText, dateFrom.toISOString(), dateTo.toISOString())
-    .then((cards) => {      
+    .then((cards) => {
 
       formSearchSubmit.setAttribute('disabled', true);
 
@@ -65,7 +107,7 @@ function cardsNewsView() {
 
       if (!cardsStorage) {
         return;
-      }            
+      }
 
       setTimeout(() => {
         if (cardsStorage.articles.length === 0) {
@@ -82,7 +124,7 @@ function cardsNewsView() {
           results.removePreloader();
           results.removeRequestError();
           resultsInner.classList.add(resultsInnerActive);
-          newsBtnMore.classList.add(newsBtnMoreActive);    
+          newsBtnMore.classList.add(newsBtnMoreActive);          
           new CardNewsList(newsContainer, cardsStorage);
         }
         else {
@@ -90,10 +132,10 @@ function cardsNewsView() {
           results.removePreloader();
           results.removeRequestError();
           resultsInner.classList.add(resultsInnerActive);
-          newsBtnMore.classList.remove(newsBtnMoreActive);     
+          newsBtnMore.classList.remove(newsBtnMoreActive);          
           new CardNewsList(newsContainer, cardsStorage);
         }
-      }, 1000);
+      }, 0);
 
     }).catch(err => {
       formSearchSubmit.removeAttribute('disabled');
@@ -107,7 +149,6 @@ function cardsNewsView() {
     });
 
 }
-
 
 // Save view news cards
 function cardsNewsViewSave() {
@@ -144,12 +185,11 @@ sessionStorage.setItem("isReloaded", true);
 
 if (sessionStorage.getItem("isReloaded")) {
   cardsNewsViewSave();
-}
+}*/
 
 
 // Validation
-function validateForm(event){
-//const validateForm = event => {
+const validateForm = event => {
 
   event.preventDefault();
 
@@ -172,7 +212,7 @@ function validateForm(event){
     }
   }
 
-  if (!hasErrors) {    
+  if (!hasErrors) {
 
     
 
@@ -180,7 +220,10 @@ function validateForm(event){
     new ScrollTo(formSearchSubmit, resultsContainer);
 
     // render news cards
-    cardsNewsView();
+    //cardsNewsView();
+    showRes();
+
+    
 
   }
   else {

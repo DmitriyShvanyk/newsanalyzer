@@ -1,5 +1,5 @@
 import CardNews from './cardNews.js'
-import NormalizeDate from '../dateNormalize.js'
+import { normalizeDate } from '../../main.js'
 import { newsBtnMore, newsBtnMoreActive } from '../../index.js'
 
 export default class CardListNews {
@@ -9,20 +9,25 @@ export default class CardListNews {
     this.offset = 0;
 
     this.renderCards();
-    newsBtnMore.addEventListener('click', () => this.renderCards());
+    //this.addListener();
+    //newsBtnMore.addEventListener('click', () => this.renderCards());
+
+    newsBtnMore.onclick = () => this.renderCards();
   }
-  createCards(...args) {
+
+  addCards(...args) {
     const { cardElement } = new CardNews(...args);
     this._container.appendChild(cardElement);
   }
-  renderCards() {
+
+  renderCards(){
     const articles = this._cards.articles;
 
     for (let i = this.offset; i < Math.min(this.offset + 3, articles.length); i++) {
       const article = articles[i];
-      this.createCards(
+      this.addCards(
         article.urlToImage,
-        new NormalizeDate(article.publishedAt).render(),
+        normalizeDate(article.publishedAt),
         article.title,
         article.description,
         article.source.name,
@@ -40,6 +45,14 @@ export default class CardListNews {
     }
 
   }
+
+  /*addListener(){
+    newsBtnMore.addEventListener('click', this.renderCardsMore);
+  }*/
+
+  /*removeListener(){
+    newsBtnMore.removeEventListener('click', this.renderCardsMore);
+  }*/
 
 
 }

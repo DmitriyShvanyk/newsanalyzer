@@ -4,23 +4,12 @@ import { timePeriod } from '../analytics.js'
 export default class Stat {
   constructor(keyText = 'Что-то, где-то', cards) {
     this.keyText = keyText;
-    this.cards = cards;
-    this.countTextRequestInTitle();
+    this.cards = cards;    
     this.getArticlesPerDay();
     this.renderGraph();
-  }
+  }  
 
-  countTextRequestInTitle() {
-    let count = 0;
-    for (let i = 0; i < this.cards.articles.length; i++) {
-      if (this.cards.articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {
-        count++;
-      }
-    }
-    this.view(count);
-  }
-
-  view(count) {
+  viewStat(count) {
     const outputRequest = document.querySelector('.output__request');
     const outputWeeklyNews = document.querySelector('.output__weekly-news');
     const outputMentionsTitles = document.querySelector('.output__mentions-titles');
@@ -30,23 +19,29 @@ export default class Stat {
     outputMentionsTitles.textContent = count;
   }
 
-  getArticlesPerDay() {
-    
+  getArticlesPerDay() {    
     const articlesDay = {};
+    const articles = this.cards.articles;
+    let count = 0;
 
-    for (let i = 0; i < this.cards.articles.length; i++) {
+    for (let i = 0; i < articles.length; i++) {
 
-      const datePublished = new Date(this.cards.articles[i].publishedAt.slice(0, 10)).getDate();      
+      const datePublished = new Date(articles[i].publishedAt.slice(0, 10)).getDate();
+
+      if (articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {
+        count++;
+      }           
 
       if (datePublished in articlesDay) {
         articlesDay[datePublished]++;
       }
       else {
         articlesDay[datePublished] = 1;
-      }
+      }     
 
     }
 
+    this.viewStat(count);
     this.renderGraph(articlesDay);
   }
 

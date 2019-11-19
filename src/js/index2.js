@@ -34,7 +34,7 @@ const validateformSearch = new Validate(formSearch);
 
 
 // View news cards
-function cardsNewsView() {  
+function cardsNewsView() {
 
   localStorage.clear();
 
@@ -49,7 +49,7 @@ function cardsNewsView() {
   const keyText = formSearchControl.value.trim();
 
   apiNews.initCardsNews(keyText, dateFrom.toISOString(), dateTo.toISOString())
-    .then((cards) => {      
+    .then((cards) => {
 
       formSearchSubmit.setAttribute('disabled', true);
 
@@ -63,9 +63,9 @@ function cardsNewsView() {
       // get storage
       const cardsStorage = JSON.parse(localStorage.getItem('cards'));
 
-      if (!cardsStorage) {
+      /*if (!cardsStorage) {
         return;
-      }            
+      }*/
 
       setTimeout(() => {
         if (cardsStorage.articles.length === 0) {
@@ -82,7 +82,7 @@ function cardsNewsView() {
           results.removePreloader();
           results.removeRequestError();
           resultsInner.classList.add(resultsInnerActive);
-          newsBtnMore.classList.add(newsBtnMoreActive);    
+          newsBtnMore.classList.add(newsBtnMoreActive);          
           new CardNewsList(newsContainer, cardsStorage);
         }
         else {
@@ -90,10 +90,10 @@ function cardsNewsView() {
           results.removePreloader();
           results.removeRequestError();
           resultsInner.classList.add(resultsInnerActive);
-          newsBtnMore.classList.remove(newsBtnMoreActive);     
+          newsBtnMore.classList.remove(newsBtnMoreActive);          
           new CardNewsList(newsContainer, cardsStorage);
         }
-      }, 1000);
+      }, 5000);
 
     }).catch(err => {
       formSearchSubmit.removeAttribute('disabled');
@@ -107,7 +107,6 @@ function cardsNewsView() {
     });
 
 }
-
 
 // Save view news cards
 function cardsNewsViewSave() {
@@ -148,8 +147,7 @@ if (sessionStorage.getItem("isReloaded")) {
 
 
 // Validation
-function validateForm(event){
-//const validateForm = event => {
+const validateForm = event => {
 
   event.preventDefault();
 
@@ -172,9 +170,7 @@ function validateForm(event){
     }
   }
 
-  if (!hasErrors) {    
-
-    
+  if (!hasErrors) {
 
     // scroll to block 
     new ScrollTo(formSearchSubmit, resultsContainer);

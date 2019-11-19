@@ -36,3 +36,15 @@ export const dateFrom = new Date(dateTime - dateSixDaysAgo);
 export const dateTo = date;
 export const monthList = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
 export const monthListWhen = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+
+// normalize date
+export function normalizeDate(array) {
+  const date = new Date(array);
+  const nowDate = date.getDate();
+  const nowMonth = date.getMonth();
+  const nowYears = date.getFullYear();
+  const datePublished = `${nowDate} ${monthListWhen[nowMonth]}, ${nowYears}`;
+
+  return datePublished;
+}
