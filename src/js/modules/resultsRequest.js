@@ -1,4 +1,4 @@
-export default class Results {
+export default class ResultsRequest {
   constructor(container) {
     this._container = container;
   }
@@ -21,19 +21,6 @@ export default class Results {
 
     return preloader;
   }
-
-  /*showPreloader() {
-    const containerFragment = document.createDocumentFragment();
-    const preloader = document.querySelector('.preloader');
-    const preloaderNews = document.importNode(preloader, true);
-    preloaderNews.classList.add('preloader--news');
-    preloaderNews.textContent = 'Идет поиск новостей...';
-   
-    containerFragment.appendChild(preloaderNews);
-    this._container.appendChild(containerFragment);
-
-    return preloaderNews;
-  }*/
 
   showRequestError(title = 'Ничего не найдено', text = 'К сожалению по вашему запросу ничего не найдено.') {
     const containerFragment = document.createDocumentFragment();
@@ -77,9 +64,6 @@ export default class Results {
     if (notFound) {
       this._container.removeChild(notFound);
     }
-  }  
+  }
 
 }
-
-
-

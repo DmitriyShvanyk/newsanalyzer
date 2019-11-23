@@ -14,4 +14,5 @@ export default class ScrollTo {
       top: this.scrollToElement.getBoundingClientRect().top + window.scrollY
     });
   }
+  
 }

@@ -1,13 +1,13 @@
 import { dateFrom, day } from '../main.js'
-import { timePeriod } from '../analytics.js'
+import { analyticsContainer } from '../analytics.js';
 
 export default class Stat {
   constructor(keyText = 'Что-то, где-то', cards) {
     this.keyText = keyText;
-    this.cards = cards;    
-    this.getArticlesPerDay();
-    this.renderGraph();
-  }  
+    this.cards = cards;
+    this.countTextRequestInTitle();
+    this.getArticlesPerDay();    
+  }
 
   viewStat(count) {
     const outputRequest = document.querySelector('.output__request');
@@ -17,70 +17,160 @@ export default class Stat {
     outputRequest.textContent = this.keyText;
     outputWeeklyNews.textContent = this.cards.totalResults;
     outputMentionsTitles.textContent = count;
+  }  
+
+  countTextRequestInTitle() {
+    let count = 0;	
+    for (let i = 0; i < this.cards.articles.length; i++) {	
+      if (this.cards.articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {	
+        count++;	
+      }	
+    }	
+    this.viewStat(count);	
   }
 
-  getArticlesPerDay() {    
+  getArticlesPerDay() {
     const articlesDay = {};
-    const articles = this.cards.articles;
-    let count = 0;
+    const articles = this.cards.articles;    
 
     for (let i = 0; i < articles.length; i++) {
 
-      const datePublished = new Date(articles[i].publishedAt.slice(0, 10)).getDate();
-
-      if (articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {
-        count++;
-      }           
+      const datePublished = new Date(articles[i].publishedAt.slice(0, 10)).getDate();      
 
       if (datePublished in articlesDay) {
         articlesDay[datePublished]++;
       }
       else {
         articlesDay[datePublished] = 1;
-      }     
+      }
+
+    }
+    
+    this.renderGraph(articlesDay);
+  }
+  
+  renderGraph(articlesDay) {    
+    const fragment = document.createDocumentFragment();
+    const graph = document.createElement('div');
+    const graphInner = document.createElement('div');
+    const graphHead = document.createElement('div');
+    const graphColumns = document.createElement('div');
+    const graphScale = document.createElement('div');
+    const graphBody = document.createElement('div');
+
+    graph.classList.add('graph');
+    graphInner.classList.add('graph__inner');
+    graphHead.classList.add('graph__head');
+    graphColumns.classList.add('graph__columns');
+    graphScale.classList.add('graph__scale');
+    graphBody.classList.add('graph__body');
+
+    for (let i = 1; i <= 2; i++) {
+      const graphColumn = document.createElement('div');
+      graphColumn.classList.add(`graph__column`, `graph__column--${i}`);
+      graphColumns.appendChild(graphColumn);
+
+      if (i === 1) {
+        const graphDateMonth = document.createElement('div');
+        const graphMounth = document.createElement('span');
+
+        graphDateMonth.classList.add('graph__date-month');
+        graphMounth.classList.add('graph__span');
+
+        graphDateMonth.textContent = 'Дата';
+        graphMounth.textContent = `${new Date().toLocaleString('ru', { month: 'long' })}`;
+        
+        graphDateMonth.appendChild(graphMounth);
+        graphColumn.appendChild(graphDateMonth);
+      }
+      else if (i === 2) {
+        const graphCount = document.createElement('div');
+        graphCount.classList.add('graph__count');
+        graphCount.textContent = 'Кол-во упоминаний';
+        graphColumn.appendChild(graphCount);
+      }
 
     }
 
-    this.viewStat(count);
-    this.renderGraph(articlesDay);
-  }
+    for (let i = 0; i < 5; i++) {
+      const graphScaleItem = document.createElement('div');
+      graphScaleItem.classList.add('graph__scale-item');
+      graphScaleItem.textContent = `${i * 25}`;
+      graphScale.appendChild(graphScaleItem);
+    }
 
-  renderGraph(articlesDay) {
-    const graphDate = document.querySelectorAll('.graph__date');
-    const progressCount = document.querySelectorAll('.progress__count');
-    const progressBar = document.querySelectorAll('.progress__bar');
-    const progressBarNull = 'progress__count--null';
-
-    for (let i = 0; i < timePeriod; i++) {
+    for (let i = 0; i < 7; i++) {
       const dayMilliseconds = day * i;
       const date = new Date(dateFrom.getTime() + dayMilliseconds);
       const dateOfWeek = date.getDate();
       const dayOfWeek = date.toLocaleString('ru', { weekday: 'short' });
+      const graphColumns = document.createElement('div');
 
-      graphDate[i].classList.add(`graph__date--${i}`);
-      graphDate[i].textContent = `${dateOfWeek}, ${dayOfWeek}`;
-      progressCount[i].classList.add(`progress__count--${i}`);
-      progressBar[i].classList.add(`progress__bar--${i}`);
+      graphColumns.classList.add('graph__columns', 'graph__columns--center');
+      graphBody.appendChild(graphColumns);
 
-      if (articlesDay !== undefined) {
-        if (dateOfWeek in articlesDay) {
-          progressCount[i].textContent = `${articlesDay[dateOfWeek]}`;
-          progressBar[i].value = `${articlesDay[dateOfWeek]}`;
+      for (let j = 1; j <= 2; j++) {
+        const graphColumn = document.createElement('div');
+        graphColumn.classList.add('graph__column');
+        graphColumns.appendChild(graphColumn);
 
-          if(progressBar[i].value < 2){
-            progressCount[i].classList.add(progressBarNull);
+        if (j === 1) {
+          const graphDate = document.createElement('div');
+          graphDate.classList.add(`graph__date`, `graph__date--${i+1}`);
+          graphDate.textContent = `${dateOfWeek}, ${dayOfWeek}`;
+          graphColumn.appendChild(graphDate);
+        }
+        else if (j === 2) {
+          const progress = document.createElement('div');
+          const progressBar = document.createElement('progress');
+          const progressBarNull = 'progress__count--null';
+          const progressCount = document.createElement('span');
+
+          progress.classList.add('progress');
+          progressBar.classList.add('progress__bar');
+          progressCount.classList.add('progress__count');
+
+          progressBar.max = `${100}`;
+
+          if (articlesDay !== undefined) {
+            if (dateOfWeek in articlesDay) {
+              progressCount.textContent = `${articlesDay[dateOfWeek]}`;
+              progressBar.value = `${articlesDay[dateOfWeek]}`;
+
+              if (progressBar.value < 2) {
+                progressCount.classList.add(progressBarNull);
+              }
+
+            } else {
+              progressCount.classList.add(progressBarNull);
+              progressCount.textContent = '0';
+              progressBar.value = '0';
+            }
+
           }
 
-        } else {
-          progressCount[i].classList.add(progressBarNull);
-          progressCount[i].textContent = '0';          
-          progressBar[i].value = '0';
+          progress.appendChild(progressBar);
+          progress.appendChild(progressCount);
+          graphColumn.appendChild(progress);
         }
 
       }
 
     }
 
-  }
+    const graphScale2 = graphScale.cloneNode(true);
+
+    graphHead.appendChild(graphColumns);
+    graphInner.appendChild(graphHead);
+    graphInner.appendChild(graphScale);
+    graphInner.appendChild(graphBody);
+    graphInner.appendChild(graphScale2);
+    graph.appendChild(graphInner);
+    fragment.appendChild(graph);
+    analyticsContainer.appendChild(fragment);
+
+    return graph;
+
+  }   
 
 }

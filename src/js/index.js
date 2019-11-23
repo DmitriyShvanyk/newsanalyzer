@@ -1,7 +1,7 @@
 import '../pages/index.css'
 import ApiNews from './modules/news/apiNews.js'
 import CardNewsList from './modules/news/cardNewsList.js'
-import Results from './modules/results.js'
+import ResultsRequest from './modules/resultsRequest.js'
 import Validate from "./modules/validate.js"
 import ScrollTo from "./modules/scrollTo.js"
 import { dateFrom, dateTo } from './main.js'
@@ -23,7 +23,7 @@ const resultsContainer = document.querySelector('.results__container');
 const resultsContainerActive = 'results__container--active';
 const resultsInner = document.querySelector('.results__inner');
 const resultsInnerActive = 'results__inner--active';
-const results = new Results(resultsContainer);
+const resultsRequest = new ResultsRequest(resultsContainer);
 
 
 // Validation
@@ -34,27 +34,25 @@ const validateformSearch = new Validate(formSearch);
 
 
 // View news cards
-function cardsNewsView() {  
-
-  localStorage.clear();
-
-  while (newsContainer.firstChild) {
-    newsContainer.removeChild(newsContainer.firstChild);
-  }
-
-  results.removeRequestError();
-  results.removePreloader();
-  newsBtnMore.classList.remove(newsBtnMoreActive);
+function cardsNewsView() {
 
   const keyText = formSearchControl.value.trim();
 
+  localStorage.clear();
+  removeCards();
+  resultsContainer.classList.add(resultsContainerActive);
+  resultsRequest.removeRequestError();
+  resultsRequest.showPreloader();
+  newsBtnMore.classList.remove(newsBtnMoreActive);
+
+  // set disabled for form submit
+  formSearchSubmit.setAttribute('disabled', true);
+
   apiNews.initCardsNews(keyText, dateFrom.toISOString(), dateTo.toISOString())
-    .then((cards) => {      
+    .then(cards => {
 
-      formSearchSubmit.setAttribute('disabled', true);
-
-      resultsContainer.classList.add(resultsContainerActive);
-      results.showPreloader();
+      resultsRequest.removePreloader();
+      formSearchSubmit.removeAttribute('disabled');
 
       // set storage
       localStorage.setItem('cards', JSON.stringify(cards));
@@ -65,41 +63,36 @@ function cardsNewsView() {
 
       if (!cardsStorage) {
         return;
-      }            
+      }
 
-      setTimeout(() => {
-        if (cardsStorage.articles.length === 0) {
-          formSearchSubmit.removeAttribute('disabled');
-          resultsInner.classList.remove(resultsInnerActive);
-          results.removePreloader();
-          results.showRequestError(
-            'Ничего не найдено',
-            'К сожалению по вашему запросу ничего не найдено.'
-          );
-        }
-        else if (cardsStorage.articles.length > 3) {
-          formSearchSubmit.removeAttribute('disabled');
-          results.removePreloader();
-          results.removeRequestError();
-          resultsInner.classList.add(resultsInnerActive);
-          newsBtnMore.classList.add(newsBtnMoreActive);    
-          new CardNewsList(newsContainer, cardsStorage);
+      if (cardsStorage.articles.length === 0) {
+        resultsInner.classList.remove(resultsInnerActive);
+        resultsRequest.showRequestError(
+          'Ничего не найдено',
+          'К сожалению по вашему запросу ничего не найдено.'
+        );
+      }
+      else {
+        resultsRequest.removeRequestError();
+        resultsInner.classList.add(resultsInnerActive);
+        new CardNewsList(newsContainer, cardsStorage);
+
+        if (cardsStorage.articles.length > 3) {
+          newsBtnMore.classList.add(newsBtnMoreActive);
         }
         else {
-          formSearchSubmit.removeAttribute('disabled');
-          results.removePreloader();
-          results.removeRequestError();
-          resultsInner.classList.add(resultsInnerActive);
-          newsBtnMore.classList.remove(newsBtnMoreActive);     
-          new CardNewsList(newsContainer, cardsStorage);
+          newsBtnMore.classList.remove(newsBtnMoreActive);
         }
-      }, 1000);
+
+      }
 
     }).catch(err => {
+      // remove disabled for form submit
       formSearchSubmit.removeAttribute('disabled');
       resultsContainer.classList.add(resultsContainerActive);
-      resultsInner.classList.remove(resultsInnerActive);      
-      results.showRequestError(
+      resultsInner.classList.remove(resultsInnerActive);
+      resultsRequest.removePreloader();
+      resultsRequest.showRequestError(
         'Во время запроса произошла ошибка',
         'Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.'
       );
@@ -109,11 +102,17 @@ function cardsNewsView() {
 }
 
 
+// Remove cards
+function removeCards() {
+  while (newsContainer.firstChild) {
+    newsContainer.removeChild(newsContainer.firstChild);
+  }
+}
+
+
 // Save view news cards
 function cardsNewsViewSave() {
-
   formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));
-
   const cardsStorage = JSON.parse(localStorage.getItem('cards'));
 
   if (!cardsStorage) {
@@ -148,8 +147,7 @@ if (sessionStorage.getItem("isReloaded")) {
 
 
 // Validation
-function validateForm(event){
-//const validateForm = event => {
+function validateForm(event) {
 
   event.preventDefault();
 
@@ -172,9 +170,7 @@ function validateForm(event){
     }
   }
 
-  if (!hasErrors) {    
-
-    
+  if (!hasErrors) {
 
     // scroll to block 
     new ScrollTo(formSearchSubmit, resultsContainer);
@@ -189,4 +185,5 @@ function validateForm(event){
   }
 
 }
+
 validateformSearch.addEventListener('submit', validateForm);

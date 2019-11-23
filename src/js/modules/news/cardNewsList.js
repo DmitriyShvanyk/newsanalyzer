@@ -9,9 +9,6 @@ export default class CardListNews {
     this.offset = 0;
 
     this.renderCards();
-    //this.addListener();
-    //newsBtnMore.addEventListener('click', () => this.renderCards());
-
     newsBtnMore.onclick = () => this.renderCards();
   }
 
@@ -45,14 +42,5 @@ export default class CardListNews {
     }
 
   }
-
-  /*addListener(){
-    newsBtnMore.addEventListener('click', this.renderCardsMore);
-  }*/
-
-  /*removeListener(){
-    newsBtnMore.removeEventListener('click', this.renderCardsMore);
-  }*/
-
 
 }
