@@ -36,8 +36,10 @@ const validateformSearch = new Validate(formSearch);
 // View news cards
 function cardsNewsView() {
 
-  const keyText = formSearchControl.value.trim();
+  resultsRequest.removeRequestError();
 
+  const keyText = formSearchControl.value.trim();
+  
   if (!keyText) {
     return;
   }
@@ -45,7 +47,7 @@ function cardsNewsView() {
   localStorage.clear();
   removeCards();
   resultsContainer.classList.add(resultsContainerActive);
-  resultsRequest.removeRequestError();
+  
   resultsRequest.showPreloader();
   newsBtnMore.classList.remove(newsBtnMoreActive);
 
@@ -53,7 +55,7 @@ function cardsNewsView() {
   formSearchSubmit.setAttribute('disabled', true);  
 
   apiNews.initCardsNews(keyText, dateFrom.toISOString(), dateTo.toISOString())
-    .then(cards => {
+    .then(cards => {      
 
       resultsRequest.removePreloader();
       formSearchSubmit.removeAttribute('disabled');
@@ -70,6 +72,7 @@ function cardsNewsView() {
       }
 
       if (cardsStorage.articles.length === 0) {
+        localStorage.clear();
         resultsInner.classList.remove(resultsInnerActive);
         resultsRequest.showRequestError(
           'Ничего не найдено',
@@ -152,10 +155,8 @@ function validateForm(event) {
 
   if (!hasErrors) {
 
-    if (formSearchControl.value.trim()) {
-      // scroll to block 
-      new ScrollTo(formSearchSubmit, resultsContainer);
-    }
+    // scroll to block 
+    new ScrollTo(formSearchSubmit, resultsContainer);
 
     // render news cards
     cardsNewsView();
