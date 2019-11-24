@@ -50,7 +50,7 @@ function cardsNewsView() {
   newsBtnMore.classList.remove(newsBtnMoreActive);
 
   // set disabled for form submit
-  formSearchSubmit.setAttribute('disabled', true);
+  formSearchSubmit.setAttribute('disabled', true);  
 
   apiNews.initCardsNews(keyText, dateFrom.toISOString(), dateTo.toISOString())
     .then(cards => {

@@ -1,11 +1,11 @@
-import { dateFrom, day, normalizeMonth } from '../main.js'
-import { analyticsContainer } from '../analytics.js';
+import { dateFrom, day } from '../main.js'
+import { analyticsContainer, uniqMonths, showMonths } from '../analytics.js';
 
 
 export default class Stat {
   constructor(keyText = 'Что-то, где-то', cards) {
     this.keyText = keyText;
-    this.cards = cards;
+    this._cards = cards;
     this.countTextRequestInTitle();
     this.getArticlesPerDay();
   }
@@ -16,14 +16,14 @@ export default class Stat {
     const outputMentionsTitles = document.querySelector('.output__mentions-titles');
 
     outputRequest.textContent = this.keyText;
-    outputWeeklyNews.textContent = this.cards.totalResults;
+    outputWeeklyNews.textContent = this._cards.totalResults;
     outputMentionsTitles.textContent = count;
   }
 
   countTextRequestInTitle() {
     let count = 0;
-    for (let i = 0; i < this.cards.articles.length; i++) {
-      if (this.cards.articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {
+    for (let i = 0; i < this._cards.articles.length; i++) {
+      if (this._cards.articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {
         count++;
       }
     }
@@ -32,7 +32,7 @@ export default class Stat {
 
   getArticlesPerDay() {
     const articlesDay = {};
-    const articles = this.cards.articles;
+    const articles = this._cards.articles;
 
     for (let i = 0; i < articles.length; i++) {
 
@@ -44,23 +44,6 @@ export default class Stat {
       else {
         articlesDay[datePublished] = 1;
       }
-
-
-      /*const dateP = articles[i].publishedAt.slice(0, 10);
-      const mySetDate = new Set().add(dateP);
-      console.log(mySetDate);*/
-
-       /*function uniqMonth(arr){
-         const monthUniq = [];
-         Object.keys(arr).forEach((value) => {
-           if(!monthUniq.includes(value)){
-             monthUniq.push(arr);
-           }
-         })
-         return monthUniq;
-       }      
-       let dateP = articles[i].publishedAt;
-       console.log(uniqMonth(dateP));*/
 
     }
 
@@ -91,15 +74,15 @@ export default class Stat {
 
       if (i === 1) {
         const graphDateMonth = document.createElement('div');
-        const graphMounth = document.createElement('span');
+        const graphMonth = document.createElement('span');
 
         graphDateMonth.classList.add('graph__date-month');
-        graphMounth.classList.add('graph__span');
+        graphMonth.classList.add('graph__span');
 
         graphDateMonth.textContent = 'Дата';
-        graphMounth.textContent = `${new Date().toLocaleString('ru', { month: 'long' })}`;
+        graphMonth.textContent = `${uniqMonths(showMonths(this._cards.articles))}`;
 
-        graphDateMonth.appendChild(graphMounth);
+        graphDateMonth.appendChild(graphMonth);
         graphColumn.appendChild(graphDateMonth);
       }
       else if (i === 2) {

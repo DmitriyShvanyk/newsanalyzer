@@ -1,6 +1,5 @@
 import '../pages/analytics.css'
 import Stat from './modules/stat.js'
-import MyDate from './modules/myDate.js';
 
 export const analyticsContainer = document.querySelector('.analytics__container');
 
@@ -13,6 +12,29 @@ new Stat(keyTextStorage, cardsStorage);
 window.addEventListener('storage', () => new Stat(keyTextStorage, cardsStorage));
 
 
-// show month 
-const graphMonth = document.querySelector('.graph__span');
-new MyDate(graphMonth).renderMonth();
+// uniq months
+export function uniqMonths(arr) {
+
+  const monthUniq = [];
+
+  arr.forEach(item => {
+    if (!monthUniq.includes(item)) {
+      monthUniq.push(item);
+    }
+  });
+
+  return monthUniq;
+}
+
+
+// show months
+export function showMonths(articles) {
+  let resultMonth = [];
+
+  for (let i = 0; i < articles.length; i++) {
+    const months = new Date(articles[i].publishedAt).toLocaleString('ru', { month: 'long' });
+    resultMonth.push(months);
+  }
+
+  return resultMonth;
+}
