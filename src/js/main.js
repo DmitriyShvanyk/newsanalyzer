@@ -48,3 +48,12 @@ export function normalizeDate(array) {
 
   return datePublished;
 }
+
+// normalize month
+export function normalizeMonth(array) {
+  const date = new Date(array);
+  const nowMonth = date.getMonth();
+  const datePublished = `${monthList[nowMonth]}`;
+
+  return datePublished;
+}

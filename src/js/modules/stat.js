@@ -1,12 +1,13 @@
-import { dateFrom, day } from '../main.js'
+import { dateFrom, day, normalizeMonth } from '../main.js'
 import { analyticsContainer } from '../analytics.js';
+
 
 export default class Stat {
   constructor(keyText = 'Что-то, где-то', cards) {
     this.keyText = keyText;
     this.cards = cards;
     this.countTextRequestInTitle();
-    this.getArticlesPerDay();    
+    this.getArticlesPerDay();
   }
 
   viewStat(count) {
@@ -17,25 +18,25 @@ export default class Stat {
     outputRequest.textContent = this.keyText;
     outputWeeklyNews.textContent = this.cards.totalResults;
     outputMentionsTitles.textContent = count;
-  }  
+  }
 
   countTextRequestInTitle() {
-    let count = 0;	
-    for (let i = 0; i < this.cards.articles.length; i++) {	
-      if (this.cards.articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {	
-        count++;	
-      }	
-    }	
-    this.viewStat(count);	
+    let count = 0;
+    for (let i = 0; i < this.cards.articles.length; i++) {
+      if (this.cards.articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {
+        count++;
+      }
+    }
+    this.viewStat(count);
   }
 
   getArticlesPerDay() {
     const articlesDay = {};
-    const articles = this.cards.articles;    
+    const articles = this.cards.articles;
 
     for (let i = 0; i < articles.length; i++) {
 
-      const datePublished = new Date(articles[i].publishedAt.slice(0, 10)).getDate();      
+      const datePublished = new Date(articles[i].publishedAt.slice(0, 10)).getDate();
 
       if (datePublished in articlesDay) {
         articlesDay[datePublished]++;
@@ -44,12 +45,30 @@ export default class Stat {
         articlesDay[datePublished] = 1;
       }
 
+
+      /*const dateP = articles[i].publishedAt.slice(0, 10);
+      const mySetDate = new Set().add(dateP);
+      console.log(mySetDate);*/
+
+       /*function uniqMonth(arr){
+         const monthUniq = [];
+         Object.keys(arr).forEach((value) => {
+           if(!monthUniq.includes(value)){
+             monthUniq.push(arr);
+           }
+         })
+         return monthUniq;
+       }      
+       let dateP = articles[i].publishedAt;
+       console.log(uniqMonth(dateP));*/
+
     }
-    
+
     this.renderGraph(articlesDay);
+
   }
-  
-  renderGraph(articlesDay) {    
+
+  renderGraph(articlesDay) {
     const fragment = document.createDocumentFragment();
     const graph = document.createElement('div');
     const graphInner = document.createElement('div');
@@ -79,7 +98,7 @@ export default class Stat {
 
         graphDateMonth.textContent = 'Дата';
         graphMounth.textContent = `${new Date().toLocaleString('ru', { month: 'long' })}`;
-        
+
         graphDateMonth.appendChild(graphMounth);
         graphColumn.appendChild(graphDateMonth);
       }
@@ -116,7 +135,7 @@ export default class Stat {
 
         if (j === 1) {
           const graphDate = document.createElement('div');
-          graphDate.classList.add(`graph__date`, `graph__date--${i+1}`);
+          graphDate.classList.add(`graph__date`, `graph__date--${i + 1}`);
           graphDate.textContent = `${dateOfWeek}, ${dayOfWeek}`;
           graphColumn.appendChild(graphDate);
         }
@@ -170,7 +189,6 @@ export default class Stat {
     analyticsContainer.appendChild(fragment);
 
     return graph;
-
-  }   
+  }
 
 }

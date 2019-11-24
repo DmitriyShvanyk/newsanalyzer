@@ -38,6 +38,10 @@ function cardsNewsView() {
 
   const keyText = formSearchControl.value.trim();
 
+  if (!keyText) {
+    return;
+  }
+
   localStorage.clear();
   removeCards();
   resultsContainer.classList.add(resultsContainerActive);
@@ -87,6 +91,7 @@ function cardsNewsView() {
       }
 
     }).catch(err => {
+
       // remove disabled for form submit
       formSearchSubmit.removeAttribute('disabled');
       resultsContainer.classList.add(resultsContainerActive);
@@ -110,39 +115,14 @@ function removeCards() {
 }
 
 
-// Save view news cards
-function cardsNewsViewSave() {
-  formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));
-  const cardsStorage = JSON.parse(localStorage.getItem('cards'));
-
-  if (!cardsStorage) {
-    return;
-  }
-
-  resultsContainer.classList.add(resultsContainerActive);
-  resultsInner.classList.add(resultsInnerActive);
-
-  new CardNewsList(newsContainer, cardsStorage);
-
-  if (cardsStorage.articles.length === 0) {
-    resultsContainer.classList.remove(resultsContainerActive);
-    resultsInner.classList.remove(resultsInnerActive);
-    newsBtnMore.classList.remove(newsBtnMoreActive);
-  }
-  if (cardsStorage.articles.length > 3) {
-    newsBtnMore.classList.add(newsBtnMoreActive);
-  }
-  else {
-    newsBtnMore.classList.remove(newsBtnMoreActive);
-  }
-
-}
-
 // if reload page, work before closing the browser
 sessionStorage.setItem("isReloaded", true);
 
 if (sessionStorage.getItem("isReloaded")) {
-  cardsNewsViewSave();
+  formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));
+
+  // render news cards
+  cardsNewsView();
 }
 
 
@@ -172,8 +152,10 @@ function validateForm(event) {
 
   if (!hasErrors) {
 
-    // scroll to block 
-    new ScrollTo(formSearchSubmit, resultsContainer);
+    if (formSearchControl.value.trim()) {
+      // scroll to block 
+      new ScrollTo(formSearchSubmit, resultsContainer);
+    }
 
     // render news cards
     cardsNewsView();

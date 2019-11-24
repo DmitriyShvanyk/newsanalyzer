@@ -5,7 +5,8 @@ export default class ApiNews extends Api {
     super(...args);
   }
   async initCardsNews(keyText, dateFrom, dateTo) {
-    const response = await fetch(`${this.options.baseURL}q=${keyText}&apiKey=${this.options.key}&from=${dateFrom}&to=${dateTo}&language=ru&pageSize=100`, {
+    const url = `${this.options.baseURL}q=${keyText}&apiKey=${this.options.key}&from=${dateFrom}&to=${dateTo}&language=ru&pageSize=100`
+    const response = await fetch(url, {
       headers: this.headers
     });
     if (response.ok) {
