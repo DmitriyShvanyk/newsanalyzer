@@ -2,22 +2,28 @@ export default class LazyLoad {
   constructor(classElement) {
     this.classElement = classElement;
     this.imgElement = document.querySelectorAll(classElement);
+
     this.interObserver();
   }
-  interObserver() {
 
+  interObserver() {
     function onIntersection(imageEntites) {
       imageEntites.forEach(image => {
         if (image.isIntersecting) {
           let imageTarget = image.target;
           imageObserver.unobserve(imageTarget);
           imageTarget.src = imageTarget.dataset.src;
-          imageTarget.onload = () => imageTarget.classList.add('lazy--loaded');
 
-          function errorImage() {
+          imageTarget.parentElement.classList.add('lazy__preloader');
+
+          imageTarget.addEventListener('load', () => {
+            imageTarget.parentElement.classList.remove('lazy__preloader');
+            imageTarget.classList.add('lazy--loaded');
+          });
+
+          imageTarget.addEventListener('error', () => {
             imageTarget.src = 'https://via.placeholder.com/370x250/1A1B22/fff/?text=Image%20not%20found';
-          }
-          imageTarget.addEventListener('error', errorImage);
+          });
 
         }
       })

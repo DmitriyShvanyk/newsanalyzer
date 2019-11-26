@@ -17,7 +17,7 @@ export default class CardListNews {
     this._container.appendChild(cardElement);
   }
 
-  renderCards(){
+  renderCards() {
     const articles = this._cards.articles;
 
     for (let i = this.offset; i < Math.min(this.offset + 3, articles.length); i++) {

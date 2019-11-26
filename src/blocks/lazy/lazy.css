@@ -1,3 +1,5 @@
+@import url(../lazy/__preloader/lazy__preloader.css);
+
 .lazy {
   animation: fade-in 1s ease;
 }

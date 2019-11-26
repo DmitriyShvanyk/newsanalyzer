@@ -10,8 +10,8 @@ export default class ApiGithub extends Api {
     });
     if (response.ok) {
       return response.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-
+    }    
+    return Promise.reject(new Error(`${response.status} ${response.statusText}`));
   }
+
 }

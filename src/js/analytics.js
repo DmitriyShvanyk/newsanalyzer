@@ -27,9 +27,10 @@ export function uniqMonths(arr) {
 }
 
 
-// show months
+// show uniq months
 export function showMonths(articles) {
-  let resultMonth = [];
+
+  const resultMonth = [];
 
   for (let i = 0; i < articles.length; i++) {
     const months = new Date(articles[i].publishedAt).toLocaleString('ru', { month: 'long' });

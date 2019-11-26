@@ -1,7 +1,6 @@
 import { dateFrom, day } from '../main.js'
 import { analyticsContainer, uniqMonths, showMonths } from '../analytics.js';
 
-
 export default class Stat {
   constructor(keyText = 'Что-то, где-то', cards) {
     this.keyText = keyText;
@@ -22,8 +21,10 @@ export default class Stat {
 
   countTextRequestInTitle() {
     let count = 0;
-    for (let i = 0; i < this._cards.articles.length; i++) {
-      if (this._cards.articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {
+    const articles = this._cards.articles;
+
+    for (let i = 0; i < articles.length; i++) {
+      if (articles[i].title.toLowerCase().includes(this.keyText.toLowerCase())) {
         count++;
       }
     }
@@ -48,7 +49,6 @@ export default class Stat {
     }
 
     this.renderGraph(articlesDay);
-
   }
 
   renderGraph(articlesDay) {

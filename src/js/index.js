@@ -46,8 +46,7 @@ function cardsNewsView() {
 
   localStorage.clear();
   removeCards();
-  resultsContainer.classList.add(resultsContainerActive);
-  
+  resultsContainer.classList.add(resultsContainerActive);  
   resultsRequest.showPreloader();
   newsBtnMore.classList.remove(newsBtnMoreActive);
 
@@ -59,6 +58,9 @@ function cardsNewsView() {
 
       resultsRequest.removePreloader();
       formSearchSubmit.removeAttribute('disabled');
+
+      // scroll to block 
+      new ScrollTo(formSearchSubmit, resultsContainer);
 
       // set storage
       localStorage.setItem('cards', JSON.stringify(cards));
@@ -154,9 +156,6 @@ function validateForm(event) {
   }
 
   if (!hasErrors) {
-
-    // scroll to block 
-    new ScrollTo(formSearchSubmit, resultsContainer);
 
     // render news cards
     cardsNewsView();
