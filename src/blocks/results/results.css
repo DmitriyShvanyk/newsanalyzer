@@ -4,7 +4,7 @@
 @import url(../results/__head/results__head.css);
 @import url(../results/__title/results__title.css);
 @import url(../results/__link-more/results__link-more.css);
-
+@import url(../results/__link-more/--active/results__link-more--active.css);
 
 .results {
   background-color: #F5F6F7;

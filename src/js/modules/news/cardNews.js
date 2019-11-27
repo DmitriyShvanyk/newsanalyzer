@@ -33,7 +33,7 @@ export default class CardNews extends Card {
     cardImage.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
     cardImage.dataset.src = image;
     cardImage.alt = title;
-    
+
     function errorImage() {
       cardImage.src = 'https://via.placeholder.com/370x250/1A1B22/fff/?text=Image%20not%20found';
     }
@@ -62,6 +62,6 @@ export default class CardNews extends Card {
     fragmentCard.appendChild(card);
 
     return card;
-  }  
+  }
 
 }

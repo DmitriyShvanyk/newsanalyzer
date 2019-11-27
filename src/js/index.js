@@ -23,6 +23,8 @@ const resultsContainer = document.querySelector('.results__container');
 const resultsContainerActive = 'results__container--active';
 const resultsInner = document.querySelector('.results__inner');
 const resultsInnerActive = 'results__inner--active';
+const resultsLinkMore = document.querySelector('.results__link-more');
+const resultsLinkMoreActive = 'results__link-more--active';
 const resultsRequest = new ResultsRequest(resultsContainer);
 
 
@@ -37,30 +39,31 @@ const validateformSearch = new Validate(formSearch);
 function cardsNewsView() {
 
   resultsRequest.removeRequestError();
-
   const keyText = formSearchControl.value.trim();
-  
+
   if (!keyText) {
     return;
   }
 
   localStorage.clear();
   removeCards();
-  resultsContainer.classList.add(resultsContainerActive);  
+  resultsContainer.classList.add(resultsContainerActive);
   resultsRequest.showPreloader();
-  newsBtnMore.classList.remove(newsBtnMoreActive);
+  resultsLinkMore.classList.add(resultsLinkMoreActive);
+  newsBtnMore.classList.remove(newsBtnMoreActive);  
 
   // set disabled for form submit
-  formSearchSubmit.setAttribute('disabled', true);  
+  formSearchSubmit.setAttribute('disabled', true);
 
   apiNews.initCardsNews(keyText, dateFrom.toISOString(), dateTo.toISOString())
-    .then(cards => {      
+    .then(cards => {
 
       resultsRequest.removePreloader();
+      resultsLinkMore.classList.remove(resultsLinkMoreActive);
       formSearchSubmit.removeAttribute('disabled');
 
       // scroll to block 
-      new ScrollTo(formSearchSubmit, resultsContainer);
+      new ScrollTo(formSearchSubmit, resultsContainer);   
 
       // set storage
       localStorage.setItem('cards', JSON.stringify(cards));
@@ -124,7 +127,7 @@ function removeCards() {
 sessionStorage.setItem("isReloaded", true);
 
 if (sessionStorage.getItem("isReloaded")) {
-  formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));
+  formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));  
 
   // render news cards
   cardsNewsView();

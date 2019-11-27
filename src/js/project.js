@@ -6,8 +6,9 @@ import ApiGithub from './modules/github/apiGithub.js';
 import CardGithubList from './modules/github/cardGithubList.js';
 
 const cardsGithubContainer = document.querySelector('.swiper-wrapper');
+const myRepoGithub = 'DmitriyShvanyk/newsanalyzer/commits';
 const apiGithub = new ApiGithub({
-  baseURL: 'https://api.github.com/repos/DmitriyShvanyk/newsanalyzer/commits'
+  baseURL: `https://api.github.com/repos/${myRepoGithub}`
 });
 
 apiGithub.initCardsGithub()
