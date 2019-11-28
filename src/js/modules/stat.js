@@ -80,7 +80,7 @@ export default class Stat {
         graphMonth.classList.add('graph__span');
 
         graphDateMonth.textContent = 'Дата';
-        graphMonth.textContent = `${uniqMonths(showMonths(this._cards.articles))}`;
+        graphMonth.textContent = `${uniqMonths(showMonths(this._cards.articles))}`;        
 
         graphDateMonth.appendChild(graphMonth);
         graphColumn.appendChild(graphDateMonth);

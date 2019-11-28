@@ -46,7 +46,7 @@ function cardsNewsView() {
   }
 
   localStorage.clear();
-  removeCards();
+  removeCards();  
   resultsContainer.classList.add(resultsContainerActive);
   resultsRequest.showPreloader();
   resultsLinkMore.classList.add(resultsLinkMoreActive);

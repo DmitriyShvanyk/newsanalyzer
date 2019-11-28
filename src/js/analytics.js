@@ -14,28 +14,12 @@ window.addEventListener('storage', () => new Stat(keyTextStorage, cardsStorage))
 
 // uniq months
 export function uniqMonths(arr) {
-
-  const monthUniq = [];
-
-  arr.forEach(item => {
-    if (!monthUniq.includes(item)) {
-      monthUniq.push(item);
-    }
-  });
-
-  return monthUniq;
+  return [...new Set(arr)];  
 }
 
-
 // show uniq months
-export function showMonths(articles) {
-
-  const resultMonth = [];
-
-  for (let i = 0; i < articles.length; i++) {
-    const months = new Date(articles[i].publishedAt).toLocaleString('ru', { month: 'long' });
-    resultMonth.push(months);
-  }
-
-  return resultMonth;
+export function showMonths(arr){
+  return arr.map(item => {
+    return new Date(item.publishedAt).toLocaleString('ru', { month: 'long' });
+  })
 }
