@@ -1,4 +1,4 @@
-export default class ResultsRequest {
+export default class Results {
   constructor(container) {
     this._container = container;
   }

@@ -1,9 +1,9 @@
 import '../pages/index.css'
 import ApiNews from './modules/news/apiNews.js'
 import CardNewsList from './modules/news/cardNewsList.js'
-import ResultsRequest from './modules/resultsRequest.js'
-import Validate from "./modules/validate.js"
-import ScrollTo from "./modules/scrollTo.js"
+import Results from '../blocks/results/results.js'
+import Validate from './modules/validate.js'
+import ScrollTo from './modules/scrollTo.js'
 import { dateFrom, dateTo } from './main.js'
 
 export const newsContainer = document.querySelector('.news__columns');
@@ -25,7 +25,7 @@ const resultsInner = document.querySelector('.results__inner');
 const resultsInnerActive = 'results__inner--active';
 const resultsLinkMore = document.querySelector('.results__link-more');
 const resultsLinkMoreActive = 'results__link-more--active';
-const resultsRequest = new ResultsRequest(resultsContainer);
+const results = new Results(resultsContainer);
 
 
 // Validation
@@ -38,7 +38,7 @@ const validateformSearch = new Validate(formSearch);
 // View news cards
 function cardsNewsView() {
 
-  resultsRequest.removeRequestError();
+  results.removeRequestError();
   const keyText = formSearchControl.value.trim();
 
   if (!keyText) {
@@ -48,7 +48,7 @@ function cardsNewsView() {
   localStorage.clear();
   removeCards();  
   resultsContainer.classList.add(resultsContainerActive);
-  resultsRequest.showPreloader();
+  results.showPreloader();
   resultsLinkMore.classList.add(resultsLinkMoreActive);
   newsBtnMore.classList.remove(newsBtnMoreActive);  
 
@@ -58,7 +58,7 @@ function cardsNewsView() {
   apiNews.initCardsNews(keyText, dateFrom.toISOString(), dateTo.toISOString())
     .then(cards => {
 
-      resultsRequest.removePreloader();
+      results.removePreloader();
       resultsLinkMore.classList.remove(resultsLinkMoreActive);
       formSearchSubmit.removeAttribute('disabled');
 
@@ -79,13 +79,13 @@ function cardsNewsView() {
       if (cardsStorage.articles.length === 0) {
         localStorage.clear();
         resultsInner.classList.remove(resultsInnerActive);
-        resultsRequest.showRequestError(
+        results.showRequestError(
           'Ничего не найдено',
           'К сожалению по вашему запросу ничего не найдено.'
         );
       }
       else {
-        resultsRequest.removeRequestError();
+        results.removeRequestError();
         resultsInner.classList.add(resultsInnerActive);
         new CardNewsList(newsContainer, cardsStorage);
 
@@ -104,8 +104,8 @@ function cardsNewsView() {
       formSearchSubmit.removeAttribute('disabled');
       resultsContainer.classList.add(resultsContainerActive);
       resultsInner.classList.remove(resultsInnerActive);
-      resultsRequest.removePreloader();
-      resultsRequest.showRequestError(
+      results.removePreloader();
+      results.showRequestError(
         'Во время запроса произошла ошибка',
         'Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.'
       );
