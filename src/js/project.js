@@ -1,7 +1,7 @@
 import '../../node_modules/swiper/css/swiper.css'
 import '../pages/project.css'
 import Swiper from 'swiper'
-import ApiGithub from './modules/github/apiGithub.js'
+import ApiGithub from './modules/api/apiGithub.js'
 import CardGithubList from '../blocks/slider/cardGithubList.js'
 
 const cardsGithubContainer = document.querySelector('.swiper-wrapper');

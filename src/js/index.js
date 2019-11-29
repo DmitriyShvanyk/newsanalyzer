@@ -1,5 +1,5 @@
 import '../pages/index.css'
-import ApiNews from './modules/news/apiNews.js'
+import ApiNews from './modules/api/apiNews.js'
 import CardNewsList from '../blocks/news/__columns/cardNewsList.js'
 import Results from '../blocks/results/results.js'
 import Validate from './modules/validate.js'

@@ -1,4 +1,4 @@
-import Api from './../api.js'
+import Api from './api.js'
 
 export default class ApiGithub extends Api {
   constructor(...args) {
