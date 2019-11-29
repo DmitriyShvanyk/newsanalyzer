@@ -54,13 +54,15 @@ function cardsNewsView() {
 
   // set disabled for form submit
   formSearchSubmit.setAttribute('disabled', true);
+  formSearchSubmit.textContent = 'Ищем...';
 
   apiNews.initCardsNews(keyText, dateFrom.toISOString(), dateTo.toISOString())
     .then(cards => {
 
       results.removePreloader();
       resultsLinkMore.classList.remove(resultsLinkMoreActive);
-      formSearchSubmit.removeAttribute('disabled');       
+      formSearchSubmit.removeAttribute('disabled');  
+      formSearchSubmit.textContent = 'Искать';     
 
       // set storage
       localStorage.setItem('cards', JSON.stringify(cards));
