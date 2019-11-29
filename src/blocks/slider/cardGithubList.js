@@ -1,5 +1,5 @@
-import CardGithub from './cardGithub.js'
-import { normalizeDate } from '../../main.js'
+import CardGithub from './__swiper-slide/cardGithub.js'
+import { normalizeDate } from '../../js/main.js'
 
 export default class CardGithubList {
   constructor(container, cards) {

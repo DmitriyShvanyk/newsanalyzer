@@ -1,8 +1,8 @@
 import '../../node_modules/swiper/css/swiper.css'
 import '../pages/project.css'
-import Swiper from 'swiper';
+import Swiper from 'swiper'
 import ApiGithub from './modules/github/apiGithub.js'
-import CardGithubList from './modules/github/cardGithubList.js'
+import CardGithubList from '../blocks/slider/cardGithubList.js'
 
 const cardsGithubContainer = document.querySelector('.swiper-wrapper');
 const myRepoGithub = 'DmitriyShvanyk/newsanalyzer/commits';
