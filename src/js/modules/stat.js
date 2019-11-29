@@ -1,5 +1,5 @@
 import { dateFrom, day } from '../main.js'
-import { analyticsContainer, uniqMonths, showMonths } from '../analytics.js';
+import { analyticsContainer, uniqMonths, showMonths } from '../analytics.js'
 
 export default class Stat {
   constructor(keyText = 'Что-то, где-то', cards) {

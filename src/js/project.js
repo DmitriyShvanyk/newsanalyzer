@@ -1,9 +1,8 @@
-import '../../node_modules/swiper/css/swiper.css';
-import '../pages/project.css';
-
+import '../../node_modules/swiper/css/swiper.css'
+import '../pages/project.css'
 import Swiper from 'swiper';
-import ApiGithub from './modules/github/apiGithub.js';
-import CardGithubList from './modules/github/cardGithubList.js';
+import ApiGithub from './modules/github/apiGithub.js'
+import CardGithubList from './modules/github/cardGithubList.js'
 
 const cardsGithubContainer = document.querySelector('.swiper-wrapper');
 const myRepoGithub = 'DmitriyShvanyk/newsanalyzer/commits';
@@ -61,6 +60,6 @@ apiGithub.initCardsGithub()
 
     });        
 
-  }).catch(function (err) {
-    return Promise.reject(`Ошибка: ${err.status}`);
+  }).catch(function (err) {    
+    return Promise.reject(new Error(`${err.status} ${err.statusText}`));
   });

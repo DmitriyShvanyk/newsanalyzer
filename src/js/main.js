@@ -1,6 +1,6 @@
-import Preloader from '../blocks/preloader/preloader.js';
-import Lazy from '../blocks/lazy/lazy.js';
-import MyDate from './modules/myDate.js';
+import Preloader from '../blocks/preloader/preloader.js'
+import Lazy from '../blocks/lazy/lazy.js'
+import MyDate from './modules/myDate.js'
 
 
 // loader page
