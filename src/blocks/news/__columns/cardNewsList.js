@@ -1,6 +1,6 @@
-import CardNews from './cardNews.js'
-import { normalizeDate } from '../../main.js'
-import { newsBtnMore, newsBtnMoreActive } from '../../index.js'
+import CardNews from './../__column/cardNews.js'
+import { normalizeDate } from '../../../js/main.js'
+import { newsBtnMore, newsBtnMoreActive } from '../../../js/index.js'
 
 export default class CardListNews {
   constructor(container, cards) {

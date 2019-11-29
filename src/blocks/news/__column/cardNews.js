@@ -1,4 +1,4 @@
-import Card from '../card.js'
+import Card from '../../../js/modules/card.js'
 
 export default class CardNews extends Card {
   constructor(...args) {
