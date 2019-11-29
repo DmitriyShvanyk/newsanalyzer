@@ -1,14 +1,14 @@
-import Loader from './modules/loader.js';
+import Preloader from '../blocks/preloader/preloader.js';
 import MyDate from './modules/myDate.js';
 import LazyLoad from './modules/lazyLoad.js';
 
 
 // loader page
-const loader = new Loader();
+const preloader = new Preloader();
 const preloaderPage = document.querySelector('.preloader--page');
 const preloaderPageHidden = 'preloader--hidden';
 
-loader.load(1000)
+preloader.load(1000)
   .then(() => {
     preloaderPage.classList.add(preloaderPageHidden);
   }).catch(() => {
