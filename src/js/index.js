@@ -63,7 +63,7 @@ function cardsNewsView() {
       formSearchSubmit.removeAttribute('disabled');
 
       // scroll to block 
-      new ScrollTo(formSearchSubmit, resultsContainer);   
+      new ScrollTo(formSearchSubmit, resultsContainer).scroll();   
 
       // set storage
       localStorage.setItem('cards', JSON.stringify(cards));

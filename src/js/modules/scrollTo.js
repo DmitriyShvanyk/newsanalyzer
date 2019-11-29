@@ -1,17 +1,16 @@
 export default class ScrollTo {
   constructor(scrollElement, scrollToElement) {
-    this.scrollElement = scrollElement;
-    this.scrollToElement = scrollToElement;
+    this._scrollElement = scrollElement;
+    this._scrollToElement = scrollToElement;
 
     this.scroll = this.scroll.bind(this);
-    this.scrollElement.addEventListener('click', this.scroll);
   }
 
   scroll() {
     window.scroll({
       behavior: 'smooth',
       left: 0,
-      top: this.scrollToElement.getBoundingClientRect().top + window.scrollY
+      top: this._scrollToElement.getBoundingClientRect().top + window.scrollY
     });
   }
   
