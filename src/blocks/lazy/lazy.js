@@ -1,4 +1,4 @@
-export default class LazyLoad {
+export default class Lazy {
   constructor(classElement) {
     this.classElement = classElement;
     this.imgElement = document.querySelectorAll(classElement);

@@ -60,10 +60,7 @@ function cardsNewsView() {
 
       results.removePreloader();
       resultsLinkMore.classList.remove(resultsLinkMoreActive);
-      formSearchSubmit.removeAttribute('disabled');
-
-      // scroll to block 
-      new ScrollTo(formSearchSubmit, resultsContainer).scroll();   
+      formSearchSubmit.removeAttribute('disabled');       
 
       // set storage
       localStorage.setItem('cards', JSON.stringify(cards));
@@ -159,6 +156,9 @@ function validateForm(event) {
   }
 
   if (!hasErrors) {
+
+    // scroll to block 
+    new ScrollTo(formSearchSubmit, resultsContainer).scroll();  
 
     // render news cards
     cardsNewsView();

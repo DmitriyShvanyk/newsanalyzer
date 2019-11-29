@@ -1,6 +1,6 @@
 import Preloader from '../blocks/preloader/preloader.js';
+import Lazy from '../blocks/lazy/lazy.js';
 import MyDate from './modules/myDate.js';
-import LazyLoad from './modules/lazyLoad.js';
 
 
 // loader page
@@ -17,9 +17,9 @@ preloader.load(1000)
 
 
 // lazy load
-window.addEventListener('DOMContentLoaded', () => new LazyLoad('.lazy'));
-window.addEventListener('scroll', () => new LazyLoad('.lazy'));
-window.addEventListener('click', () => new LazyLoad('.lazy'));
+window.addEventListener('DOMContentLoaded', () => new Lazy('.lazy'));
+window.addEventListener('scroll', () => new Lazy('.lazy'));
+window.addEventListener('click', () => new Lazy('.lazy'));
 
 
 // footer date copyright
