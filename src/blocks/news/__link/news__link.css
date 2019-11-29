@@ -1,5 +1,6 @@
 .news__link {
-  color: rgba(26, 27, 34, 1);
+  --link-color: var(--color-dark);
+  color: rgba(var(--link-color), 1);
   text-decoration: none;
   transition: color .3s ease;
 }
@@ -7,5 +8,5 @@
 .news__link:hover,
 .news__link:focus,
 .news__link:active {
-  color: rgba(26, 27, 34, .7);
+  color: rgba(var(--link-color), .7);
 }

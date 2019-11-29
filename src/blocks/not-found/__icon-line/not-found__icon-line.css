@@ -4,6 +4,6 @@
   right: 0;
   width: 1px;
   height: 30px;
-  background-color: #D1D2D6;
+  background-color: var(--icon-bg);
   transform: rotate(-40deg);
 }

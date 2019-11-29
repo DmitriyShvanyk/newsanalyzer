@@ -7,5 +7,5 @@
 @import url(../results/__link-more/--active/results__link-more--active.css);
 
 .results {
-  background-color: #F5F6F7;
+  background-color: rgba(var(--bg-gray-light), 1);
 }

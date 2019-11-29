@@ -1,12 +1,13 @@
 .logo {
+  --logo-color: var(--color-white);
   display: inline-block;
   vertical-align: top;
   font-weight: bold;
   font-size: 20px;
   line-height: 1.2;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(var(--logo-color), 1);
   text-decoration: none;
-  font-family: 'Roboto Slab', serif;
+  font-family: var(--font-roboto-slab);  
   transition: color .3s ease;
 }
 
@@ -14,7 +15,7 @@
 .logo:focus,
 .logo:active {
   text-decoration: none;
-  color: rgba(255, 255, 255, .7);
+  color: rgba(var(--logo-color), .7);
 }
 
 @media screen and (max-width:576px) {

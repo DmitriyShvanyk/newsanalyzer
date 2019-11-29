@@ -2,11 +2,13 @@
 @import url(../preloader/__text/preloader__text.css);
 
 .preloader {
+  --preloader-color: var(--color-gray);
+  --preloader-bg: var(--bg-gray-light);  
   position: relative;
   z-index: 1;  
   text-align: center;
-  color: #B6BCBF;
-  background-color: #F5F6F7;  
+  color: rgba(var(--preloader-color), 1);
+  background-color: rgba(var(--preloader-bg), 1);  
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,6 +1,8 @@
-.link-more {
+.link-more {   
+  --link-more-color: var(--color-dark); 
+  --link-more-border: var(--color-dark);
   white-space: nowrap;
-  color: #1A1B22;
+  color: rgba(var(--link-more-color), 1);
   text-decoration: none;
   display: inline-block;
   vertical-align: top;
@@ -19,7 +21,7 @@
   right: 10px;
   width: 10px;
   height: 10px;
-  border: 2px solid #1A1B22;
+  border: 2px solid rgba(var(--link-more-border), 1);
   border-left: none;
   border-bottom: none;
   margin-top: -5px;
@@ -31,12 +33,12 @@
 .link-more:hover,
 .link-more:focus,
 .link-more:active {
-  color: rgba(26, 27, 34, .7);
+  color: rgba(var(--link-more-color), .7);
 }
 
 .link-more:hover::after,
 .link-more:focus::after,
 .link-more:active::after {
-  border-color: rgba(26, 27, 34, .7);
+  border-color: rgba(var(--link-more-color), .7);
   right: 5px;
 }

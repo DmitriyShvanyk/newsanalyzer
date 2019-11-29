@@ -1,5 +1,5 @@
 .graph__head {
-  color: #B6BCBF;
+  color: rgba(var(--color-gray), 1);
   letter-spacing: 0.4px;
   text-transform: uppercase;
   font-weight: normal;

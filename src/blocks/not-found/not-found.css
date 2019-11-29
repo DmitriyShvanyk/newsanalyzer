@@ -8,5 +8,5 @@
   max-width: 335px;
   margin: 0 auto;
   text-align: center;
-  color: #B6BCBF;
+  color: rgba(var(--color-gray), 1);  
 }

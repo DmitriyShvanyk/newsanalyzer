@@ -4,6 +4,7 @@
 
 
 .progress {
+  --progress-color: var(--color-dark);
   position: relative;
   width: 100%;
 }

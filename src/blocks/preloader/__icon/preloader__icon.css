@@ -1,4 +1,4 @@
-.preloader__icon {
+.preloader__icon {  
   position: relative;
   margin: 0 auto 25px auto;
   width: 74px;
@@ -31,7 +31,7 @@
   left: 1px;
   right: 1px;
   bottom: 1px;
-  background-color: #F5F6F7;
+  background-color: rgba(var(--preloader-bg), 1);
 }
 
 @keyframes rotate {

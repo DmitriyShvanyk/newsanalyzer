@@ -1,6 +1,6 @@
 .footer__link {
   display: block;
-  color: rgba(26, 27, 34, 1);
+  color: rgba(var(--color-dark), 1);
   text-decoration: none;
   transition: color .3s ease;
 }
@@ -13,7 +13,7 @@
 .footer__link:focus,
 .footer__link:active {
   text-decoration: none;
-  color: rgba(26, 27, 34, .7);
+  color: rgba(var(--color-dark), .7);
 }
 
 @media screen and (max-width:768px) {

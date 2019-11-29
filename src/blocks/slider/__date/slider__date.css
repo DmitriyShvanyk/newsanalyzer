@@ -1,7 +1,7 @@
-.slider__date {
+.slider__date {  
   display: block;
   font-size: 14px;
-  color: #B6BCBF;
+  color: rgba(var(--color-gray), 1);
   line-height: 1;
   margin-bottom: 18px;
   margin-top: 5px;

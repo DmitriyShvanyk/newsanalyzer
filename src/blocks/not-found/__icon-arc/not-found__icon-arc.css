@@ -17,6 +17,6 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid #D1D2D6;
+  border: 1px solid var(--icon-bg);
   box-sizing: border-box;
 }

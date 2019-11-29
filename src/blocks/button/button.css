@@ -1,9 +1,12 @@
 .button {
+  --button-color: var(--color-dark);
+  --button-bg: var(--bg-white);
+  --button-shadow: var(--bg-white);  
   display: inline-block;
-  vertical-align: top;
-  color: #1A1B22;
+  vertical-align: top;  
   font-weight: 500;
-  background-color: rgba(255, 255, 255, 1);
+  color: rgba(var(--button-color), 1);
+  background-color: rgba(var(--button-bg), 1);
   border-radius: 80px;
   border: none;
   padding: 22px 25px;
@@ -19,8 +22,8 @@
 .button:hover,
 .button:focus,
 .button:active {
-  background-color: rgba(255, 255, 255, .9);
-  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, .5);
+  background-color: rgba(var(--button-bg), .9);
+  box-shadow: 0 0 0 .2rem rgba(var(--button-shadow), .5);
 }
 
 @media screen and (max-width:768px) {

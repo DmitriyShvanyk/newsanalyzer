@@ -1,5 +1,5 @@
 .news__date {
-  color: #B6BCBF;
+  color: rgba(var(--color-gray), 1);
   display: block;
   margin-bottom: 13px;
 }

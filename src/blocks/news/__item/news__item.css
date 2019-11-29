@@ -1,8 +1,8 @@
-.news__item {
+.news__item {  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: rgba(var(--bg-white), 1);
   width: 100%;
   height: 100%;
   border-radius: 16px;

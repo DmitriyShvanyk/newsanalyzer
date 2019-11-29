@@ -4,7 +4,7 @@
   line-height: 1.15;
   margin-top: 0;
   margin-bottom: 13px;
-  font-family: 'Roboto Slab', serif;
+  font-family: var(--font-roboto-slab);
   max-height: calc(1.15em * 3);
   overflow: hidden;
   display: -webkit-box;
