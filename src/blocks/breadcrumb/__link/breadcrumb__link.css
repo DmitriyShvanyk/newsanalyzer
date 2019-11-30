@@ -1,10 +1,10 @@
-.breadcrumb__link {
-  color: rgba(26, 27, 34, 1);
+.breadcrumb__link {  
+  color: rgba(var(--color-dark), 1);
   text-decoration: none;
 }
 
 .breadcrumb__link:hover,
 .breadcrumb__link:focus,
 .breadcrumb__link:active {
-  color: rgba(26, 27, 34, .7);
+  color: rgba(var(--color-dark), .7);
 }

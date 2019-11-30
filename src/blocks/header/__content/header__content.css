@@ -1,7 +1,8 @@
 .header__content {
+  --header-color: var(--color-white);
   max-width: 608px;
   margin: 0 auto;
-  color: #fff;
+  color: rgba(var(--header-color), 1);
 }
 
 @media screen and (max-width:768px) {

@@ -1,5 +1,6 @@
 @import url(../news/__columns/news__columns.css);
 @import url(../news/__column/news__column.css);
+@import url(../news/__column/--active/news__column--active.css);
 @import url(../news/__item/news__item.css);
 @import url(../news/__head/news__head.css);
 @import url(../news/__image/news__image.css);
@@ -10,5 +11,9 @@
 @import url(../news/__link/news__link.css);
 @import url(../news/__paragraph/news__paragraph.css);
 @import url(../news/__source/news__source.css);
-@import url(../news/__bottom/news__bottom.css);
 @import url(../news/__btn-more/news__btn-more.css);
+@import url(../news/__btn-more/--active/news__btn-more--active.css);
+
+.news{
+  text-align: center;
+}

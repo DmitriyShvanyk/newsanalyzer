@@ -6,7 +6,7 @@
   line-height: 1.333;
   letter-spacing: .4px;
   text-transform: uppercase;
-  color: #B6BCBF;
+  color: rgba(var(--color-gray), 1);
   padding-left: 104px;
   box-sizing: border-box;
   margin-top: 15px;

@@ -1,9 +1,10 @@
-@import url(../progress/__control/progress__control.css);
+@import url(../progress/__bar/progress__bar.css);
 @import url(../progress/__count/progress__count.css);
 @import url(../progress/__count/--null/progress__count--null.css);
 
 
 .progress {
+  --progress-color: var(--color-dark);
   position: relative;
   width: 100%;
 }

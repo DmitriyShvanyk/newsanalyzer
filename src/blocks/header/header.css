@@ -6,7 +6,7 @@
 .header {
   flex-shrink: 0;
   min-height: 576px;
-  background-color: #070707;
+  background-color: rgba(var(--bg-dark), 1);
   background-image: url(../../images/header.jpg);
   background-repeat: no-repeat;
   background-position: center top;

@@ -1,10 +1,13 @@
 .slider__swiper-button-prev {
+  --slider-button-bg: var(--bg-dark);
+  --slider-arrow-bg: var(--bg-white);
+  --slider-button-color: var(--color-white);
   top: calc(50% - 20px);
   outline: none;
   width: 40px;
   height: 40px;
-  color: #fff;
-  background-color: rgba(26, 27, 34, 1);
+  color: rgba(var(--slider-button-color), 1);
+  background-color: rgba(var(--slider-button-bg), 1);
   border-radius: 50%;
   transition: background-color .3s ease;
 }
@@ -14,18 +17,15 @@
   font-size: 0;
   width: 8px;
   height: 8px;
-  border: 2px solid #fff;
+  border: 2px solid rgba(var(--slider-arrow-bg), 1);
   border-top: none;
   border-right: none;
+  margin-left: 2px;
   transform: rotate(45deg);
 }
 
-.slider__swiper-button-prev:after {
-  margin-left: 2px;
-}
-
 .slider__swiper-button-prev:hover {
-  background-color: rgba(26, 27, 34, .7);
+  background-color: rgba(var(--slider-button-bg), .7);
 }
 
 @media screen and (max-width:768px) {

@@ -1,0 +1,9 @@
+.not-found__icon-line {
+  position: absolute;
+  top: calc(100% - 14px);
+  right: 0;
+  width: 1px;
+  height: 30px;
+  background-color: var(--icon-bg);
+  transform: rotate(-40deg);
+}

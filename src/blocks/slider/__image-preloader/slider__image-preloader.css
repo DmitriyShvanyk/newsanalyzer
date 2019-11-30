@@ -1,0 +1,8 @@
+.swiper-lazy-preloader {  
+  width: 32px;
+  height: 32px;
+  margin-left: -16px;
+  margin-top: -16px;
+  border: 2px solid rgba(var(--bg-dark), 1);
+  border-top: 2px solid transparent;
+}

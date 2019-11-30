@@ -1,5 +1,11 @@
 .form-search__submit {
-  color: #fff;
+  --form-search-submit-color: var(--color-white);
+  --form-search-submit-bg: var(--bg-info);
+  --form-search-submit-bg-hover: #347EFF;
+  --form-search-submit-bg-active: #2A65CC;
+  --form-search-submit-bg-disabled: #ccc;
+  --form-search-submit-shadow: 0px 5px 15px rgba(14, 26, 57, .2);
+  color: rgba(var(--form-search-submit-color), 1);
   -webkit-appearance: none;
   cursor: pointer;
   border: none;
@@ -9,19 +15,24 @@
   right: 0;
   width: 168px;
   height: 100%;
-  background-color: #2F71E5;
-  box-shadow: 0px 5px 15px rgba(14, 26, 57, .2);
+  background-color: rgba(var(--form-search-submit-bg), 1);
+  box-shadow: var(--form-search-submit-shadow);
   border-radius: 100px;
   transition: background-color .3s ease;
 }
 
 .form-search__submit:hover {
-  background-color: #347EFF;
+  background-color: var(--form-search-submit-bg-hover);
 }
 
 .form-search__submit:focus,
 .form-search__submit:active {
-  background-color: #2A65CC;
+  background-color: var(--form-search-submit-bg-active);
+}
+
+.form-search__submit[disabled] {
+  background-color: var(--form-search-submit-bg-disabled);
+  pointer-events: none;
 }
 
 @media screen and (max-width:768px) {

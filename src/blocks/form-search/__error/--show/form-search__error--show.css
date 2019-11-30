@@ -1,0 +1,10 @@
+.form-search__error--show {
+  padding: 5px 24px;
+}
+
+@media screen and (max-width: 576px) {
+  .form-search__error--show {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

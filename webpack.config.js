@@ -15,7 +15,8 @@ module.exports = {
   entry: {
     index: './src/js/index.js',
     project: './src/js/project.js',
-    analytics: './src/js/analytics.js'
+    analytics: './src/js/analytics.js',
+    main: './src/js/main.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -104,21 +105,21 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html',
       favicon: './src/favicon.ico',
-      chunks: ['index']
+      chunks: ['index', 'main']
     }),
     new HtmlWebpackPlugin({
       inject: false,
       hash: true,
       template: './src/project.html',
       filename: 'project.html',
-      chunks: ['project']
+      chunks: ['project', 'main']
     }),
     new HtmlWebpackPlugin({
       inject: false,
       hash: true,
       template: './src/analytics.html',
       filename: 'analytics.html',
-      chunks: ['analytics']
+      chunks: ['analytics', 'main']
     }),
     new WebpackMd5Hash(),
     new webpack.DefinePlugin({

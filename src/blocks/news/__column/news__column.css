@@ -4,7 +4,8 @@
   padding-left: 8px;
   padding-right: 8px;
   box-sizing: border-box;
-  display: flex;
+  margin-bottom: 16px;
+  text-align: left;
 }
 
 @media screen and (max-width:1024px) {
@@ -12,6 +13,7 @@
   .news__column {
     padding-left: 4px;
     padding-right: 4px;
+    margin-bottom: 8px;
   }
 
 }
@@ -30,6 +32,7 @@
   .news__column {
     width: 100%;
     max-width: 100%;
+    margin-bottom: 12px;
   }
 
 }

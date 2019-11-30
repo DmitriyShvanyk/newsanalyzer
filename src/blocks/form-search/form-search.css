@@ -1,11 +1,13 @@
 @import url(../form-search/__control/form-search__control.css);
 @import url(../form-search/__submit/form-search__submit.css);
+@import url(../form-search/__error/form-search__error.css);
+@import url(../form-search/__error/--show/form-search__error--show.css);
 
 .form-search {  
   display: block;
   position: relative;
   height: 64px;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--font-default);
 }
 
 @media screen and (max-width:768px) {

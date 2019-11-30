@@ -1,5 +1,5 @@
 .navbar__link--active {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(var(--navbar-link-color-active), 1);
 }
 
 .navbar__link--active::before {

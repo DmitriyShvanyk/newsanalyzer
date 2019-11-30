@@ -4,6 +4,7 @@
 @import url(../navbar/__link/--active/navbar__link--active.css);
 @import url(../navbar/__link/--theme-dark/navbar__link--dark.css);
 
-.navbar {
-  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, .2);
+.navbar { 
+  --navbar-shadow: var(--bg-white);
+  box-shadow: inset 0px -1px 0px rgba(var(--navbar-shadow), .2);
 }

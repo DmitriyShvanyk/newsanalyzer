@@ -1,0 +1,10 @@
+.form-search__error {
+  --form-search-error-color: var(--color-white);
+  --form-search-error-bg: var(--bg-danger);
+  color: rgba(var(--form-search-error-color), 1);
+  background-color: rgba(var(--form-search-error-bg), 1);
+  box-sizing: border-box;
+  margin-top: 5px;
+  border-radius: 25px;
+  font-size: 16px;
+}

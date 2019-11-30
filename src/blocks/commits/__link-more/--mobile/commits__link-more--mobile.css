@@ -5,6 +5,9 @@
 @media screen and (max-width:576px) {
 
   .commits__link-more--mobile {
+    --commits-link-more-mobile-border: var(--bg-dark);
+    --commits-link-more-mobile-bg: var(--bg-dark);
+    --commits-link-more-mobile-shadow: var(--bg-dark);
     order: 3;
     text-align: center;
     display: block;
@@ -14,7 +17,7 @@
     padding: 15.5px 25px;
     border-radius: 80px;
     outline: none;
-    border: 1px solid #1A1B22;
+    border: 1px solid rgba(var(--commits-link-more-mobile-border), 1);
     box-sizing: border-box;
   }
 
@@ -26,8 +29,8 @@
   .commits__link-more--mobile:focus,
   .commits__link-more--mobile:active {
     color: #fff;
-    background-color: #1A1B22;
-    box-shadow: 0 0 0 .2rem rgba(26, 27, 34, .5);
+    background-color: rgba(var(--commits-link-more-mobile-bg), 1);    
+    box-shadow: 0 0 0 .2rem rgba(var(--commits-link-more-mobile-shadow), .5);
   }
 
 }

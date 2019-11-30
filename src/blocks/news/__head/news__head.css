@@ -5,6 +5,7 @@
   position: relative;
   border-radius: 16px 16px 0 0;
   box-sizing: border-box;
+  background-color: rgba(var(--bg-dark), 1);
 }
 
 @media screen and (max-width:1024px) {

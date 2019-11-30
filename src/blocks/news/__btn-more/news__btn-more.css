@@ -1,7 +1,22 @@
+.news__btn-more {
+  display: none;
+  margin-top: 48px;
+}
+
+@media screen and (max-width:1024px) {
+
+  .news__btn-more {
+    margin-top: 24px;
+  }
+
+}
+
 @media screen and (max-width:576px) {
 
   .news__btn-more {
     width: 100%;
+    margin-top: 0;
+    margin-bottom: 14px;
   }
 
 }

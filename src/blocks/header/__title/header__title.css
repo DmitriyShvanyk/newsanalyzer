@@ -2,7 +2,7 @@
   font-weight: normal;
   font-size: 60px;
   line-height: 1.067;
-  font-family: 'Roboto Slab', serif;
+  font-family: var(--font-roboto-slab);
   margin-top: 0;
   margin-bottom: 34px;
 }

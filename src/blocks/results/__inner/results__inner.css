@@ -1,0 +1,7 @@
+.results__inner{
+  display: none;
+}
+
+.results__inner--active{
+  display: block;
+}

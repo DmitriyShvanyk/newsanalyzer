@@ -1,5 +1,5 @@
 .footer__copy {
-  color: #B6BCBF;
+  color: rgba(var(--color-gray), 1);
   font-size: 16px;
   line-height: 1.375;
 }

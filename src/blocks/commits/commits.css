@@ -6,7 +6,7 @@
 
 
 .commits {
-  background-color: #F5F6F7;
+  background-color: rgba(var(--bg-gray-light), 1);
   overflow-x: hidden;
 }
 

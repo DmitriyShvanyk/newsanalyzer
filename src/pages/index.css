@@ -1,12 +1,16 @@
+@import url(../blocks/variables.css);
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts.css);
 
 @import url(../blocks/container/container.css);
 @import url(../blocks/basic/basic.css);
 @import url(../blocks/root/root.css);
+@import url(../blocks/lazy/lazy.css);
 @import url(../blocks/form-search/form-search.css);
 @import url(../blocks/social/social.css);
 @import url(../blocks/preloader/preloader.css);
+@import url(../blocks/preloader/--page/preloader--page.css);
+@import url(../blocks/preloader/--hidden/preloader--hidden.css);
 @import url(../blocks/not-found/not-found.css);
 @import url(../blocks/button/button.css);
 @import url(../blocks/title/title.css);

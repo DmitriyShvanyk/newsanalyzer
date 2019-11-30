@@ -1,5 +1,5 @@
 .not-found__title {
-  font-family: 'Roboto Slab', serif;
+  font-family: var(--font-roboto-slab);
   font-weight: normal;
   font-size: 26px;
   line-height: 1.15;

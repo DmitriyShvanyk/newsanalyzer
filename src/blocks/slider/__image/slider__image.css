@@ -6,6 +6,7 @@
   display: block;
   object-fit: cover;
   border-radius: 50%;
+  background-color: rgba(var(--dark-bg), 1);
 }
 
 @media screen and (max-width:1024px) {
