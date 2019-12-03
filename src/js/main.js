@@ -1,6 +1,5 @@
 import Preloader from '../blocks/preloader/preloader.js'
 import Lazy from '../blocks/lazy/lazy.js'
-import MyDate from './modules/myDate.js'
 
 
 // loader page
@@ -8,23 +7,20 @@ const preloader = new Preloader();
 const preloaderPage = document.querySelector('.preloader--page');
 const preloaderPageHidden = 'preloader--hidden';
 
-preloader.load(1000)
+window.addEventListener('load', () => {
+  preloader.load(1000)
   .then(() => {
     preloaderPage.classList.add(preloaderPageHidden);
   }).catch(() => {
     preloaderPage.classList.remove(preloaderPageHidden);
   });
+});
 
 
 // lazy load
 window.addEventListener('DOMContentLoaded', () => new Lazy('.lazy'));
 window.addEventListener('scroll', () => new Lazy('.lazy'));
 window.addEventListener('click', () => new Lazy('.lazy'));
-
-
-// footer date copyright
-const footerDateYears = document.querySelector('.footer__date');
-new MyDate(footerDateYears).renderYears();
 
 
 // variable date
@@ -48,3 +44,14 @@ export function normalizeDate(array) {
 
   return datePublished;
 }
+
+
+// current years
+function showCurrentYears(domElement) {
+  return domElement.textContent = new Date().toLocaleString('ru', { year: 'numeric' });
+}
+
+
+// footer date copyright
+const footerDateYears = document.querySelector('.footer__date');
+showCurrentYears(footerDateYears);

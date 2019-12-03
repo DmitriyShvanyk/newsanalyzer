@@ -46,11 +46,11 @@ function cardsNewsView() {
   }
 
   localStorage.clear();
-  removeCards();  
+  removeCards();
   resultsContainer.classList.add(resultsContainerActive);
   results.showPreloader();
   resultsLinkMore.classList.add(resultsLinkMoreActive);
-  newsBtnMore.classList.remove(newsBtnMoreActive);  
+  newsBtnMore.classList.remove(newsBtnMoreActive);
 
   // set disabled for form submit
   formSearchSubmit.setAttribute('disabled', true);
@@ -61,8 +61,8 @@ function cardsNewsView() {
 
       results.removePreloader();
       resultsLinkMore.classList.remove(resultsLinkMoreActive);
-      formSearchSubmit.removeAttribute('disabled');  
-      formSearchSubmit.textContent = 'Искать';     
+      formSearchSubmit.removeAttribute('disabled');
+      formSearchSubmit.textContent = 'Искать';
 
       // set storage
       localStorage.setItem('cards', JSON.stringify(cards));
@@ -86,6 +86,7 @@ function cardsNewsView() {
       else {
         results.removeRequestError();
         resultsInner.classList.add(resultsInnerActive);
+
         new CardNewsList(newsContainer, cardsStorage);
 
         if (cardsStorage.articles.length > 3) {
@@ -126,7 +127,7 @@ function removeCards() {
 sessionStorage.setItem("isReloaded", true);
 
 if (sessionStorage.getItem("isReloaded")) {
-  formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));  
+  formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));
 
   // render news cards
   cardsNewsView();
@@ -160,7 +161,7 @@ function validateForm(event) {
   if (!hasErrors) {
 
     // scroll to block 
-    new ScrollTo(formSearchSubmit, resultsContainer).scroll();  
+    new ScrollTo(formSearchSubmit, resultsContainer).scroll();
 
     // render news cards
     cardsNewsView();
@@ -173,4 +174,10 @@ function validateForm(event) {
 
 }
 
+// Validation input
+function validateInputForm(event) {
+  validateformSearch.checkField(event);
+}
+
 validateformSearch.addEventListener('submit', validateForm);
+validateformSearch.addEventListener('input', validateInputForm);

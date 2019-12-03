@@ -1,16 +1,13 @@
 export default class Validate {
   constructor(formElement) {
-    this.formElement = formElement;
-
+    this._formElement = formElement;
     this.addAttrNovalidate();
-    this.checkField.bind(this);
-    this.addEventListener.bind(this);
-
-    this.formElement.addEventListener('input', event => this.checkField(event));
+   
+    this.checkField.bind(this);  
   }
 
   addAttrNovalidate() {
-    this.formElement.setAttribute('novalidate', true);
+    this._formElement.setAttribute('novalidate', true);
   }
 
   static hasError(field) {
@@ -72,7 +69,7 @@ export default class Validate {
 
     const target = event.target;
 
-    if (!this.formElement) {
+    if (!this._formElement) {
       return;
     }
 
@@ -83,7 +80,7 @@ export default class Validate {
       return;
     }
 
-    const fields = this.formElement.elements;
+    const fields = this._formElement.elements;
 
     for (let i = 0; i < fields.length; i++) {
       error = Validate.hasError(fields[i]);
@@ -97,7 +94,7 @@ export default class Validate {
   }
 
   addEventListener(...args) {
-    this.formElement.addEventListener(...args);
+    this._formElement.addEventListener(...args);
   }
 
 }
