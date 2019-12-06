@@ -7,14 +7,13 @@ const preloader = new Preloader();
 const preloaderPage = document.querySelector('.preloader--page');
 const preloaderPageHidden = 'preloader--hidden';
 
-window.addEventListener('load', () => {
-  preloader.load(1000)
+preloader.load(1000)
   .then(() => {
     preloaderPage.classList.add(preloaderPageHidden);
   }).catch(() => {
     preloaderPage.classList.remove(preloaderPageHidden);
-  });
-});
+  }); 
+
 
 
 // lazy load

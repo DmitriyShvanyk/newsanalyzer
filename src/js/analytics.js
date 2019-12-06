@@ -14,7 +14,7 @@ window.addEventListener('storage', () => stat);
 
 // uniq months
 export function uniqMonths(arr) {
-  return [...new Set(arr)];  
+  return [...new Set(arr)].reverse().join('-');  
 }
 
 // show uniq months
