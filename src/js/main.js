@@ -15,7 +15,6 @@ preloader.load(1000)
   }); 
 
 
-
 // lazy load
 window.addEventListener('DOMContentLoaded', () => new Lazy('.lazy'));
 window.addEventListener('scroll', () => new Lazy('.lazy'));

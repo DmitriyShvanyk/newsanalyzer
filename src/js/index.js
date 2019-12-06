@@ -6,6 +6,7 @@ import Results from '../blocks/results/results.js'
 import Validate from './modules/validate.js'
 import ScrollTo from './modules/scrollTo.js'
 import { dateFrom, dateTo } from './main.js'
+import { NEWS_KEY, NEWS_URL } from './config.js'
 
 export const newsContainer = document.querySelector('.news__columns');
 export const newsBtnMore = document.querySelector('.news__btn-more');
@@ -14,8 +15,8 @@ export const newsBtnMoreActive = 'news__btn-more--active';
 
 // API News
 const apiNews = new ApiNews({
-  baseURL: 'https://newsapi.org/v2/everything?',
-  key: 'ce6db864a3ee4bdbb80e8fe9388fa7e6'
+  baseURL: NEWS_URL,
+  key: NEWS_KEY
 });
 
 
@@ -92,7 +93,7 @@ function cardsNewsView() {
         results.removeRequestError();
         resultsInner.classList.add(resultsInnerActive);
 
-        new CardNewsList(newsContainer, cardsStorage, createCard);
+        new CardNewsList(newsContainer, cardsStorage, createCard).renderCards();
 
         if (cardsStorage.articles.length > 3) {
           newsBtnMore.classList.add(newsBtnMoreActive);

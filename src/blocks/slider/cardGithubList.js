@@ -1,16 +1,17 @@
-import CardGithub from './__swiper-slide/cardGithub.js'
 import { normalizeDate } from '../../js/main.js'
 
 export default class CardGithubList {
-  constructor(container, cards) {
+  constructor(container, cards, callback) {
     this._container = container;
     this._cards = cards;
-    this.renderCards();
+    this._callback = callback;
   }
+
   addCards(...args) {
-    const { cardElement } = new CardGithub(...args);
+    const { cardElement } = this._callback(...args);
     this._container.appendChild(cardElement);
   }
+
   renderCards() {
     this._cards.forEach(card => {
       this.addCards(
