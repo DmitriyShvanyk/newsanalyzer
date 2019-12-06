@@ -34,8 +34,8 @@ export const monthListWhen = ['января', 'февраля', 'марта', '�
 
 
 // normalize date
-export function normalizeDate(array) {
-  const date = new Date(array);
+export function normalizeDate(card) {
+  const date = new Date(card);
   const nowDate = date.getDate();
   const nowMonth = date.getMonth();
   const nowYears = date.getFullYear();

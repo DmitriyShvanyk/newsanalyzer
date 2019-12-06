@@ -27,6 +27,7 @@ export default class Stat {
         count++;
       }
     }
+    
     this.viewStat(count);
   }
 

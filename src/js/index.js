@@ -176,7 +176,7 @@ function validateForm(event) {
 
 // Validation input
 function validateInputForm(event) {
-  validateformSearch.checkField(event);
+  Validate.checkField(event);
 }
 
 validateformSearch.addEventListener('submit', validateForm);
