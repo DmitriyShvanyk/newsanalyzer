@@ -1,19 +1,19 @@
-import CardNews from './../__column/cardNews.js'
 import { normalizeDate } from '../../../js/main.js'
 import { newsBtnMore, newsBtnMoreActive } from '../../../js/index.js'
 
 export default class CardListNews {
-  constructor(container, cards) {
+  constructor(container, cards, callback) {    
     this._container = container;
-    this._cards = cards;
+    this._cards = cards;    
     this._offset = 0;
+    this.callback = callback;
 
     this.renderCards();
     newsBtnMore.onclick = () => this.renderCards();
   }
 
   addCards(...args) {
-    const { cardElement } = new CardNews(...args);
+    const { cardElement } = this.callback(...args);
     this._container.appendChild(cardElement);
   }
 

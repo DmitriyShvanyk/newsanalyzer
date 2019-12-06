@@ -1,5 +1,6 @@
 import '../pages/index.css'
 import ApiNews from './modules/api/apiNews.js'
+import CardNews from '../blocks/news/__column/cardNews.js'
 import CardNewsList from '../blocks/news/__columns/cardNewsList.js'
 import Results from '../blocks/results/results.js'
 import Validate from './modules/validate.js'
@@ -16,6 +17,10 @@ const apiNews = new ApiNews({
   baseURL: 'https://newsapi.org/v2/everything?',
   key: 'ce6db864a3ee4bdbb80e8fe9388fa7e6'
 });
+
+
+// Create cards
+const createCard = (...args) => new CardNews(...args);
 
 
 // Results
@@ -87,7 +92,7 @@ function cardsNewsView() {
         results.removeRequestError();
         resultsInner.classList.add(resultsInnerActive);
 
-        new CardNewsList(newsContainer, cardsStorage);
+        new CardNewsList(newsContainer, cardsStorage, createCard);
 
         if (cardsStorage.articles.length > 3) {
           newsBtnMore.classList.add(newsBtnMoreActive);
@@ -99,7 +104,6 @@ function cardsNewsView() {
       }
 
     }).catch(err => {
-
       // remove disabled for form submit
       formSearchSubmit.removeAttribute('disabled');
       resultsContainer.classList.add(resultsContainerActive);
