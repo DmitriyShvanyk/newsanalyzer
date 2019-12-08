@@ -1,6 +1,5 @@
 import Preloader from '../blocks/preloader/preloader.js'
 import Lazy from '../blocks/lazy/lazy.js'
-import MyDate from './modules/myDate.js'
 
 
 // loader page
@@ -13,18 +12,13 @@ preloader.load(1000)
     preloaderPage.classList.add(preloaderPageHidden);
   }).catch(() => {
     preloaderPage.classList.remove(preloaderPageHidden);
-  });
+  }); 
 
 
 // lazy load
 window.addEventListener('DOMContentLoaded', () => new Lazy('.lazy'));
 window.addEventListener('scroll', () => new Lazy('.lazy'));
 window.addEventListener('click', () => new Lazy('.lazy'));
-
-
-// footer date copyright
-const footerDateYears = document.querySelector('.footer__date');
-new MyDate(footerDateYears).renderYears();
 
 
 // variable date
@@ -39,8 +33,8 @@ export const monthListWhen = ['января', 'февраля', 'марта', '�
 
 
 // normalize date
-export function normalizeDate(array) {
-  const date = new Date(array);
+export function normalizeDate(card) {
+  const date = new Date(card);
   const nowDate = date.getDate();
   const nowMonth = date.getMonth();
   const nowYears = date.getFullYear();
@@ -48,3 +42,14 @@ export function normalizeDate(array) {
 
   return datePublished;
 }
+
+
+// current years
+function showCurrentYears(domElement) {
+  return domElement.textContent = new Date().toLocaleString('ru', { year: 'numeric' });
+}
+
+
+// footer date copyright
+const footerDateYears = document.querySelector('.footer__date');
+showCurrentYears(footerDateYears);

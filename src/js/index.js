@@ -1,10 +1,12 @@
 import '../pages/index.css'
 import ApiNews from './modules/api/apiNews.js'
+import CardNews from '../blocks/news/__column/cardNews.js'
 import CardNewsList from '../blocks/news/__columns/cardNewsList.js'
 import Results from '../blocks/results/results.js'
 import Validate from './modules/validate.js'
 import ScrollTo from './modules/scrollTo.js'
 import { dateFrom, dateTo } from './main.js'
+import { NEWS_KEY, NEWS_URL } from './config.js'
 
 export const newsContainer = document.querySelector('.news__columns');
 export const newsBtnMore = document.querySelector('.news__btn-more');
@@ -13,9 +15,13 @@ export const newsBtnMoreActive = 'news__btn-more--active';
 
 // API News
 const apiNews = new ApiNews({
-  baseURL: 'https://newsapi.org/v2/everything?',
-  key: 'ce6db864a3ee4bdbb80e8fe9388fa7e6'
+  baseURL: NEWS_URL,
+  key: NEWS_KEY
 });
+
+
+// Create cards
+const createCard = (...args) => new CardNews(...args);
 
 
 // Results
@@ -46,11 +52,11 @@ function cardsNewsView() {
   }
 
   localStorage.clear();
-  removeCards();  
+  removeCards();
   resultsContainer.classList.add(resultsContainerActive);
   results.showPreloader();
   resultsLinkMore.classList.add(resultsLinkMoreActive);
-  newsBtnMore.classList.remove(newsBtnMoreActive);  
+  newsBtnMore.classList.remove(newsBtnMoreActive);
 
   // set disabled for form submit
   formSearchSubmit.setAttribute('disabled', true);
@@ -61,8 +67,8 @@ function cardsNewsView() {
 
       results.removePreloader();
       resultsLinkMore.classList.remove(resultsLinkMoreActive);
-      formSearchSubmit.removeAttribute('disabled');  
-      formSearchSubmit.textContent = 'Искать';     
+      formSearchSubmit.removeAttribute('disabled');
+      formSearchSubmit.textContent = 'Искать';
 
       // set storage
       localStorage.setItem('cards', JSON.stringify(cards));
@@ -86,7 +92,8 @@ function cardsNewsView() {
       else {
         results.removeRequestError();
         resultsInner.classList.add(resultsInnerActive);
-        new CardNewsList(newsContainer, cardsStorage);
+
+        new CardNewsList(newsContainer, cardsStorage, createCard).renderCards();
 
         if (cardsStorage.articles.length > 3) {
           newsBtnMore.classList.add(newsBtnMoreActive);
@@ -98,7 +105,6 @@ function cardsNewsView() {
       }
 
     }).catch(err => {
-
       // remove disabled for form submit
       formSearchSubmit.removeAttribute('disabled');
       resultsContainer.classList.add(resultsContainerActive);
@@ -126,7 +132,7 @@ function removeCards() {
 sessionStorage.setItem("isReloaded", true);
 
 if (sessionStorage.getItem("isReloaded")) {
-  formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));  
+  formSearchControl.value = JSON.parse(localStorage.getItem('keyText'));
 
   // render news cards
   cardsNewsView();
@@ -160,7 +166,7 @@ function validateForm(event) {
   if (!hasErrors) {
 
     // scroll to block 
-    new ScrollTo(formSearchSubmit, resultsContainer).scroll();  
+    new ScrollTo(formSearchSubmit, resultsContainer).scroll();
 
     // render news cards
     cardsNewsView();
@@ -173,4 +179,10 @@ function validateForm(event) {
 
 }
 
+// Validation input
+function validateInputForm(event) {
+  Validate.checkField(event);
+}
+
 validateformSearch.addEventListener('submit', validateForm);
+validateformSearch.addEventListener('input', validateInputForm);

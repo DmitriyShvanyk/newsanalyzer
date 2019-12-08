@@ -7,19 +7,17 @@ export const analyticsContainer = document.querySelector('.analytics__container'
 // get localStorage for text, cards
 const keyTextStorage = JSON.parse(localStorage.getItem('keyText'));
 const cardsStorage = JSON.parse(localStorage.getItem('cards'));
+const stat = new Stat(keyTextStorage, cardsStorage).getArticlesPerDay();
 
-new Stat(keyTextStorage, cardsStorage);
-window.addEventListener('storage', () => new Stat(keyTextStorage, cardsStorage));
+window.addEventListener('storage', () => stat);
 
 
 // uniq months
 export function uniqMonths(arr) {
-  return [...new Set(arr)];  
+  return [...new Set(arr)].reverse().join('-');  
 }
 
 // show uniq months
 export function showMonths(arr){
-  return arr.map(item => {
-    return new Date(item.publishedAt).toLocaleString('ru', { month: 'long' });
-  })
+  return arr.map(item => new Date(item.publishedAt).toLocaleString('ru', { month: 'long' }));
 }

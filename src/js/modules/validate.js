@@ -1,16 +1,11 @@
 export default class Validate {
   constructor(formElement) {
-    this.formElement = formElement;
-
+    this._formElement = formElement;
     this.addAttrNovalidate();
-    this.checkField.bind(this);
-    this.addEventListener.bind(this);
-
-    this.formElement.addEventListener('input', event => this.checkField(event));
   }
 
   addAttrNovalidate() {
-    this.formElement.setAttribute('novalidate', true);
+    this._formElement.setAttribute('novalidate', true);
   }
 
   static hasError(field) {
@@ -66,13 +61,13 @@ export default class Validate {
 
     message.textContent = '';
     message.classList.remove('form-search__error--show');
-  }
+  } 
 
-  checkField(event) {
+  static checkField(event) {
 
     const target = event.target;
 
-    if (!this.formElement) {
+    if (!target) {
       return;
     }
 
@@ -83,21 +78,16 @@ export default class Validate {
       return;
     }
 
-    const fields = this.formElement.elements;
-
-    for (let i = 0; i < fields.length; i++) {
-      error = Validate.hasError(fields[i]);
-      if (error) {
-        Validate.removeError(target);
-        return;
-      }
+    if(!error){
+      Validate.removeError(target);
+      return;
     }
-
+    
     Validate.removeError(target);
   }
 
   addEventListener(...args) {
-    this.formElement.addEventListener(...args);
+    this._formElement.addEventListener(...args);
   }
 
 }

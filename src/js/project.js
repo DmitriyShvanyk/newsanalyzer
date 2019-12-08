@@ -2,18 +2,24 @@ import '../../node_modules/swiper/css/swiper.css'
 import '../pages/project.css'
 import Swiper from 'swiper'
 import ApiGithub from './modules/api/apiGithub.js'
+import CardGithub from '../blocks/slider/__swiper-slide/cardGithub.js'
 import CardGithubList from '../blocks/slider/cardGithubList.js'
+import { GITHUB_URL, GITHUB_MY_REPO } from './config.js'
+
 
 const cardsGithubContainer = document.querySelector('.swiper-wrapper');
-const myRepoGithub = 'DmitriyShvanyk/newsanalyzer/commits';
+
 const apiGithub = new ApiGithub({
-  baseURL: `https://api.github.com/repos/${myRepoGithub}`
+  baseURL: `${GITHUB_URL}${GITHUB_MY_REPO}`
 });
+
+// Create cards
+const createCard = (...args) => new CardGithub(...args);
 
 apiGithub.initCardsGithub()
   .then(cards => {   
 
-    new CardGithubList(cardsGithubContainer, cards);
+    new CardGithubList(cardsGithubContainer, cards, createCard).renderCards();
 
     new Swiper('.slider__swiper-container', {
       loop: true,
